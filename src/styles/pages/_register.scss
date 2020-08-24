@@ -1,0 +1,51 @@
+.register-section {
+	display: flex;
+	width: 80%;
+	margin: 5rem auto 0 auto;
+}
+
+.zao-bora-info-sec {
+	flex: 50%;
+	height: 100%;
+}
+
+.zao-bora-info {
+	display: flex;
+	justify-content: center;
+}
+
+.registration-form {
+	flex: 50%;
+}
+
+.social-media-icons {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.hr-divider {
+	display: flex;
+	width: 100%;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	height: 1rem;
+}
+
+.hr-divider-line {
+	background: #DCDBDB;
+	height: .1rem;
+	width: 94%;
+}
+
+.divider-span {
+	position: absolute;
+	color: #666;
+	background: #fff;
+	width: 8%;
+	height: 100%;
+	text-align: center;
+	left: 46%;
+	top: 0;
+}

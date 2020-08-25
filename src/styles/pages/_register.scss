@@ -1,21 +1,62 @@
+.register-text {
+	text-align: justify;
+}
+
+.mb {
+	display: none;
+}
+
+.auth-app-logo {
+	text-decoration: none;
+	color: #666;
+	margin: $m-size $m-size 0 $m-size;
+}
+
+.register-title {
+	display: flex;
+	align-items: center;
+}
+
+.dsk {
+	display: block;
+}
+
 .register-section {
 	display: flex;
-	width: 80%;
-	margin: 5rem auto 0 auto;
+	width: 70%;
+	margin: 8rem auto 0 auto;
+	height: 80vh;
+}
+
+.dsk-register-title {
+	width: 100%
 }
 
 .zao-bora-info-sec {
 	flex: 50%;
 	height: 100%;
+	display: flex;
+	font-size: 1.5rem;
+	padding: $l-size;
 }
 
 .zao-bora-info {
 	display: flex;
-	justify-content: center;
+	justify-content: space-between;
+	flex-direction: column;
+	align-items: center;
+	height: 80%;
+}
+
+.social-media-links {
+	display: flex;
+	align-items: center;
 }
 
 .registration-form {
 	flex: 50%;
+	display: flex;
+	justify-content: flex-end;
 }
 
 .social-media-icons {
@@ -34,18 +75,109 @@
 }
 
 .hr-divider-line {
-	background: #DCDBDB;
 	height: .1rem;
 	width: 94%;
+	background: #ddd;
 }
 
 .divider-span {
 	position: absolute;
-	color: #666;
 	background: #fff;
+	color: #666;
 	width: 8%;
 	height: 100%;
 	text-align: center;
 	left: 46%;
 	top: 0;
+}
+
+.register-app-logo {
+	margin-right: $s-size;
+}
+
+
+/* Tablets */
+@media screen and (min-width: $laptop-width) and (max-width: $desktop-width) {
+
+	.zao-bora-info-sec {
+		height: 70%;
+	}
+
+}
+
+@media screen and (min-width: $tablet-width) and (max-width: $laptop-width) {
+	.register-section {
+		width: 90%;
+		height: 46rem;
+	}
+
+	.zao-bora-info-sec {
+		height: 100%;
+		font-size: 1.8rem;
+		padding: 0 $s-size;
+	}
+
+	.zao-bora-info {
+		height: 70%;
+	}
+
+	.r-footer-margin {
+		height: 30rem;
+	}
+
+	.register-section {
+		margin-bottom: 30vh;
+	}
+}
+
+/* Mobile */
+@media screen and (min-width: $mobile-width) and (max-width: $tablet-width) {
+
+	.register-section {
+		display: flex;
+		flex-direction: column;
+		height: auto;
+		width: 100%;
+		margin-top: $l-size;
+	}
+
+	.zao-bora-info-sec {
+		font-size: 1.2rem;
+		padding: 0 $s-size;
+	}
+
+	.dsk {
+		display: none;
+	}
+
+	.mb {
+		display: block;
+	}
+
+	.sign-in-instead {
+		font-size: $s-size;
+	}
+
+	.register-title {
+		margin-bottom: $s-size;
+	}
+
+	.mb-register {
+		display: flex;
+		justify-content: flex-start;
+		width: '100%';
+		border-bottom: .1rem solid #ccc;
+		padding: $s-size;
+	}
+
+	.mb-register__wrapper {
+		display: flex;
+		justify-content: space-between;
+		padding: 0;
+		width: 55%;
+	}
+
+	.registration-form__wrapper {
+		width: 100%;
+	}
 }

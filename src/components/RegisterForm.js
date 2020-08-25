@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -10,6 +11,7 @@ import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import { FcGoogle } from "react-icons/fc";
+import { FaFacebook } from "react-icons/fa";
 import {
 	makeStyles,
 	createMuiTheme,
@@ -112,15 +114,10 @@ const RegisterForm = (props) => {
 							InputProps={{ className: classes.root }}
 							onChange={handleChange}
 							autoFocus
-                            helperText={
-                                touched.firstName && errors.firstName ? errors.firstName : 'Enter your full name.'
-                            }
+                            // helperText={
+                            //     touched.firstName && errors.firstName ? errors.firstName : 'Enter your full name.'
+                            // }
 						/>
-                        <ErrorMessage
-                            component="div"
-                            name="firstName"
-                            className="invalid-feedback"
-                        />
 					</ThemeProvider>
 				</Grid>
 				<Grid item xs={12} sm={6}>
@@ -268,10 +265,11 @@ const RegisterForm = (props) => {
 			<Grid container justify="flex-start">
 				<Grid item>
 					<span className="social-media-icons" style={{ fontSize: 15 }}>
-						Register with: <FacebookIcon color="primary" style={{
+						Register with: <FaFacebook style={{
 							fontSize: 30,
 							marginLeft: 5,
-							cursor: 'pointer'
+							cursor: 'pointer',
+							color: '#4867AA'
 						}} /><FcGoogle style={{
 							fontSize: 30,
 							marginLeft: 5,
@@ -279,7 +277,16 @@ const RegisterForm = (props) => {
 						}} />
 					</span>
 				</Grid>
-			</Grid>
+			</Grid><br />
+			<span className="sign-in-instead mb">
+				<p>
+					Already have an account? <NavLink
+						to='/login'
+					>
+						Sign in
+					</NavLink>
+				</p>
+			</span>
 		</Form>
 	);
 }

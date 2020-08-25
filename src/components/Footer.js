@@ -5,23 +5,27 @@ import Box from '@material-ui/core/Box';
 import Link from '@material-ui/core/Link';
 
 
-const Copyright = () => (
-    <Typography variant="h5" color="textSecondary" align="center">
-		{'Copyright © '}
-		<Link color="inherit" href="https://material-ui.com/">
-			Zao Bora
-		</Link>{' '}
-		{new Date().getFullYear()}
-		{'.'}
+const Copyright = (props) => (
+    <Typography variant="h5" align="center">
+		<span style={{color:'#868686'}}>
+			{'Copyright © '}
+			<Link color="primary" href="https://material-ui.com/">
+				Zao Bora
+			</Link>{' '}
+			{new Date().getFullYear()}
+			{'.'}
+		</span>
 	</Typography>
 );
 
 const Footer = () => (
-    <Container component="main" maxWidth="xs">
-		<Box mt={5}>
-			<Copyright />
-		</Box>
-	</Container>
+	<footer>
+	    <Container component="main" maxWidth="xs">
+			<Box mt={5}>
+				<Copyright />
+			</Box>
+		</Container>
+	</footer>
 );
 
 export default Footer;

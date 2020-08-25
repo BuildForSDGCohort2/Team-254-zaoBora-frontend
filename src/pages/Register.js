@@ -14,18 +14,17 @@ import Container from '@material-ui/core/Container';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
-import FacebookIcon from '@material-ui/icons/Facebook';
 import { FcGoogle } from "react-icons/fc";
+import { FaFacebook, FaTwitter, FaArrowLeft } from "react-icons/fa";
 import Divider from '@material-ui/core/Divider';
 import { green } from '@material-ui/core/colors';
 import { makeStyles } from '@material-ui/core/styles';
 import { Formik } from "formik";
 
-import Header from '../components/Header';
 import Footer from '../components/Footer';
-import tree from '../assets/tree.png';
 import RegisterForm from '../components/RegisterForm';
 import { validationSchema } from '../utils/validate';
+import tree from '../assets/tree.png';
 
 
 const useStyles = makeStyles(theme => ({
@@ -48,53 +47,113 @@ const Register = () => {
 
     return (
     	<div className="register-page">
-    		<Header />
+			<NavLink
+				className="auth-app-logo dsk"
+				to="/"
+			>
+    			<h1 className="register-title">
+					<img src={tree} alt="tree seedling" className="register-app-logo" />
+	        		Zao Bora
+    			</h1>
+			</NavLink>
+			<span className="mb mb-register">
+				<span className="mb mb-register__wrapper">
+					<NavLink
+						to="/"
+					>
+						<FaArrowLeft style={{
+							fontSize: 20,
+							cursor: 'pointer'
+						}} />
+					</NavLink>
+					<span className="mb-register-title">
+						<Typography
+							className={classes.formTitle}
+							variant="h5"
+						>
+							Register
+						</Typography>
+					</span>
+				</span>
+			</span>
 	        <div className="register-section">
 	        	<div className="zao-bora-info-sec">
-	        		<span className="zao-bora-info">
-						<img src={tree} alt="tree seedling" />
-		        		<h1>Zao Bora</h1>
-						<p>
-							Already have an account? <NavLink
-								to='/login'
-							>
-								Sign in
-							</NavLink>
-						</p>
-	        		</span>
+	        		<div className="zao-bora-info">
+	        			<h1 className="register-title">
+							<img src={tree} alt="tree seedling" className="register-app-logo" />
+			        		Zao Bora
+	        			</h1>
+	        			<div className="register-text">
+	        				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed purus ex, suscipit vel ex in, fringilla sodales elit. Curabitur sollicitudin convallis pulvinar. Phasellus suscipit aliquet massa, vitae rhoncus leo tristique eget. Cras accumsan erat eget orci commodo gravida. Maecenas velit felis, semper vel ex ut, consequat accumsan ipsum. Nulla posuere mi sed molestie ultrices. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec a viverra enim.</p><br />
+	        				<span className="social-media-links">
+	        					<p>Check us out on social media: </p>
+	        					<FaTwitter style={{
+									fontSize: 20,
+									marginLeft: 5,
+									cursor: 'pointer',
+									color: '#38B8FF'
+								}} />
+								<FaFacebook style={{
+									fontSize: 20,
+									marginLeft: 5,
+									cursor: 'pointer',
+									color: '#4867AA'
+								}} />
+	        				</span>
+	        			</div>
+	        			<span className="sign-in-instead dsk"
+	        				style={{
+	        					width: '100%'
+	        				}}
+	        			>
+							<p>
+								Already have an account? <NavLink
+									to='/login'
+								>
+									Sign in
+								</NavLink>
+							</p>
+	        			</span>
+	        		</div>
 	        	</div>
 	        	<div className="registration-form">
-			        <Container component="main" maxWidth="xs">
-						<CssBaseline />
-						<div className={classes.paper}>
-							<Typography
-								className={classes.formTitle}
-								// component="h1"
-								variant="h4"
-							>
-								Register
-							</Typography>
-							<Formik
-		                        initialValues={{
-		                            firstName: '',
-		                            lastName: '',
-		                            email: '',
-		                            phoneNumber: '',
-		                            accountType: '',
-		                            password: '',
-		                            confirmPassword: '',
-		                            agreement: ''
-		                        }}
-		                        validationSchema={validationSchema}
-		                        onSubmit={(values, { setSubmitting, resetForm }) => {
-		                        	console.log(values);
-		                        }}
-		                        render={props => <RegisterForm {...props} />}
-		                    />
-	                    </div>
-					</Container>
+		        	<div className="registration-form__wrapper">
+				        <Container component="main" maxWidth="xs">
+							<CssBaseline />
+							<div className={classes.paper}>
+								<span className="dsk-register-title dsk">
+									<Typography
+										className={classes.formTitle}
+										// component="h1"
+										variant="h4"
+									>
+										Register
+									</Typography>
+								</span>
+								<Formik
+			                        initialValues={{
+			                            firstName: '',
+			                            lastName: '',
+			                            email: '',
+			                            phoneNumber: '',
+			                            accountType: '',
+			                            password: '',
+			                            confirmPassword: '',
+			                            agreement: false
+			                        }}
+			                        validationSchema={validationSchema}
+			                        onSubmit={(values, { setSubmitting, resetForm }) => {
+			                        	console.log(values);
+			                        }}
+			                    >
+			                    	{props => <RegisterForm {...props} />}
+			                    </Formik>
+		                    </div>
+						</Container>
+					</div>
 				</div>
 			</div>
+			<div className="r-footer-margin"></div>
 	    	<Footer />
     	</div>
     );

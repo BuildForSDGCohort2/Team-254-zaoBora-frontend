@@ -1,0 +1,95 @@
+.login-form {
+	padding: $l-size 0;
+	flex: 50%;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.login-section {
+	display: flex;
+	width: 70%;
+	margin: 5rem auto 0 auto;
+	height: 80vh;
+}
+
+.zao-bora-illustration {
+	flex: 50%;
+	height: 100%;
+	display: flex;
+}
+
+.login-form__wrapper {
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+	align-items: center;
+	height: 80%;
+}
+
+#farmer-illustration {
+	width: 100%;
+	height: 80vh;
+}
+
+.extra-options {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 95%;
+	margin: 0 auto;
+}
+
+.register-instead {
+	margin-top: $m-size;
+}
+
+
+/* Tablets */
+@media screen and (min-width: $tablet-width) and (max-width: $laptop-width) {
+	.login-section {
+		width: 90%;
+		height: auto;
+		margin: 0 auto;
+	}
+
+	.login-form__wrapper {
+		height: 90%;
+	}
+
+	.zao-bora-illustration {
+		align-items: center;
+		height: 60%;
+	}
+
+	.login-form {
+		height: 60%;
+		padding: 8rem 0;
+	}
+
+	#farmer-illustration {
+		width: 100%;
+		height: 50rem;
+	}
+
+	.l-footer-margin {
+		height: 70rem;
+	}
+
+	.s-font-size {
+		font-size: $m-size;
+	}
+}
+
+/* Mobile */
+@media screen and (min-width: $mobile-width) and (max-width: $tablet-width) {
+	.login-section {
+		width: 95%;
+		margin: 0 auto;
+		height: 100vh;
+	}
+
+	.login-form {
+		display: block;
+	}
+}

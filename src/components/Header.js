@@ -10,8 +10,10 @@ const Header = () => (
 			<span
 				className="app-logo"
 			>
-				<img src={tree} alt="tree seedling" />
-				<h2>Zao Bora</h2>
+    			<h1 className="register-title">
+					<img src={tree} alt="tree seedling" className="register-app-logo" />
+	        		Zao Bora
+    			</h1>
 			</span>
 			<NavBar />
 		</div>

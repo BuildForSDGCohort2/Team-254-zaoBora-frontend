@@ -24,8 +24,13 @@
 .register-section {
 	display: flex;
 	width: 70%;
-	margin: 8rem auto 0 auto;
-	height: 80vh;
+	margin: 5rem auto 0 auto;
+	height: 100vh;
+}
+
+.register-section__wrapper {
+	display: flex;
+	height: 80%;
 }
 
 .dsk-register-title {
@@ -37,10 +42,15 @@
 	height: 100%;
 	display: flex;
 	font-size: 1.5rem;
-	padding: $l-size;
+	padding: 0;
 }
 
 .zao-bora-info {
+	width: 100%;
+	height: 80%;
+}
+
+.zao-bora-info__wrapper {
 	display: flex;
 	justify-content: space-between;
 	flex-direction: column;
@@ -97,48 +107,80 @@
 
 
 /* Tablets */
-@media screen and (min-width: $laptop-width) and (max-width: $desktop-width) {
+@media screen and (min-width: 85em) {
+
+	.zao-bora-info__wrapper {
+		height: 60%;
+	}
+
+}
+
+@media screen and (min-width: 64rem) and (max-width: 84em) {
 
 	.zao-bora-info-sec {
-		height: 70%;
+		height: 100%;
+		font-size: 1.7rem;
+	}
+
+	.zao-bora-info__wrapper {
+		height: 50%;
+	}
+
+	.r-footer-margin {
+		height: 0;
+	}
+
+	.register-section {
+		width: 90%;
+		margin-bottom: 0;
 	}
 
 }
 
 @media screen and (min-width: $tablet-width) and (max-width: $laptop-width) {
 	.register-section {
+		margin-bottom: 0;
 		width: 90%;
-		height: 46rem;
+		height: 50rem;
 	}
 
 	.zao-bora-info-sec {
 		height: 100%;
-		font-size: 1.8rem;
+		font-size: 1.6rem;
 		padding: 0 $s-size;
 	}
 
 	.zao-bora-info {
-		height: 70%;
+		height: 100%;
+	}
+
+	.zao-bora-info__wrapper {
+		height: 80%;
 	}
 
 	.r-footer-margin {
-		height: 30rem;
+		height: 25rem;
 	}
 
-	.register-section {
-		margin-bottom: 30vh;
+	.register-section__wrapper {
+		height: auto;
 	}
 }
 
 /* Mobile */
 @media screen and (min-width: $mobile-width) and (max-width: $tablet-width) {
 
-	.register-section {
+	.register-section__wrapper {
 		display: flex;
 		flex-direction: column;
 		height: auto;
 		width: 100%;
-		margin-top: $l-size;
+		margin-top: 0;
+	}
+
+	.register-section {
+		height: auto;
+		width: 100%;
 	}
 
 	.zao-bora-info-sec {

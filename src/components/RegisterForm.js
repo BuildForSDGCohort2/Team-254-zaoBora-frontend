@@ -10,6 +10,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import FacebookIcon from '@material-ui/icons/Facebook';
+import FormHelperText from '@material-ui/core/FormHelperText';
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
 import {
@@ -103,20 +104,18 @@ const RegisterForm = (props) => {
 				<Grid item xs={12} sm={6}>
 					<ThemeProvider theme={theme}>
 						<TextField
+							autoFocus
 							autoComplete="fname"
 							name="firstName"
 							value={firstName}
 							variant="outlined"
-							required
 							fullWidth
 							id="firstName"
-							label="First Name"
+							label={errors.firstName ? 'Error' : 'First Name'}
 							InputProps={{ className: classes.root }}
 							onChange={handleChange}
-							autoFocus
-                            // helperText={
-                            //     touched.firstName && errors.firstName ? errors.firstName : 'Enter your full name.'
-                            // }
+							helperText={errors.firstName ? errors.firstName : ''}
+							error={errors.firstName ? true : false}
 						/>
 					</ThemeProvider>
 				</Grid>
@@ -124,15 +123,16 @@ const RegisterForm = (props) => {
 					<ThemeProvider theme={theme}>
 						<TextField
 							variant="outlined"
-							required
 							fullWidth
 							id="lastName"
-							label="Last Name"
+							label={errors.lastName ? 'Error' : 'Last Name'}
 							name="lastName"
 							value={lastName}
 							autoComplete="lname"
 							onChange={handleChange}
 							InputProps={{ className: classes.root }}
+							helperText={errors.lastName ? errors.lastName : ''}
+							error={errors.lastName ? true : false}
 						/>
 					</ThemeProvider>
 				</Grid>
@@ -143,13 +143,15 @@ const RegisterForm = (props) => {
 							required
 							fullWidth
 							id="phone-number"
-							label="Phone Number"
+							label={errors.phoneNumber ? 'Error' : 'Phone Number(+254..)'}
 							name="phoneNumber"
 							type="number"
 							value={phoneNumber}
 							autoComplete="phone-number"
 							onChange={handleChange}
 							InputProps={{ className: classes.root }}
+							helperText={errors.phoneNumber ? errors.phoneNumber : ''}
+							error={errors.phoneNumber ? true : false}
 						/>
 					</ThemeProvider>
 				</Grid>
@@ -160,12 +162,14 @@ const RegisterForm = (props) => {
 							required
 							fullWidth
 							id="email"
-							label="Email Address"
 							name="email"
 							value={email}
 							autoComplete="email"
 							onChange={handleChange}
+							label={errors.email ? 'Error' : 'Email Address'}
 							InputProps={{ className: classes.root }}
+							helperText={errors.email ? errors.email : ''}
+							error={errors.email ? true : false}
 						/>
 					</ThemeProvider>
 				</Grid>
@@ -176,19 +180,20 @@ const RegisterForm = (props) => {
 							className={classes.formControl}
 							fullWidth
 							required
-							label="Account Type"
 							id="account-type"
 							autoComplete="account-type"
 							name="accountType"
 							value={accountType}
 							onChange={handleChange}
+							label={errors.accountType ? 'Error' : 'Farmer(seller)/Buyer?'}
+							error={errors.accountType ? true : false}
 						>
-							<InputLabel htmlFor="outlined-age-native-simple">Account Type</InputLabel>
+							<InputLabel htmlFor="outlined-age-native-simple">Farmer(seller)/Buyer?</InputLabel>
 					        <Select
 								native
-								label="Account Type"
+								label={errors.accountType ? 'Error' : 'Farmer(seller)/Buyer?'}
 								inputProps={{
-									name: 'account-type',
+									name: 'accountType',
 									id: 'outlined-account-type-native-simple',
 								}}
 					        >
@@ -208,12 +213,14 @@ const RegisterForm = (props) => {
 							fullWidth
 							name="password"
 							value={password}
-							label="Password"
+							label={errors.password ? 'Error' : 'Password'}
 							type="password"
 							id="password"
 							autoComplete="current-password"
 							onChange={handleChange}
 							InputProps={{ className: classes.root }}
+							helperText={errors.password ? errors.password : ''}
+							error={errors.password ? true : false}
 						/>
 					</ThemeProvider>
 				</Grid>
@@ -225,27 +232,37 @@ const RegisterForm = (props) => {
 							fullWidth
 							name="confirmPassword"
 							value={confirmPassword}
-							label="Confirm Password"
+							label={errors.confirmPassword ? 'Error' : 'Confirm Password'}
 							type="password"
 							id="confirm-password"
 							autoComplete="confirm-password"
 							onChange={handleChange}
 							InputProps={{ className: classes.root }}
+							helperText={errors.confirmPassword ? errors.confirmPassword : ''}
+							error={errors.confirmPassword ? true : false}
 						/>
 					</ThemeProvider>
 				</Grid>
 				<Grid item xs={12}>
-					<FormControlLabel
-						control={
-							<Checkbox
-								value={agreement}
-								color="default"
-								name="agreement"
-								onChange={handleChange}
-							/>
-						}
-						label="I agree to terms of use."
-					/>
+					<FormControl
+						required
+						error={errors.agreement ? true : false}
+						component="fieldset"
+						className={classes.formControl}
+					>
+						<FormControlLabel
+							label="I agree to terms of use."
+							control={
+								<Checkbox
+									value={agreement}
+									color="default"
+									name="agreement"
+									onChange={handleChange}
+								/>
+							}
+						/>
+						<FormHelperText>{errors.agreement && errors.agreement}</FormHelperText>
+					</FormControl>
 				</Grid>
 			</Grid>
 			<ThemeProvider theme={theme}>

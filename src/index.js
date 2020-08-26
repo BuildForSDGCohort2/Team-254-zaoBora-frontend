@@ -5,7 +5,6 @@ import axios from 'axios';
 import App from './App';
 // import configureStore from './store/configureStore';
 
-
 // const store = configureStore();
 let hasRendered = false;
 

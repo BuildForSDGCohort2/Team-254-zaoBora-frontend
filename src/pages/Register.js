@@ -41,9 +41,6 @@ const useStyles = makeStyles(theme => ({
 
 const Register = () => {
     const classes = useStyles();
-	const [state, setState] = React.useState({
-		accountType: ''
-	});
 
     return (
     	<div className="register-page">
@@ -63,7 +60,8 @@ const Register = () => {
 					>
 						<FaArrowLeft style={{
 							fontSize: 20,
-							cursor: 'pointer'
+							cursor: 'pointer',
+							color: '#666'
 						}} />
 					</NavLink>
 					<span className="mb-register-title">
@@ -77,79 +75,84 @@ const Register = () => {
 				</span>
 			</span>
 	        <div className="register-section">
-	        	<div className="zao-bora-info-sec">
-	        		<div className="zao-bora-info">
-	        			<h1 className="register-title">
-							<img src={tree} alt="tree seedling" className="register-app-logo" />
-			        		Zao Bora
-	        			</h1>
-	        			<div className="register-text">
-	        				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed purus ex, suscipit vel ex in, fringilla sodales elit. Curabitur sollicitudin convallis pulvinar. Phasellus suscipit aliquet massa, vitae rhoncus leo tristique eget. Cras accumsan erat eget orci commodo gravida. Maecenas velit felis, semper vel ex ut, consequat accumsan ipsum. Nulla posuere mi sed molestie ultrices. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec a viverra enim.</p><br />
-	        				<span className="social-media-links">
-	        					<p>Check us out on social media: </p>
-	        					<FaTwitter style={{
-									fontSize: 20,
-									marginLeft: 5,
-									cursor: 'pointer',
-									color: '#38B8FF'
-								}} />
-								<FaFacebook style={{
-									fontSize: 20,
-									marginLeft: 5,
-									cursor: 'pointer',
-									color: '#4867AA'
-								}} />
-	        				</span>
-	        			</div>
-	        			<span className="sign-in-instead dsk"
-	        				style={{
-	        					width: '100%'
-	        				}}
-	        			>
-							<p>
-								Already have an account? <NavLink
-									to='/login'
-								>
-									Sign in
-								</NavLink>
-							</p>
-	        			</span>
-	        		</div>
-	        	</div>
-	        	<div className="registration-form">
-		        	<div className="registration-form__wrapper">
-				        <Container component="main" maxWidth="xs">
-							<CssBaseline />
-							<div className={classes.paper}>
-								<span className="dsk-register-title dsk">
-									<Typography
-										className={classes.formTitle}
-										// component="h1"
-										variant="h4"
-									>
-										Register
-									</Typography>
-								</span>
-								<Formik
-			                        initialValues={{
-			                            firstName: '',
-			                            lastName: '',
-			                            email: '',
-			                            phoneNumber: '',
-			                            accountType: '',
-			                            password: '',
-			                            confirmPassword: '',
-			                            agreement: false
-			                        }}
-			                        validationSchema={validationSchema}
-			                        onSubmit={(values, { setSubmitting, resetForm }) => {
-			                        	console.log(values);
-			                        }}
-			                    >
-			                    	{props => <RegisterForm {...props} />}
-			                    </Formik>
-		                    </div>
-						</Container>
+		        <div className="register-section__wrapper">
+		        	<div className="zao-bora-info-sec">
+		        		<div className="zao-bora-info">
+			        		<div className="zao-bora-info__wrapper">
+			        			<h1 className="register-title">
+									<img src={tree} alt="tree seedling" className="register-app-logo" />
+					        		Zao Bora
+			        			</h1>
+			        			<div className="register-text">
+			        				<br /><p>Zao Bora is an online marketplace developed by innovators for farmers, retailers and consumers.<br /> Zao Bora strives to connect farmers with potential buyers by enabling transparent online purchase of products as well as sharing of products/produce through photosharing on the platform. Zao Bora is led by a team of hardworking and dedicated enterpreneurs who are always available for support and assistance.</p><br />
+			        				<span className="social-media-links">
+			        					<p>Check us out on social media: </p>
+			        					<FaTwitter style={{
+											fontSize: 20,
+											marginLeft: 5,
+											cursor: 'pointer',
+											color: '#38B8FF'
+										}} />
+										<FaFacebook style={{
+											fontSize: 20,
+											marginLeft: 5,
+											cursor: 'pointer',
+											color: '#4867AA'
+										}} /><br />
+			        				</span>
+		        					<p>Or call us at: +2547xxxxxxxx</p>
+			        			</div>
+			        			<span className="sign-in-instead dsk"
+			        				style={{
+			        					width: '100%'
+			        				}}
+			        			>
+									<p>
+										Already have an account? <NavLink
+											to='/login'
+										>
+											Sign in
+										</NavLink>
+									</p>
+			        			</span>
+			        		</div>
+		        		</div>
+		        	</div>
+		        	<div className="registration-form">
+			        	<div className="registration-form__wrapper">
+					        <Container component="main" maxWidth="xs">
+								<CssBaseline />
+								<div className={classes.paper}>
+									<span className="dsk-register-title dsk">
+										<Typography
+											className={classes.formTitle}
+											// component="h1"
+											variant="h4"
+										>
+											Register
+										</Typography>
+									</span>
+									<Formik
+				                        initialValues={{
+				                            firstName: '',
+				                            lastName: '',
+				                            email: '',
+				                            phoneNumber: '',
+				                            accountType: '',
+				                            password: '',
+				                            confirmPassword: '',
+				                            agreement: false
+				                        }}
+				                        validationSchema={validationSchema}
+				                        onSubmit={(values, { setSubmitting, resetForm }) => {
+				                        	console.log(values)
+				                        }}
+				                    >
+				                    	{props => <RegisterForm {...props} />}
+				                    </Formik>
+			                    </div>
+							</Container>
+						</div>
 					</div>
 				</div>
 			</div>

@@ -24,7 +24,7 @@ import { Formik } from "formik";
 import Footer from '../components/Footer';
 import tree from '../assets/tree.png';
 import LoginForm from '../components/LoginForm';
-import { validationSchema } from '../utils/validate';
+import { LoginSchema } from '../utils/validate';
 import farmer from '../assets/farmer.jpg';
 
 
@@ -100,7 +100,7 @@ const Login = () => {
 			                            password: '',
 			                            remember: ''
 			                        }}
-			                        validationSchema={validationSchema}
+			                        validationSchema={LoginSchema}
 			                        onSubmit={(values, { setSubmitting, resetForm }) => {
 			                        	console.log(values);
 			                        }}

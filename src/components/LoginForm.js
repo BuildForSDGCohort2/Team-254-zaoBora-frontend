@@ -29,27 +29,15 @@ const useStyles = makeStyles((theme) => ({
 	        }
     	}
     },
-    paper: {
-        marginTop: theme.spacing(0),
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-    },
-    avatar: {
-        margin: theme.spacing(1)
-    },
     form: {
         width: '100%', // Fix IE 11 issue.
         marginTop: theme.spacing(3)
-    },
-    formTitle: {
-        width: '100%'
     },
     submit: {
         margin: theme.spacing(3, 0, 2),
         backgroundColor: theme.palette.success.main,
         padding: theme.spacing(1.5)
-    },
+    }
 }));
 
 const theme = createMuiTheme({
@@ -80,6 +68,7 @@ const LoginForm = (props) => {
 		isValid,
 		setFieldTouched
 	} = props;
+	console.log(errors);
 
 	return (
 		<Form
@@ -90,16 +79,18 @@ const LoginForm = (props) => {
 				<Grid item xs={12}>
 					<ThemeProvider theme={theme}>
 						<TextField
-							variant="outlined"
 							required
-							fullWidth
-							id="email"
-							label="Email Address"
+							variant="outlined"
 							name="email"
-							value={email}
 							autoComplete="email"
+							fullWidth
+							id={errors.email ? 'outlined-error-helper-text' : 'email'}
+							label={errors.email ? 'Error' : 'Email Address'}
+							value={email}
 							onChange={handleChange}
 							InputProps={{ className: classes.root }}
+							helperText={errors.email ? errors.email : ''}
+							error={errors.email ? true : false}
 						/>
 					</ThemeProvider>
 				</Grid>
@@ -110,13 +101,15 @@ const LoginForm = (props) => {
 							required
 							fullWidth
 							name="password"
-							value={password}
-							label="Password"
 							type="password"
-							id="password"
+							value={password}
+							label={errors.password ? 'Error' : 'Password'}
+							id={errors.password ? 'outlined-error-helper-text' : 'password'}
 							autoComplete="current-password"
 							onChange={handleChange}
 							InputProps={{ className: classes.root }}
+							helperText={errors.password ? errors.password : ''}
+							error={errors.password ? true : false}
 						/>
 					</ThemeProvider>
 				</Grid>

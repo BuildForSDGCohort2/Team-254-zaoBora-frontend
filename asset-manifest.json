@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/Team-254-zaoBora-frontend/./static/css/main.7d222164.chunk.css",
+    "main.js": "/Team-254-zaoBora-frontend/./static/js/main.8c5702eb.chunk.js",
+    "main.js.map": "/Team-254-zaoBora-frontend/./static/js/main.8c5702eb.chunk.js.map",
+    "runtime-main.js": "/Team-254-zaoBora-frontend/./static/js/runtime-main.94af6cc8.js",
+    "runtime-main.js.map": "/Team-254-zaoBora-frontend/./static/js/runtime-main.94af6cc8.js.map",
+    "static/css/2.764ccc25.chunk.css": "/Team-254-zaoBora-frontend/./static/css/2.764ccc25.chunk.css",
+    "static/js/2.2903fbc8.chunk.js": "/Team-254-zaoBora-frontend/./static/js/2.2903fbc8.chunk.js",
+    "static/js/2.2903fbc8.chunk.js.map": "/Team-254-zaoBora-frontend/./static/js/2.2903fbc8.chunk.js.map",
+    "index.html": "/Team-254-zaoBora-frontend/./index.html",
+    "precache-manifest.82d6181c8dbd525b8bc01a7e46f81b76.js": "/Team-254-zaoBora-frontend/./precache-manifest.82d6181c8dbd525b8bc01a7e46f81b76.js",
+    "service-worker.js": "/Team-254-zaoBora-frontend/./service-worker.js",
+    "static/css/2.764ccc25.chunk.css.map": "/Team-254-zaoBora-frontend/./static/css/2.764ccc25.chunk.css.map",
+    "static/css/main.7d222164.chunk.css.map": "/Team-254-zaoBora-frontend/./static/css/main.7d222164.chunk.css.map",
+    "static/media/farmer.jpg": "/Team-254-zaoBora-frontend/./static/media/farmer.d58e9af0.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.94af6cc8.js",
+    "static/css/2.764ccc25.chunk.css",
+    "static/js/2.2903fbc8.chunk.js",
+    "static/css/main.7d222164.chunk.css",
+    "static/js/main.8c5702eb.chunk.js"
+  ]
+}

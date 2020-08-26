@@ -1,6 +1,6 @@
-// /**
-//  * This file contains the validation schema for authentication
-//  */
+/**
+ * This file contains the validation schema for authentication
+ */
 
 import * as Yup from "yup";
 
@@ -15,9 +15,6 @@ export const validationSchema = Yup.object().shape({
     phoneNumber: Yup.string()
         .test('validPhoneNumber', 'Please enter a valid phone number', 
             (value) => {
-                // Require `PhoneNumberFormat`.
-                const PNF = require('google-libphonenumber').PhoneNumberFormat;
-                 
                 // Get an instance of `PhoneNumberUtil`.
                 const phoneUtil = require('google-libphonenumber').PhoneNumberUtil.getInstance();
 
@@ -92,7 +89,7 @@ export const updateAccountSchema = Yup.object().shape({
         .required('Last name is required'),
     phoneNumber: Yup.number()
         .min(8, 'Too Short!'),
-    birthday: Yup.string()
-        .trim()
-        .matches(/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/, 'Is not in correct format')
+    // birthday: Yup.string()
+    //     .trim()
+    //     .matches(/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/, 'Is not in correct format')
 })

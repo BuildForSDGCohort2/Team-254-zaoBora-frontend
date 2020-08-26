@@ -11,7 +11,7 @@ module.exports = env => {
         output: {
             filename: 'main.js',
             path: path.resolve(__dirname, 'public/dist'),
-            publicPath: '/',
+            publicPath: '/Team-254-zaoBora-frontend/dist/',
         },
         module: {
             rules: [{

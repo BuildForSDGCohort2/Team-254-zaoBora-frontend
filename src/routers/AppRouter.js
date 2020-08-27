@@ -4,7 +4,7 @@
 
 
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { HashRouter, Route, Switch } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 
 // import PrivateRoute from './PrivateRoute';
@@ -18,7 +18,7 @@ import Dashboard from '../pages/Dashboard';
 export const history = createBrowserHistory();
 
 const AppRouter = () => (
-    <BrowserRouter history={history}>
+    <HashRouter basename='/'>
         <div className="App">
 	        <div>
 	            <Switch>
@@ -29,7 +29,7 @@ const AppRouter = () => (
 		    	<Footer />
 	        </div>
         </div>
-    </BrowserRouter>
+    </HashRouter>
 );
 
 export default AppRouter;

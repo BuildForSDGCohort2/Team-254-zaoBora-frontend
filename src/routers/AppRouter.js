@@ -11,7 +11,6 @@ import { createBrowserHistory } from 'history';
 // import MobileRoutes from './MobileRoutes';
 // import ErrorBoundary from '../components/ErrorBoundary';
 import Footer from '../components/Footer';
-import Header from '../components/Header';
 import Register from '../pages/Register';
 import Login from '../pages/Login';
 import Dashboard from '../pages/Dashboard';
@@ -22,7 +21,6 @@ const AppRouter = () => (
     <BrowserRouter history={history}>
         <div className="App">
 	        <div>
-				<Header />
 	            <Switch>
 	                <Route path="/" component={Dashboard} exact={true} />
 	                <Route path="/login" component={Login} />

@@ -14,17 +14,19 @@ import Footer from '../components/Footer';
 import Register from '../pages/Register';
 import Login from '../pages/Login';
 import Dashboard from '../pages/Dashboard';
+import About from '../pages/About';
 
 export const history = createBrowserHistory();
 
 const AppRouter = () => (
-    <HashRouter basename='/'>
+    <HashRouter basename='/'> {/* syncs urls with pages on browser */}
         <div className="App">
 	        <div>
 	            <Switch>
 	                <Route path="/" component={Dashboard} exact={true} />
 	                <Route path="/login" component={Login} />
 	                <Route path="/register" component={Register} />
+	                <Route path="/about" component={About} />
 	            </Switch>
 		    	<Footer />
 	        </div>

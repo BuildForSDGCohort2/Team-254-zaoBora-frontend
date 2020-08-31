@@ -13,9 +13,13 @@ Zao Bora is an online platform where people can register and be a part of a comm
 
 1. Clone the repository [HTTPS](https://github.com/BuildForSDGCohort2/Team-254-zaoBora-frontend.git)
 2. Install dependencies `yarn install` or `npm install`
-3. Using npm? follow these steps
+3. Using npm? follow these steps if there's no `package-lock.json` file present
 	- Install `npm install -g synp`
 	- yarn.lock => package-lock.json `synp --source-file /path/to/yarn.lock`
 	- Delete yarn lock file `rm yarn.lock`
-4. Using yarn? run `yarn import` or `synp --source-file /path/to/package-lock.json`
+4. Using yarn? follow these steps if there's no `yarn.lock` file present
+	- run `yarn import` or
+	- install `npm install -g synp`
+	- package-lock.json => yarn.lock `synp --source-file /path/to/package-lock.json`
+	- Delete yarn package-lock.json file `rm package-lock.json`
 5. Run the app `yarn dev-server` or `npm dev-server`

@@ -11,9 +11,7 @@ Zao Bora is an online platform where people can register and be a part of a comm
 
 ## Installation
 
-1. Clone the repository
-	- [SSH](git@github.com:BuildForSDGCohort2/Team-254-zaoBora-frontend.git)
-	- [HTTPS](https://github.com/BuildForSDGCohort2/Team-254-zaoBora-frontend.git)
+1. Clone the repository [HTTPS](https://github.com/BuildForSDGCohort2/Team-254-zaoBora-frontend.git)
 2. Install dependencies `yarn install` or `npm install`
 3. Using npm? follow these steps
 	- Install `npm install -g synp`

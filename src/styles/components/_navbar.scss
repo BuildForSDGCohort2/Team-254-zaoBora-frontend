@@ -1,29 +1,5 @@
-.main-nav-bar {
-	width: 100%;
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
-}
+.main-nav-bar p {
 
-.navbar-link {
-	text-decoration: none;
-	color: $grey;
-}
-
-.cart-with-badge {
-	position: relative;
-}
-
-.cart-badge {
-	padding: 13% 19%;
-	border-radius: 50%;
-	text-decoration: none;
-	position: absolute;
-	right: -20%;
-	top: -20%;
-	color: $off-white;
-	background: $base-color;
-	font-size: $s-size*.9;
 }
 
 
@@ -48,5 +24,11 @@
 }
 
 @media screen and (min-width: $mobile-width) and (max-width: $tablet-width) {
+	.main-nav-bar {
+		width: 0;
+	}
 
+	.navbar-link {
+		display: none;
+	}
 }

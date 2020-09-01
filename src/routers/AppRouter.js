@@ -11,10 +11,12 @@ import { createBrowserHistory } from 'history';
 // import MobileRoutes from './MobileRoutes';
 // import ErrorBoundary from '../components/ErrorBoundary';
 import Footer from '../components/Footer';
+import Account from '../pages/Account';
 import Register from '../pages/Register';
 import Login from '../pages/Login';
-import Dashboard from '../pages/Dashboard';
+import Market from '../pages/Market';
 import About from '../pages/About';
+import Cart from '../pages/Cart';
 
 export const history = createBrowserHistory();
 
@@ -23,13 +25,15 @@ const AppRouter = () => (
         <div className="App">
 	        <div>
 	            <Switch>
-	                <Route path="/" component={Dashboard} exact={true} />
+	                <Route path="/" component={Market} exact={true} />
 	                <Route path="/login" component={Login} />
 	                <Route path="/register" component={Register} />
 	                <Route path="/about" component={About} />
+	                <Route path="/account" component={Account} />
+	                <Route path="/cart" component={Cart} />
 	            </Switch>
-		    	<Footer />
 	        </div>
+	        <Footer />
         </div>
     </HashRouter>
 );

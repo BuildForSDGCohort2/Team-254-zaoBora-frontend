@@ -1,0 +1,10 @@
+.primary-btn {
+	background: $base-color;
+	color: $off-white;
+	border: .05rem solid #358338;
+	font-size: $s-size*.9;
+}
+
+.primary-btn:hover {
+	background: #358338;
+}

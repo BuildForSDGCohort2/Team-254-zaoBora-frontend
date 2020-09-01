@@ -1,0 +1,30 @@
+.about-header-section {
+	display: block;
+}
+
+.mb-about-header-section {
+	display: none;
+}
+
+
+@media screen and (min-width: 64rem) and (max-width: 84em) {
+
+}
+
+@media screen and (min-width: $tablet-width) and (max-width: $laptop-width) {
+
+}
+
+@media screen and (min-width: $mobile-width) and (max-width: $tablet-width) {
+	.about-header-section {
+		display: none;
+	}
+
+	.mb-about-header-section {
+		padding: .7rem;
+		height: 5rem;
+		margin: 0 auto 3rem auto;
+		display: flex;
+		justify-content: space-between;
+	}
+}

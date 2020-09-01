@@ -1,5 +1,52 @@
 .main-nav-bar {
-	width: 15%;
+	width: 100%;
 	display: flex;
 	justify-content: space-around;
+	align-items: center;
+}
+
+.navbar-link {
+	text-decoration: none;
+	color: $grey;
+}
+
+.cart-with-badge {
+	position: relative;
+}
+
+.cart-badge {
+	padding: 13% 19%;
+	border-radius: 50%;
+	text-decoration: none;
+	position: absolute;
+	right: -20%;
+	top: -20%;
+	color: $off-white;
+	background: $base-color;
+	font-size: $s-size*.9;
+}
+
+
+@media screen and (min-width: 64rem) and (max-width: 84em) {
+	.main-nav-bar {
+		width: 40%;
+	}
+
+	.cart-badge {
+		padding: 14% 19%;
+	}
+}
+
+@media screen and (min-width: $tablet-width) and (max-width: $laptop-width) {
+	.main-nav-bar {
+		width: 50%;
+	}
+	
+	.cart-badge {
+		padding: 17% 20%;
+	}
+}
+
+@media screen and (min-width: $mobile-width) and (max-width: $tablet-width) {
+
 }

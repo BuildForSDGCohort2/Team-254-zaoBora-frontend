@@ -10,7 +10,7 @@ import { Formik } from "formik";
 import tree from '../assets/tree.png';
 import LoginForm from '../components/LoginForm';
 import { LoginSchema } from '../utils/validate';
-import farmer from '../assets/farmer.jpg';
+import farmer from '../assets/farmer-2.png';
 
 
 const useStyles = makeStyles(theme => ({

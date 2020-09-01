@@ -9,7 +9,10 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import FacebookIcon from '@material-ui/icons/Facebook';
+
 import { FcGoogle } from "react-icons/fc";
+import GoogleButton from '../buttons/google/GoogleButton'
+
 import {
 	makeStyles,
 	createMuiTheme,
@@ -19,6 +22,7 @@ import {
 import { Form, ErrorMessage } from "formik";
 import { NavLink } from 'react-router-dom';
 
+import { useAuth0 } from "@auth0/auth0-react";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -57,6 +61,11 @@ const theme = createMuiTheme({
 		},
 	}
 });
+
+// function to handle Login using facebook
+const handleFacebookLogin = () => {
+	console.log("hello")
+}
 
 const LoginForm = (props) => {
     const classes = useStyles();
@@ -160,11 +169,7 @@ const LoginForm = (props) => {
 							fontSize: 30,
 							marginLeft: 5,
 							cursor: 'pointer'
-						}} /><FcGoogle style={{
-							fontSize: 30,
-							marginLeft: 5,
-							cursor: 'pointer'
-						}} />
+						}} /><GoogleButton />
 					</span>
 				</Grid>
 			</Grid>

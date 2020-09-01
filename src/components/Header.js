@@ -1,10 +1,23 @@
 import React, { Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 import { FaShoppingCart } from "react-icons/fa";
+import { withStyles } from '@material-ui/core/styles';
+import { FiShoppingCart } from "react-icons/fi";
+import Badge from '@material-ui/core/Badge';
 
-import NavBar from './NavBar';
 import tree from '../assets/tree.png';
 
+
+const StyledBadge = withStyles((theme) => ({
+	badge: {
+		right: -3,
+		top: 13,
+		border: `2px solid ${theme.palette.background.paper}`,
+		padding: '0 4px',
+		fontSize: '1.1rem',
+		background: '#4caf50'
+	},
+}))(Badge);
 
 const Header = () => (
 	<Fragment>
@@ -69,14 +82,15 @@ const Header = () => (
 								<NavLink
 									to='/cart'
 						            activeClassName="is-active"
-						            className="cart-with-badge"
+						            className=""
 								>
-									<span className="cart-badge">0</span>
-									<FaShoppingCart style={{
-										fontSize: 25,
-										cursor: 'pointer',
-										color: '#818181'
-									}} />
+									<StyledBadge badgeContent={1} color="secondary">
+										<FaShoppingCart style={{
+											fontSize: 25,
+											cursor: 'pointer',
+											color: '#818181'
+										}} />
+									</StyledBadge>
 								</NavLink>
 							</div>
 						</div>
@@ -97,48 +111,3 @@ const Header = () => (
 );
 
 export default Header;
-
-/*
-
-				<div className="header-btns-wrapper">
-					<div className="header-auth-btns-container">
-						<NavLink
-							className="header-login-button no-background-btn header-btn"
-							to="/login"
-						>Sign in</NavLink>
-						<p>or</p>
-						<NavLink
-							className="header-register-button primary-btn header-btn"
-							to="/register"
-						>Register</NavLink>
-					</div>
-				</div>
-			</div>
-			<div className="header-container">
-				<NavLink
-					to="/"
-					className="app-logo"
-				>
-	    			<h2 className="register-title">
-						<img src={tree} alt="tree seedling" className="register-app-logo" />
-		        		Zao Bora
-	    			</h2>
-	    			<h5 className="mb-register-title">
-						<img src={tree} alt="tree seedling" className="register-app-logo" />
-		        		Zao Bora
-	    			</h5>
-				</NavLink>
-				<div className="header-nav-section">
-					<NavBar />
-				</div>
-				<div className="mb-about">
-					<NavLink
-						to='/about'
-			            activeClassName="is-active"
-			            className="navbar-link"
-					>
-						About us
-					</NavLink>
-				</div>
-
-			*/

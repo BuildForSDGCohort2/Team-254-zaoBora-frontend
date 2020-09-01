@@ -17,6 +17,7 @@ import Login from '../pages/Login';
 import Market from '../pages/Market';
 import About from '../pages/About';
 import Cart from '../pages/Cart';
+import NotFound from '../pages/NotFound';
 
 export const history = createBrowserHistory();
 
@@ -31,6 +32,7 @@ const AppRouter = () => (
 	                <Route path="/about" component={About} />
 	                <Route path="/account" component={Account} />
 	                <Route path="/cart" component={Cart} />
+	                <Route component={NotFound} />
 	            </Switch>
 	        </div>
 	        <Footer />

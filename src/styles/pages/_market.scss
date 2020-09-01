@@ -3,6 +3,10 @@
 	flex-direction: column;
 }
 
+.mobile-navigation {
+	display: none;
+}
+
 .market-filter-section {
 
 }
@@ -26,5 +30,11 @@
 }
 
 @media screen and (min-width: $mobile-width) and (max-width: $tablet-width) {
+	.mobile-navigation {
+		display: flex;
+	}
 
+	.mobile-navigation {
+		background: red;
+	}
 }

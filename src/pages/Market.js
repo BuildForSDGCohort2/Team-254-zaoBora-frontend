@@ -1,18 +1,15 @@
 import React, { Fragment } from 'react';
-import Pagination from '@material-ui/lab/Pagination';
 
 import Header from '../components/Header';
+import MobileNav from '../components/MobileNav';
 
 
 const Market = () => {
-
 	return (
-		<Fragment>
+		<div className="market-container">
 			<Header />
-			<div>
-				
-			</div>
-		</Fragment>
+			<MobileNav />
+		</div>
 	);
 }
 

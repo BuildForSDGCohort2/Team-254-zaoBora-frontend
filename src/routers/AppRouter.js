@@ -4,7 +4,7 @@
 
 
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { HashRouter, Route, Switch } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 
 // import PrivateRoute from './PrivateRoute';
@@ -14,19 +14,24 @@ import Footer from '../components/Footer';
 import Register from '../pages/Register';
 import Login from '../pages/Login';
 import Dashboard from '../pages/Dashboard';
+import About from '../pages/About';
 
 export const history = createBrowserHistory();
 
 const AppRouter = () => (
-    <BrowserRouter history={history}>
+    <HashRouter basename='/'> {/* syncs urls with pages on browser */}
         <div className="App">
-            <Switch>
-                <Route path="/" component={Dashboard} exact={true} />
-                <Route path="/login" component={Login} />
-                <Route path="/register" component={Register} />
-            </Switch>
+	        <div>
+	            <Switch>
+	                <Route path="/" component={Dashboard} exact={true} />
+	                <Route path="/login" component={Login} />
+	                <Route path="/register" component={Register} />
+	                <Route path="/about" component={About} />
+	            </Switch>
+		    	<Footer />
+	        </div>
         </div>
-    </BrowserRouter>
+    </HashRouter>
 );
 
 export default AppRouter;

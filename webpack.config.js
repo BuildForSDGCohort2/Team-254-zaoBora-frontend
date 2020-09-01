@@ -11,7 +11,7 @@ module.exports = env => {
         output: {
             filename: 'main.js',
             path: path.resolve(__dirname, 'public/dist'),
-            publicPath: '/',
+            publicPath: '/Team-254-zaoBora-frontend/dist/',
         },
         module: {
             rules: [{
@@ -33,8 +33,7 @@ module.exports = env => {
                 test: /\.(png|svg|jpg|jpeg|gif|ico)$/,
                 exclude: /node_modules/,
                 use: ['file-loader?name=[name].[ext]'],
-            }
-            ]
+            }]
         },
         plugins: [
             new HtmlWebPackPlugin({

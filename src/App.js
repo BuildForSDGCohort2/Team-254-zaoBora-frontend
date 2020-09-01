@@ -15,7 +15,7 @@ class App extends React.Component {
     render() {
         return (
             <Provider store={store}>
-                <AppRouter />
+                    <AppRouter />
                 {/*<ErrorBoundary>
                                     <AppRouter />
                                 </ErrorBoundary>*/}

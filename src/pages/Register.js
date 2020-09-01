@@ -1,27 +1,12 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import InputLabel from '@material-ui/core/InputLabel';
-import { FcGoogle } from "react-icons/fc";
-import { FaFacebook, FaTwitter, FaArrowLeft } from "react-icons/fa";
-import Divider from '@material-ui/core/Divider';
-import { green } from '@material-ui/core/colors';
+import { FaTwitter, FaFacebook, FaArrowLeft } from "react-icons/fa";
 import { makeStyles } from '@material-ui/core/styles';
 import { Formik } from "formik";
 
-import Footer from '../components/Footer';
 import RegisterForm from '../components/RegisterForm';
 import { validationSchema } from '../utils/validate';
 import tree from '../assets/tree.png';
@@ -157,7 +142,6 @@ const Register = () => {
 				</div>
 			</div>
 			<div className="r-footer-margin"></div>
-	    	<Footer />
     	</div>
     );
 }

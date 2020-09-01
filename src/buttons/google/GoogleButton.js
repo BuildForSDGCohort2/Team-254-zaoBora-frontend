@@ -8,51 +8,51 @@ class GoogleButton extends Component {
     super(props)
 
     this.state = {
-      isLogined: false,
-      accessToken: ''
+
     };
 
-    this.login = this.login.bind(this);
-    this.handleLoginFailure = this.handleLoginFailure.bind(this);
-    this.logout = this.logout.bind(this);
-    this.handleLogoutFailure = this.handleLogoutFailure.bind(this);
+
   }
 
-  login (response) {
-    if(response.accessToken){
-      this.setState(state => ({
-        isLogined: true,
-        accessToken: response.accessToken
-      }));
+
+  GoogleSignin(res) {
+    const responseGoogle = {
+      Name: res.profileObj.name,
+      email: res.profileObj.email,
+      token: res.googleId,
+      Image: res.profileObj.imageUrl,
+      ProviderId: 'Google'
+
     }
-    console.log(response)
-  }
+console.log(responseGoogle)
+    // debugger;
+    // axios.post('http://localhost:60200/Api/Login/SocialmediaData', responseFacebook)
+    //   .then((result) => {
+    //     let responseJson = result;
+    //     console.log(result.data.name);
+    //     alert("data");
+    //     sessionStorage.setItem("userData", JSON.stringify(result));
+    //     this.props.history.push('/Dashboard')
+    //   });
+  };
 
-  logout (response) {
-    this.setState(state => ({
-      isLogined: false,
-      accessToken: ''
-    }));
-  }
-
-  handleLoginFailure (response) {
-    alert('Failed to log in')
-  }
-
-  handleLogoutFailure (response) {
-    alert('Failed to log out')
-  }
 
   render() {
+    const responseGoogle = (response) => {
+      console.log(response);
+      var res = response.profileObj;
+      console.log(res);
+      debugger;
+      this.GoogleSignin(response);
+      }
     return (
       <div>
         <GoogleLogin
             clientId="248824929632-14pa3gsul00n3ko7e3v0430j83mni56p.apps.googleusercontent.com"
             buttonText='Login'
-            onSuccess={ this.login }
-            onFailure={ this.handleLoginFailure }
+            onSuccess={responseGoogle}
+            onFailure={responseGoogle}
             cookiePolicy={ 'single_host_origin' }
-            responseType='code,token'
           />
       </div>
     )

@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { FaShoppingCart } from "react-icons/fa";
 
 
 export default class NavBar extends React.Component {
@@ -10,27 +11,35 @@ export default class NavBar extends React.Component {
 					to='/'
 		            activeClassName="is-active"
 		            exact={true}
+		            className="navbar-link"
 				>
-					home
+					Market
 				</NavLink>
 				<NavLink
 					to='/about'
 		            activeClassName="is-active"
-		            exact={true}
+		            className="navbar-link"
 				>
-					about
+					About us
 				</NavLink>
 				<NavLink
-					to='/login'
+					to='/account'
 		            activeClassName="is-active"
+		            className="navbar-link"
 				>
-					login
+					Account
 				</NavLink>
 				<NavLink
-					to='/register'
+					to='/cart'
 		            activeClassName="is-active"
+		            className="cart-with-badge"
 				>
-					register
+					<span className="cart-badge">0</span>
+					<FaShoppingCart style={{
+						fontSize: 25,
+						cursor: 'pointer',
+						color: '#818181'
+					}} />
 				</NavLink>
 			</div>
 		);

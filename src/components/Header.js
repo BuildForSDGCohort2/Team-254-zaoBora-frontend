@@ -7,8 +7,33 @@ import tree from '../assets/tree.png';
 
 const Header = () => (
 	<Fragment>
-		<div className="header-wrapper">
+		<div className="header-container">
 			<div className="header-auth-section">
+				<div className="header-auth-section-container">
+					<div className="header-auth-btns">
+						<NavLink
+							className="header-login-button no-background-btn header-btn"
+							to="/login"
+						>Sign in</NavLink>
+						<p>or</p>
+						<NavLink
+							className="header-register-button primary-btn header-btn"
+							to="/register"
+						>Register</NavLink>
+					</div>
+				</div>
+			</div>
+			<div className="header-links-section">
+
+			</div>
+		</div>
+	</Fragment>
+);
+
+export default Header;
+
+/*
+
 				<div className="header-btns-wrapper">
 					<div className="header-auth-btns-container">
 						<NavLink
@@ -49,9 +74,5 @@ const Header = () => (
 						About us
 					</NavLink>
 				</div>
-			</div>
-		</div>
-	</Fragment>
-);
 
-export default Header;
+			*/

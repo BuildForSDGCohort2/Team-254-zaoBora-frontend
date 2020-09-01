@@ -4,7 +4,9 @@ import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Grid from '@material-ui/core/Grid';
-import FacebookIcon from '@material-ui/icons/Facebook';
+
+import FacebookButton from '../buttons/facebook/FacebookButton'
+
 import { FcGoogle } from "react-icons/fc";
 import {
 	makeStyles,
@@ -147,11 +149,7 @@ const LoginForm = (props) => {
 			<Grid container justify="flex-start">
 				<Grid item>
 					<span className="social-media-icons s-font-size">
-						Login with: <FacebookIcon color="primary" style={{
-							fontSize: 30,
-							marginLeft: 5,
-							cursor: 'pointer'
-						}} /><FcGoogle style={{
+						 <FacebookButton /><FcGoogle style={{
 							fontSize: 30,
 							marginLeft: 5,
 							cursor: 'pointer'

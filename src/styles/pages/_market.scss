@@ -8,19 +8,31 @@
 	width: 70%;
 }
 
-.image-slider {
-	// background: red;
-}
-
 .slider-image-item {
 	height: 35rem;
 	width: 100%;
 	border-radius: .3rem
 }
 
+.product-list-container {
+	width: 100%;
+	display: inline-flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: 3%;
+}
+
+.product-list-item {
+	flex: 30%;
+	margin-top: 3%;
+	cursor: pointer;
+}
+
 .product-filters {
 	display: flex;
 	justify-content: space-between;
+	padding: 3% 0;
+	border-bottom: .1rem solid $light-grey;
 }
 
 .product-filters-results {

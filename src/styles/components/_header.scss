@@ -37,6 +37,10 @@
 	color: #6b6b6b;
 }
 
+.header-register-button {
+	border-radius: .2rem;
+}
+
 .header-auth-btns p {
 	color: $grey;
 	margin: 0 $s-size;
@@ -128,7 +132,6 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		background: red;
 	}
 
 	.cart-badge {

@@ -42,9 +42,9 @@ const MobileNav = () => {
 
 	const classes = useStyles();
 	const [value, setValue] = useState('recents');
-	const [homeClass, setHomeClassName] = useState('##4caf50');
-	const [cartClass, setCartClassName] = useState('#818181');
-	const [accountClass, setAccountClassName] = useState('#818181');
+	const [homeColor, setHomeColor] = useState('#4caf50');
+	const [cartColor, setCartColor] = useState('#818181');
+	const [accountColor, setAccountColor] = useState('#818181');
 
 	return (
 		<div className="mobile-navigation">
@@ -53,19 +53,19 @@ const MobileNav = () => {
 				onChange={(event, newValue) => {
 					switch(newValue) {
 						case 0:
-							setHomeClassName(homeClass, '#4caf50')
-							setCartClassName(cartClass, '#818181')
-							setAccountClassName(accountClass, '#818181')
+							setHomeColor(homeColor, '#4caf50')
+							setCartColor(cartColor, '#818181')
+							setAccountColor(accountColor, '#818181')
 							break;
 						case 1:
-							setHomeClassName(homeClass, '#818181')
-							setCartClassName(cartClass, '#4caf50')
-							setAccountClassName(accountClass, '#818181')
+							setHomeColor(homeColor, '#818181')
+							setCartColor(cartColor, '#4caf50')
+							setAccountColor(accountColor, '#818181')
 							break;
 						case 2:
-							setHomeClassName(homeClass, '#818181')
-							setCartClassName(cartClass, '#818181')
-							setAccountClassName(accountClass, '#4caf50')
+							setHomeColor(homeColor, '#818181')
+							setCartColor(cartColor, '#818181')
+							setAccountColor(accountColor, '#4caf50')
 					}
 		    	}}
 				showLabels
@@ -81,7 +81,7 @@ const MobileNav = () => {
 						<FiHome style={{
 							fontSize: 25,
 							cursor: 'pointer',
-							color: {homeClass}
+							color: {homeColor}
 						}} />
 					</NavLink>
 				} />
@@ -95,7 +95,7 @@ const MobileNav = () => {
 								fontSize: 25,
 								cursor: 'pointer',
 								marginBottom: '.5rem',
-								color: {cartClass}
+								color: {cartColor}
 							}} />
 						</StyledBadge>
 					</NavLink>
@@ -108,7 +108,7 @@ const MobileNav = () => {
 						<FaRegUser style={{
 							fontSize: 25,
 							cursor: 'pointer',
-							color: {accountClass}
+							color: {accountColor}
 						}} />
 					</NavLink>
 				} />

@@ -4,9 +4,17 @@ import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
 import { GiHamburgerMenu } from "react-icons/gi";
 import { CgMenuGridO } from "react-icons/cg";
+import Button from "@material-ui/core/Button";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+import { red, blue, green } from "@material-ui/core/colors";
+import Carousel from 'react-material-ui-carousel'
+import { Paper } from '@material-ui/core'
 
 import Header from '../components/Header';
 import MobileNav from '../components/MobileNav';
+import beans from '../assets/beans.jpg';
+import carrots from '../assets/carrots.jpg';
+import peas from '../assets/peas.jpg';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -45,6 +53,39 @@ const useStyles = makeStyles((theme) => ({
 	}
 }));
 
+const Slider = () => {
+	const items = [{
+			image: `${beans}`,
+	        name: "Random Name #1",
+	        description: "Probably the most random thing you have ever seen!"
+	    },
+	    {
+	    	image: `${carrots}`,
+	        name: "Random Name #2",
+	        description: "Hello World!"
+    	},
+	    {
+	    	image: `${peas}`,
+	        name: "Random Name #3",
+	        description: "Hello World Again!"
+    }];
+
+	return (
+		<Carousel
+			interval="3000"
+			animation="slide"
+		>
+            {
+                items.map( (item, i) => <Item key={i} item={item} /> )
+            }
+        </Carousel>
+    );
+}
+
+const Item = props => (
+	<img src={props.item.image} alt="crops" className="slider-image-item" />
+);
+
 const Market = () => {
 	const classes = useStyles();
 
@@ -72,6 +113,9 @@ const Market = () => {
 			<Header />
 			<div className="product-list-filters">
 				<div className="product-list-filters-container">
+					<div className="image-slider">
+						<Slider />
+					</div>
 					<div className="product-filters">
 						<div className="product-filters-results">
 							<small>Showing <b>6</b> results out of <b>50</b></small>

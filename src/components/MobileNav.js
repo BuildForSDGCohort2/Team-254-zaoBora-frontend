@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import Pagination from '@material-ui/lab/Pagination';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';

@@ -23,6 +23,9 @@ class FacebookButton extends Component {
 
     }
 console.log(responseFacebook)
+
+    /* To use the below code snippet when integrating API */
+
     // debugger;
     // axios.post('http://localhost:60200/Api/Login/SocialmediaData', responseFacebook)
     //   .then((result) => {
@@ -47,11 +50,14 @@ console.log(responseFacebook)
     return (
       <div>
         <FacebookLogin
-           appId="354726742586574"
-           autoLoad={false}
-           fields="name,email,picture"
-           callback={responseFacebook}
-           icon="fa-facebook"
+          appId="354726742586574"
+          autoLoad={false}
+          fields="name,email,picture"
+          callback={responseFacebook}
+          icon="fa-facebook"
+          style={{
+            fontSize: 15, 
+          }}
         />
       </div>
     )

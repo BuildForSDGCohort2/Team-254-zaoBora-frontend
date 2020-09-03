@@ -10,7 +10,9 @@ import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import { FcGoogle } from "react-icons/fc";
-import { FaFacebook } from "react-icons/fa";
+
+import FacebookButton from '../buttons/facebook/FacebookButton'
+
 import {
 	makeStyles,
 	createMuiTheme,
@@ -273,12 +275,7 @@ const RegisterForm = (props) => {
 			<Grid container justify="flex-start">
 				<Grid item>
 					<span className="social-media-icons" style={{ fontSize: 15 }}>
-						Register with: <FaFacebook style={{
-							fontSize: 30,
-							marginLeft: 5,
-							cursor: 'pointer',
-							color: '#4867AA'
-						}} /><FcGoogle style={{
+						Continue with: <FacebookButton /><FcGoogle style={{
 							fontSize: 30,
 							marginLeft: 5,
 							cursor: 'pointer'

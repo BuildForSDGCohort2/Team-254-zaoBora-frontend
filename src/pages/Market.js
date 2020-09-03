@@ -142,6 +142,7 @@ const Slider = () => {
     );
 }
 
+
 const Item = props => (
 	<img src={props.item.image} alt="crops" className="slider-image-item" />
 );
@@ -149,7 +150,9 @@ const Item = props => (
 const Market = () => {
 	const classes = useStyles();
 	const [expanded, setExpanded] = React.useState(false);
-	const [styleType, setStyleType] = React.useState('list');
+	const [styleType, setStyleType] = React.useState('grid');
+	const deviceHeightBool = window.innerWidth >= 720;
+	console.log(deviceHeightBool)
 
 	const handleExpandClick = () => {
 		setExpanded(!expanded);
@@ -188,47 +191,49 @@ const Market = () => {
 						<div className="product-filters-results">
 							<small>Showing <b>6</b> results out of <b>50</b></small>
 						</div>
-						<div className="product-filters-container">
-							<div className="display-style">
-								<div className="display-style-container">
-									<GiHamburgerMenu
-										onClick={setDisplayStyle}
-										data-display-type="list"
-										className="list"
-										style={{
-											fontSize: 27,
-											cursor: 'pointer',
-											color: '#BFBFBF'
-										}}
-									/>
-									<CgMenuGridO
-										onClick={setDisplayStyle}
-										data-display-type="grid"
-										className="grid"
-										style={{
-											fontSize: 27,
-											cursor: 'pointer',
-											color: '#4caf50'
-										}}
-									/>
-								</div>
-							</div>
-							<div className="search-bar">
-								<div className={classes.search}>
-									<div className={classes.searchIcon}>
-										<SearchIcon />
+						{
+							deviceHeightBool && <div className="product-filters-container">
+								<div className="display-style">
+									<div className="display-style-container">
+										<GiHamburgerMenu
+											onClick={setDisplayStyle}
+											data-display-type="list"
+											className="list"
+											style={{
+												fontSize: 27,
+												cursor: 'pointer',
+												color: '#BFBFBF'
+											}}
+										/>
+										<CgMenuGridO
+											onClick={setDisplayStyle}
+											data-display-type="grid"
+											className="grid"
+											style={{
+												fontSize: 27,
+												cursor: 'pointer',
+												color: '#4caf50'
+											}}
+										/>
 									</div>
-									<InputBase
-										placeholder="Search…"
-										classes={{
-											root: classes.inputRoot,
-											input: classes.inputInput,
-										}}
-										inputProps={{ 'aria-label': 'search' }}
-									/>
+								</div>
+								<div className="search-bar">
+									<div className={classes.search}>
+										<div className={classes.searchIcon}>
+											<SearchIcon />
+										</div>
+										<InputBase
+											placeholder="Search…"
+											classes={{
+												root: classes.inputRoot,
+												input: classes.inputInput,
+											}}
+											inputProps={{ 'aria-label': 'search' }}
+										/>
+									</div>
 								</div>
 							</div>
-						</div>
+						}
 					</div>
 					<div className="product-list">
 						{

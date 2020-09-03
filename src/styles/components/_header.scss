@@ -1,3 +1,7 @@
+.header-container {
+	background: #fff;
+}
+
 .header-auth-section {
 	background: $off-white;
 	border-top: .2rem solid $base-color;
@@ -137,6 +141,11 @@
 	.cart-badge {
 		border-radius: 50%;
 	}
+
+	.header-links-section {
+		height: 6rem;
+		margin: 0 auto 2rem auto;
+	}
 }
 
 @media screen and (min-width: $mobile-width) and (max-width: $tablet-width) {
@@ -155,5 +164,32 @@
 		display: flex;
 		justify-content: space-around;
 		align-items: center;
+	}
+
+	.header-links-section {
+		padding: .8rem .1rem;
+		margin-bottom: 1rem;
+		margin-top: 1rem;
+		width: 90%;
+		height: auto;
+		display: flex;
+		justify-content: space-between;
+	}
+
+	.header-logo-links {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+	}
+
+	.search-bar {
+		width: 95%;
+	}
+
+	.mb-search-filters-section {
+		display: flex;
+		margin-top: $m-size;
+		width: 100%;
+		justify-content: space-between;
 	}
 }

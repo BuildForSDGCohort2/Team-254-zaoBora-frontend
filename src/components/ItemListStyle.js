@@ -57,6 +57,23 @@ const StyledBadge = withStyles((theme) => ({
 
 const ItemListStyle = () => {
 	const classes = useStyles();
+	const [mainImg1, setMain1Img] = React.useState(`${carrots}`);
+	const [mainImg2, setMain2Img] = React.useState(`${beans}`);
+	const [mainImg3, setMain3Img] = React.useState(`${peas}`);
+
+	const handleChangeMainImg = (img, imgName) => {
+		switch(img) {
+			case 'mainImg1':
+				setMain1Img(imgName)
+				break;
+			case 'mainImg2':
+				setMain2Img(imgName)
+				break;
+			case 'mainImg3':
+				setMain3Img(imgName)
+		}
+
+	}
 
 	return (
 		<div className="product-list-style">
@@ -67,24 +84,28 @@ const ItemListStyle = () => {
 							<div className="main-img">
 								<img
 									className="product-img-item"
-									src={beans}
+									src={mainImg1}
 								/>
 							</div>
 							<div className="sub-img">
 								<img
 									className="sub-product-img-item"
+									onClick={(e) => handleChangeMainImg('mainImg1', carrots)}
 									src={carrots}
 								/>
 								<img
 									className="sub-product-img-item"
+									onClick={(e) => handleChangeMainImg('mainImg1', tomatoes)}
 									src={tomatoes}
 								/>
 								<img
 									className="sub-product-img-item"
+									onClick={(e) => handleChangeMainImg('mainImg1', peas)}
 									src={peas}
 								/>
 								<img
 									className="sub-product-img-item"
+									onClick={(e) => handleChangeMainImg('mainImg1', mangoes)}
 									src={mangoes}
 								/>
 							</div>
@@ -159,24 +180,28 @@ const ItemListStyle = () => {
 							<div className="main-img">
 								<img
 									className="product-img-item"
-									src={peas}
+									src={mainImg2}
 								/>
 							</div>
 							<div className="sub-img">
 								<img
 									className="sub-product-img-item"
+									onClick={(e) => handleChangeMainImg('mainImg2', carrots)}
 									src={carrots}
 								/>
 								<img
 									className="sub-product-img-item"
+									onClick={(e) => handleChangeMainImg('mainImg2', tomatoes)}
 									src={tomatoes}
 								/>
 								<img
 									className="sub-product-img-item"
+									onClick={(e) => handleChangeMainImg('mainImg2', beans)}
 									src={beans}
 								/>
 								<img
 									className="sub-product-img-item"
+									onClick={(e) => handleChangeMainImg('mainImg2', mangoes)}
 									src={mangoes}
 								/>
 							</div>
@@ -251,24 +276,28 @@ const ItemListStyle = () => {
 							<div className="main-img">
 								<img
 									className="product-img-item"
-									src={carrots}
+									src={mainImg3}
 								/>
 							</div>
 							<div className="sub-img">
 								<img
 									className="sub-product-img-item"
+									onClick={(e) => handleChangeMainImg('mainImg3', beans)}
 									src={beans}
 								/>
 								<img
 									className="sub-product-img-item"
+									onClick={(e) => handleChangeMainImg('mainImg3', tomatoes)}
 									src={tomatoes}
 								/>
 								<img
 									className="sub-product-img-item"
+									onClick={(e) => handleChangeMainImg('mainImg3', peas)}
 									src={peas}
 								/>
 								<img
 									className="sub-product-img-item"
+									onClick={(e) => handleChangeMainImg('mainImg3', mangoes)}
 									src={mangoes}
 								/>
 							</div>

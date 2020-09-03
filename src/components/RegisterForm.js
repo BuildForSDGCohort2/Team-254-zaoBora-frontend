@@ -13,6 +13,9 @@ import FacebookIcon from '@material-ui/icons/Facebook';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
+
+import GoogleButton from '../buttons/google/GoogleButton'
+
 import {
 	makeStyles,
 	createMuiTheme,
@@ -282,16 +285,12 @@ const RegisterForm = (props) => {
 			<Grid container justify="flex-start">
 				<Grid item>
 					<span className="social-media-icons" style={{ fontSize: 15 }}>
-						Register with: <FaFacebook style={{
+						Continue with: <FaFacebook style={{
 							fontSize: 30,
 							marginLeft: 5,
 							cursor: 'pointer',
 							color: '#4867AA'
-						}} /><FcGoogle style={{
-							fontSize: 30,
-							marginLeft: 5,
-							cursor: 'pointer'
-						}} />
+						}} /><GoogleButton />
 					</span>
 				</Grid>
 			</Grid><br />

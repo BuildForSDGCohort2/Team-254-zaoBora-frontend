@@ -10,7 +10,6 @@ import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import FacebookIcon from '@material-ui/icons/Facebook';
 
-import { FcGoogle } from "react-icons/fc";
 import GoogleButton from '../buttons/google/GoogleButton'
 
 import {
@@ -61,11 +60,6 @@ const theme = createMuiTheme({
 		},
 	}
 });
-
-// function to handle Login using facebook
-const handleFacebookLogin = () => {
-	console.log("hello")
-}
 
 const LoginForm = (props) => {
     const classes = useStyles();

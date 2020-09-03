@@ -25,9 +25,11 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { FaCartPlus } from "react-icons/fa";
 import Badge from '@material-ui/core/Badge';
 import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
+import Pagination from '@material-ui/lab/Pagination';
 import clsx from 'clsx';
 
 import Header from '../components/Header';
+import ItemListStyle from '../components/ItemListStyle';
 import MobileNav from '../components/MobileNav';
 import beans from '../assets/beans.jpg';
 import carrots from '../assets/carrots.jpg';
@@ -147,6 +149,7 @@ const Item = props => (
 const Market = () => {
 	const classes = useStyles();
 	const [expanded, setExpanded] = React.useState(false);
+	const [styleType, setStyleType] = React.useState('list');
 
 	const handleExpandClick = () => {
 		setExpanded(!expanded);
@@ -163,10 +166,12 @@ const Market = () => {
 			case 'grid':
 				grid.style.color = '#4caf50';
 				list.style.color = '#BFBFBF';
+				setStyleType('grid')
 				break;
 			case 'list':
 				grid.style.color = '#BFBFBF';
 				list.style.color = '#4caf50';
+				setStyleType('list')
 				break;
 		}
 	}
@@ -226,388 +231,396 @@ const Market = () => {
 						</div>
 					</div>
 					<div className="product-list">
-						<div className="product-list-container">
-							<div className="product-list-item">
-								<Card className={classes.fontSize}>
-									<CardHeader
-										className={classes.smallFontSize}
-										avatar={
-											<Avatar aria-label="recipe" className={classes.avatar}>
-											R
-											</Avatar>
-										}
-										action={
-											<IconButton aria-label="settings">
-												<MoreVertIcon />
-											</IconButton>
-										}
-										title="Shrimp and Chorizo Paella"
-										subheader="September 14, 2016"
-									/>
-									<CardMedia
-										className={classes.media}
-										image={`${beans}`}
-										title="Paella dish"
-									/>
-									<CardContent className={classes.fixedHeight}>
-										<div
-											style={{
-												overflow: "hidden",
-												textOverflow: "ellipsis",
-												height: "100%"
-											}}
-										>
-											<Typography className={classes.fontSize} variant="body2" nowrap color="textSecondary" component="p">
-												This impressive paella is a perfect party dish and a fun meal to cook together with your
-												guests. Add 1 cup of frozen peas along with the mussels, if you like.
-											</Typography>
-										</div>
-									</CardContent>
-									<CardActions disableSpacing>
-										<IconButton aria-label="cart">
-											<FaCartPlus
+						{
+							styleType === 'list' ? <ItemListStyle /> : <div
+								className="product-list-container"
+							>
+								<div className="product-list-item">
+									<Card className={classes.fontSize}>
+										<CardHeader
+											className={classes.smallFontSize}
+											avatar={
+												<Avatar aria-label="recipe" className={classes.avatar}>
+												R
+												</Avatar>
+											}
+											action={
+												<IconButton aria-label="settings">
+													<MoreVertIcon />
+												</IconButton>
+											}
+											title="Shrimp and Chorizo Paella"
+											subheader="September 14, 2016"
+										/>
+										<CardMedia
+											className={classes.media}
+											image={`${beans}`}
+											title="Paella dish"
+										/>
+										<CardContent className={classes.fixedHeight}>
+											<div
 												style={{
-													fontSize: '2rem'
+													overflow: "hidden",
+													textOverflow: "ellipsis",
+													height: "100%"
 												}}
-											/>
-										</IconButton>
-										<IconButton aria-label="share">
-											<ShareIcon
-												style={{
-													fontSize: '2rem'
-												}}
-											/>
-										</IconButton>
-										<IconButton>
-											<StyledBadge badgeContent={4} color="secondary">
-												<ChatBubbleIcon
+											>
+												<Typography className={classes.fontSize} variant="body2" color="textSecondary" component="p">
+													This impressive paella is a perfect party dish and a fun meal to cook together with your
+													guests. Add 1 cup of frozen peas along with the mussels, if you like.
+												</Typography>
+											</div>
+										</CardContent>
+										<CardActions disableSpacing>
+											<IconButton aria-label="cart">
+												<FaCartPlus
 													style={{
 														fontSize: '2rem'
 													}}
 												/>
-											</StyledBadge>
-										</IconButton>
-									</CardActions>
-   								</Card>
-							</div>
-							<div className="product-list-item">
-								<Card className={classes.fontSize}>
-									<CardHeader
-										className={classes.smallFontSize}
-										avatar={
-											<Avatar aria-label="recipe" className={classes.avatar}>
-											R
-											</Avatar>
-										}
-										action={
-											<IconButton aria-label="settings">
-												<MoreVertIcon />
 											</IconButton>
-										}
-										title="Shrimp and Chorizo Paella"
-										subheader="September 14, 2016"
-									/>
-									<CardMedia
-										className={classes.media}
-										image={`${carrots}`}
-										title="Paella dish"
-									/>
-									<CardContent className={classes.fixedHeight}>
-										<div
-											style={{
-												overflow: "hidden",
-												textOverflow: "ellipsis",
-												height: "100%"
-											}}
-										>
-											<Typography className={classes.fontSize} variant="body2"  color="textSecondary" component="p">
-												This impressive paella is a perfect party dish and a fun meal to cook together with your
-												guests. Add 1 cup of frozen peas along with the mussels, if you like.
-											</Typography>
-										</div>
-									</CardContent>
-									<CardActions disableSpacing>
-										<IconButton aria-label="cart">
-											<FaCartPlus
-												style={{
-													fontSize: '2rem'
-												}}
-											/>
-										</IconButton>
-										<IconButton aria-label="share">
-											<ShareIcon
-												style={{
-													fontSize: '2rem'
-												}}
-											/>
-										</IconButton>
-										<IconButton>
-											<StyledBadge badgeContent={4} color="secondary">
-												<ChatBubbleIcon
+											<IconButton aria-label="share">
+												<ShareIcon
 													style={{
 														fontSize: '2rem'
 													}}
 												/>
-											</StyledBadge>
-										</IconButton>
-									</CardActions>
-   								</Card>
-							</div>
-							<div className="product-list-item">
-								<Card className={classes.fontSize}>
-									<CardHeader
-										className={classes.smallFontSize}
-										avatar={
-											<Avatar aria-label="recipe" className={classes.avatar}>
-											R
-											</Avatar>
-										}
-										action={
-											<IconButton aria-label="settings">
-												<MoreVertIcon />
 											</IconButton>
-										}
-										title="Shrimp and Chorizo Paella"
-										subheader="September 14, 2016"
-									/>
-									<CardMedia
-										className={classes.media}
-										image={`${peas}`}
-										title="Paella dish"
-									/>
-									<CardContent className={classes.fixedHeight}>
-										<div
-											style={{
-												overflow: "hidden",
-												textOverflow: "ellipsis",
-												height: "100%"
-											}}
-										>
-											<Typography className={classes.fontSize} variant="body2" nowrap color="textSecondary" component="p">
-												This impressive paella is a perfect party dish and a fun meal to cook together with your
-												guests. Add 1 cup of frozen peas along with the mussels, if you like.
-											</Typography>
-										</div>
-									</CardContent>
-									<CardActions disableSpacing>
-										<IconButton aria-label="cart">
-											<FaCartPlus
+											<IconButton>
+												<StyledBadge badgeContent={4} color="secondary">
+													<ChatBubbleIcon
+														style={{
+															fontSize: '2rem'
+														}}
+													/>
+												</StyledBadge>
+											</IconButton>
+										</CardActions>
+	   								</Card>
+								</div>
+								<div className="product-list-item">
+									<Card className={classes.fontSize}>
+										<CardHeader
+											className={classes.smallFontSize}
+											avatar={
+												<Avatar aria-label="recipe" className={classes.avatar}>
+												R
+												</Avatar>
+											}
+											action={
+												<IconButton aria-label="settings">
+													<MoreVertIcon />
+												</IconButton>
+											}
+											title="Shrimp and Chorizo Paella"
+											subheader="September 14, 2016"
+										/>
+										<CardMedia
+											className={classes.media}
+											image={`${carrots}`}
+											title="Paella dish"
+										/>
+										<CardContent className={classes.fixedHeight}>
+											<div
 												style={{
-													fontSize: '2rem'
+													overflow: "hidden",
+													textOverflow: "ellipsis",
+													height: "100%"
 												}}
-											/>
-										</IconButton>
-										<IconButton aria-label="share">
-											<ShareIcon
-												style={{
-													fontSize: '2rem'
-												}}
-											/>
-										</IconButton>
-										<IconButton>
-											<StyledBadge badgeContent={4} color="secondary">
-												<ChatBubbleIcon
+											>
+												<Typography className={classes.fontSize} variant="body2" color="textSecondary" component="p">
+													This impressive paella is a perfect party dish and a fun meal to cook together with your
+													guests. Add 1 cup of frozen peas along with the mussels, if you like.
+												</Typography>
+											</div>
+										</CardContent>
+										<CardActions disableSpacing>
+											<IconButton aria-label="cart">
+												<FaCartPlus
 													style={{
 														fontSize: '2rem'
 													}}
 												/>
-											</StyledBadge>
-										</IconButton>
-									</CardActions>
-   								</Card>
-							</div>
-							<div className="product-list-item">
-								<Card className={classes.fontSize}>
-									<CardHeader
-										className={classes.smallFontSize}
-										avatar={
-											<Avatar aria-label="recipe" className={classes.avatar}>
-											R
-											</Avatar>
-										}
-										action={
-											<IconButton aria-label="settings">
-												<MoreVertIcon />
 											</IconButton>
-										}
-										title="Shrimp and Chorizo Paella"
-										subheader="September 14, 2016"
-									/>
-									<CardMedia
-										className={classes.media}
-										image={`${tomatoes}`}
-										title="Paella dish"
-									/>
-									<CardContent className={classes.fixedHeight}>
-										<div
-											style={{
-												overflow: "hidden",
-												textOverflow: "ellipsis",
-												height: "100%"
-											}}
-										>
-											<Typography className={classes.fontSize} variant="body2" nowrap color="textSecondary" component="p">
-												This impressive paella is a perfect party dish and a fun meal to cook together with your
-												guests. Add 1 cup of frozen peas along with the mussels, if you like.
-											</Typography>
-										</div>
-									</CardContent>
-									<CardActions disableSpacing>
-										<IconButton aria-label="cart">
-											<FaCartPlus
-												style={{
-													fontSize: '2rem'
-												}}
-											/>
-										</IconButton>
-										<IconButton aria-label="share">
-											<ShareIcon
-												style={{
-													fontSize: '2rem'
-												}}
-											/>
-										</IconButton>
-										<IconButton>
-											<StyledBadge badgeContent={4} color="secondary">
-												<ChatBubbleIcon
+											<IconButton aria-label="share">
+												<ShareIcon
 													style={{
 														fontSize: '2rem'
 													}}
 												/>
-											</StyledBadge>
-										</IconButton>
-									</CardActions>
-   								</Card>
-							</div>
-							<div className="product-list-item">
-								<Card className={classes.fontSize}>
-									<CardHeader
-										className={classes.smallFontSize}
-										avatar={
-											<Avatar aria-label="recipe" className={classes.avatar}>
-											R
-											</Avatar>
-										}
-										action={
-											<IconButton aria-label="settings">
-												<MoreVertIcon />
 											</IconButton>
-										}
-										title="Shrimp and Chorizo Paella"
-										subheader="September 14, 2016"
-									/>
-									<CardMedia
-										className={classes.media}
-										image={`${mangoes}`}
-										title="Paella dish"
-									/>
-									<CardContent className={classes.fixedHeight}>
-										<div
-											style={{
-												overflow: "hidden",
-												textOverflow: "ellipsis",
-												height: "100%"
-											}}
-										>
-											<Typography className={classes.fontSize} variant="body2" nowrap color="textSecondary" component="p">
-												This impressive paella is a perfect party dish and a fun meal to cook together with your
-												guests. Add 1 cup of frozen peas along with the mussels, if you like.
-											</Typography>
-										</div>
-									</CardContent>
-									<CardActions disableSpacing>
-										<IconButton aria-label="cart">
-											<FaCartPlus
+											<IconButton>
+												<StyledBadge badgeContent={4} color="secondary">
+													<ChatBubbleIcon
+														style={{
+															fontSize: '2rem'
+														}}
+													/>
+												</StyledBadge>
+											</IconButton>
+										</CardActions>
+	   								</Card>
+								</div>
+								<div className="product-list-item">
+									<Card className={classes.fontSize}>
+										<CardHeader
+											className={classes.smallFontSize}
+											avatar={
+												<Avatar aria-label="recipe" className={classes.avatar}>
+												R
+												</Avatar>
+											}
+											action={
+												<IconButton aria-label="settings">
+													<MoreVertIcon />
+												</IconButton>
+											}
+											title="Shrimp and Chorizo Paella"
+											subheader="September 14, 2016"
+										/>
+										<CardMedia
+											className={classes.media}
+											image={`${peas}`}
+											title="Paella dish"
+										/>
+										<CardContent className={classes.fixedHeight}>
+											<div
 												style={{
-													fontSize: '2rem'
+													overflow: "hidden",
+													textOverflow: "ellipsis",
+													height: "100%"
 												}}
-											/>
-										</IconButton>
-										<IconButton aria-label="share">
-											<ShareIcon
-												style={{
-													fontSize: '2rem'
-												}}
-											/>
-										</IconButton>
-										<IconButton>
-											<StyledBadge badgeContent={4} color="secondary">
-												<ChatBubbleIcon
+											>
+												<Typography className={classes.fontSize} variant="body2" color="textSecondary" component="p">
+													This impressive paella is a perfect party dish and a fun meal to cook together with your
+													guests. Add 1 cup of frozen peas along with the mussels, if you like.
+												</Typography>
+											</div>
+										</CardContent>
+										<CardActions disableSpacing>
+											<IconButton aria-label="cart">
+												<FaCartPlus
 													style={{
 														fontSize: '2rem'
 													}}
 												/>
-											</StyledBadge>
-										</IconButton>
-									</CardActions>
-   								</Card>
-							</div>
-							<div className="product-list-item">
-								<Card className={classes.fontSize}>
-									<CardHeader
-										className={classes.smallFontSize}
-										avatar={
-											<Avatar aria-label="recipe" className={classes.avatar}>
-											R
-											</Avatar>
-										}
-										action={
-											<IconButton aria-label="settings">
-												<MoreVertIcon />
 											</IconButton>
-										}
-										title="Shrimp and Chorizo Paella"
-										subheader="September 14, 2016"
-									/>
-									<CardMedia
-										className={classes.media}
-										image={`${vegetables}`}
-										title="Paella dish"
-									/>
-									<CardContent className={classes.fixedHeight}>
-										<div
-											style={{
-												overflow: "hidden",
-												textOverflow: "ellipsis",
-												height: "100%"
-											}}
-										>
-											<Typography className={classes.fontSize} variant="body2" nowrap color="textSecondary" component="p">
-												This impressive paella is a perfect party dish and a fun meal to cook together with your
-												guests. Add 1 cup of frozen peas along with the mussels, if you like.
-											</Typography>
-										</div>
-									</CardContent>
-									<CardActions disableSpacing>
-										<IconButton aria-label="cart">
-											<FaCartPlus
-												style={{
-													fontSize: '2rem'
-												}}
-											/>
-										</IconButton>
-										<IconButton aria-label="share">
-											<ShareIcon
-												style={{
-													fontSize: '2rem'
-												}}
-											/>
-										</IconButton>
-										<IconButton>
-											<StyledBadge badgeContent={4} color="secondary">
-												<ChatBubbleIcon
+											<IconButton aria-label="share">
+												<ShareIcon
 													style={{
 														fontSize: '2rem'
 													}}
 												/>
-											</StyledBadge>
-										</IconButton>
-									</CardActions>
-   								</Card>
+											</IconButton>
+											<IconButton>
+												<StyledBadge badgeContent={4} color="secondary">
+													<ChatBubbleIcon
+														style={{
+															fontSize: '2rem'
+														}}
+													/>
+												</StyledBadge>
+											</IconButton>
+										</CardActions>
+	   								</Card>
+								</div>
+								<div className="product-list-item">
+									<Card className={classes.fontSize}>
+										<CardHeader
+											className={classes.smallFontSize}
+											avatar={
+												<Avatar aria-label="recipe" className={classes.avatar}>
+												R
+												</Avatar>
+											}
+											action={
+												<IconButton aria-label="settings">
+													<MoreVertIcon />
+												</IconButton>
+											}
+											title="Shrimp and Chorizo Paella"
+											subheader="September 14, 2016"
+										/>
+										<CardMedia
+											className={classes.media}
+											image={`${tomatoes}`}
+											title="Paella dish"
+										/>
+										<CardContent className={classes.fixedHeight}>
+											<div
+												style={{
+													overflow: "hidden",
+													textOverflow: "ellipsis",
+													height: "100%"
+												}}
+											>
+												<Typography className={classes.fontSize} variant="body2" color="textSecondary" component="p">
+													This impressive paella is a perfect party dish and a fun meal to cook together with your
+													guests. Add 1 cup of frozen peas along with the mussels, if you like.
+												</Typography>
+											</div>
+										</CardContent>
+										<CardActions disableSpacing>
+											<IconButton aria-label="cart">
+												<FaCartPlus
+													style={{
+														fontSize: '2rem'
+													}}
+												/>
+											</IconButton>
+											<IconButton aria-label="share">
+												<ShareIcon
+													style={{
+														fontSize: '2rem'
+													}}
+												/>
+											</IconButton>
+											<IconButton>
+												<StyledBadge badgeContent={4} color="secondary">
+													<ChatBubbleIcon
+														style={{
+															fontSize: '2rem'
+														}}
+													/>
+												</StyledBadge>
+											</IconButton>
+										</CardActions>
+	   								</Card>
+								</div>
+								<div className="product-list-item">
+									<Card className={classes.fontSize}>
+										<CardHeader
+											className={classes.smallFontSize}
+											avatar={
+												<Avatar aria-label="recipe" className={classes.avatar}>
+												R
+												</Avatar>
+											}
+											action={
+												<IconButton aria-label="settings">
+													<MoreVertIcon />
+												</IconButton>
+											}
+											title="Shrimp and Chorizo Paella"
+											subheader="September 14, 2016"
+										/>
+										<CardMedia
+											className={classes.media}
+											image={`${mangoes}`}
+											title="Paella dish"
+										/>
+										<CardContent className={classes.fixedHeight}>
+											<div
+												style={{
+													overflow: "hidden",
+													textOverflow: "ellipsis",
+													height: "100%"
+												}}
+											>
+												<Typography className={classes.fontSize} variant="body2" color="textSecondary" component="p">
+													This impressive paella is a perfect party dish and a fun meal to cook together with your
+													guests. Add 1 cup of frozen peas along with the mussels, if you like.
+												</Typography>
+											</div>
+										</CardContent>
+										<CardActions disableSpacing>
+											<IconButton aria-label="cart">
+												<FaCartPlus
+													style={{
+														fontSize: '2rem'
+													}}
+												/>
+											</IconButton>
+											<IconButton aria-label="share">
+												<ShareIcon
+													style={{
+														fontSize: '2rem'
+													}}
+												/>
+											</IconButton>
+											<IconButton>
+												<StyledBadge badgeContent={4} color="secondary">
+													<ChatBubbleIcon
+														style={{
+															fontSize: '2rem'
+														}}
+													/>
+												</StyledBadge>
+											</IconButton>
+										</CardActions>
+	   								</Card>
+								</div>
+								<div className="product-list-item">
+									<Card className={classes.fontSize}>
+										<CardHeader
+											className={classes.smallFontSize}
+											avatar={
+												<Avatar aria-label="recipe" className={classes.avatar}>
+												R
+												</Avatar>
+											}
+											action={
+												<IconButton aria-label="settings">
+													<MoreVertIcon />
+												</IconButton>
+											}
+											title="Shrimp and Chorizo Paella"
+											subheader="September 14, 2016"
+										/>
+										<CardMedia
+											className={classes.media}
+											image={`${vegetables}`}
+											title="Paella dish"
+										/>
+										<CardContent className={classes.fixedHeight}>
+											<div
+												style={{
+													overflow: "hidden",
+													textOverflow: "ellipsis",
+													height: "100%"
+												}}
+											>
+												<Typography className={classes.fontSize} variant="body2" color="textSecondary" component="p">
+													This impressive paella is a perfect party dish and a fun meal to cook together with your
+													guests. Add 1 cup of frozen peas along with the mussels, if you like.
+												</Typography>
+											</div>
+										</CardContent>
+										<CardActions disableSpacing>
+											<IconButton aria-label="cart">
+												<FaCartPlus
+													style={{
+														fontSize: '2rem'
+													}}
+												/>
+											</IconButton>
+											<IconButton aria-label="share">
+												<ShareIcon
+													style={{
+														fontSize: '2rem'
+													}}
+												/>
+											</IconButton>
+											<IconButton>
+												<StyledBadge badgeContent={4} color="secondary">
+													<ChatBubbleIcon
+														style={{
+															fontSize: '2rem'
+														}}
+													/>
+												</StyledBadge>
+											</IconButton>
+										</CardActions>
+	   								</Card>
+								</div>
 							</div>
+						}
+					</div>
+					<div className="paginator">
+						<div className="paginator-container">
+							<Pagination count={10} variant="outlined" shape="rounded" />
 						</div>
 					</div>
-					<div className="paginator">Paginator</div>
 				</div>
 			</div>
 			<MobileNav />

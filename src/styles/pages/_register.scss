@@ -2,10 +2,6 @@
 	text-align: justify;
 }
 
-.mb {
-	display: none;
-}
-
 .auth-app-logo {
 	text-decoration: none;
 	color: #666;
@@ -15,6 +11,10 @@
 .register-title {
 	display: flex;
 	align-items: center;
+}
+
+.mb-register-title {
+	display: none;
 }
 
 .dsk {
@@ -99,10 +99,6 @@
 	text-align: center;
 	left: 46%;
 	top: 0;
-}
-
-.register-app-logo {
-	margin-right: $s-size;
 }
 
 
@@ -201,7 +197,7 @@
 	}
 
 	.register-title {
-		margin-bottom: $s-size;
+		display: none;
 	}
 
 	.mb-register {

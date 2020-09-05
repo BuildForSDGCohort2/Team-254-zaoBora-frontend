@@ -1,0 +1,80 @@
+.cart-container {
+	background: $off-white;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	padding: $l-size;
+}
+
+.cart-content {
+	margin: $l-size 0;
+}
+
+.cart-container-wrapper {
+	width: 80%;
+}
+
+.cart-total-content {
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+}
+
+.cart-total-content-container {
+	width: 40%;
+	margin: $l-size 0;
+	background: #fff;
+	border-radius: .3rem;
+}
+
+.cart-other-fees {
+	border-top: .15rem solid #ddd;
+	border-bottom: .15rem solid #ddd;
+}
+
+.crt-total {
+	padding: $s-size;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.cart-option-btns {
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+	gap: 10%;
+	margin-top: $m-size;
+	padding: $s-size;
+}
+
+.cart-btn {
+	flex: 45%;
+	padding: .8rem .4rem;
+	border-radius: .3rem;
+	font-size: 1.5rem;
+}
+
+.contained {
+	background: #4caf50;
+	color: $off-white;
+	border: .15rem solid #358338;
+	opacity: .9;
+}
+
+.outlined {
+	color: #4caf50;
+	background: #fff;
+	border: none;
+}
+
+.outlined:hover {
+	border: .15rem solid #358338;
+	color: #4caf50;
+	background: #fff;
+}
+
+.contained:hover {
+	background: #358338;
+	opacity: 1;
+}

@@ -16,6 +16,7 @@ import Register from '../pages/Register';
 import Login from '../pages/Login';
 import Market from '../pages/Market';
 import About from '../pages/About';
+import Checkout from '../pages/Checkout';
 import Cart from '../pages/Cart';
 import NotFound from '../pages/NotFound';
 
@@ -30,6 +31,7 @@ const AppRouter = () => (
 	                <Route path="/login" component={Login} />
 	                <Route path="/register" component={Register} />
 	                <Route path="/about" component={About} />
+	                <Route path="/checkout" component={Checkout} />
 	                <Route path="/account" component={Account} />
 	                <Route path="/cart" component={Cart} />
 	                <Route component={NotFound} />

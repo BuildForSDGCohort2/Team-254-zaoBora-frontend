@@ -145,7 +145,7 @@ const Header = (props) => {
 								            activeClassName="is-active"
 								            className=""
 										>
-											<StyledBadge badgeContent={1} color="secondary">
+											<StyledBadge badgeContent={3} color="secondary">
 												<FaShoppingCart style={{
 													fontSize: 25,
 													cursor: 'pointer',

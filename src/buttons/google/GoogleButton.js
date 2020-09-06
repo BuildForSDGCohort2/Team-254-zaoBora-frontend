@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
+import { FcGoogle } from "react-icons/fc";
+
 
 // const clientId = process.env.REACT_APP_CLIENT_ID;
 
@@ -10,10 +12,7 @@ class GoogleButton extends Component {
     this.state = {
 
     };
-
-
   }
-
 
   GoogleSignin(res) {
     const responseGoogle = {
@@ -22,8 +21,8 @@ class GoogleButton extends Component {
       token: res.googleId,
       Image: res.profileObj.imageUrl,
       ProviderId: 'Google'
-
     }
+
 console.log(responseGoogle)
     // debugger;
     // axios.post('http://localhost:60200/Api/Login/SocialmediaData', responseFacebook)
@@ -31,7 +30,7 @@ console.log(responseGoogle)
     //     let responseJson = result;
     //     console.log(result.data.name);
     //     alert("data");
-    //     sessionStorage.setItem("userData", JSON.stringify(result));
+    //     sessionStorage.setItem("userData", JSON.stringify(rsult));
     //     this.props.history.push('/Dashboard')
     //   });
   };
@@ -49,11 +48,12 @@ console.log(responseGoogle)
       <div>
         <GoogleLogin
             clientId="248824929632-14pa3gsul00n3ko7e3v0430j83mni56p.apps.googleusercontent.com"
-            buttonText='Login'
             onSuccess={responseGoogle}
             onFailure={responseGoogle}
             cookiePolicy={ 'single_host_origin' }
-          />
+        >
+        <FcGoogle />
+      </GoogleLogin>
       </div>
     )
   }

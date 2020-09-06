@@ -10,7 +10,11 @@ import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import FacebookIcon from '@material-ui/icons/Facebook';
 
-import GoogleButton from '../buttons/google/GoogleButton'
+import { FcGoogle } from "react-icons/fc";
+import { FaFacebook } from "react-icons/fa";
+
+import { GoogleLogin, GoogleLogout } from 'react-google-login';
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 
 import {
 	makeStyles,
@@ -22,6 +26,67 @@ import { Form, ErrorMessage } from "formik";
 import { NavLink } from 'react-router-dom';
 
 import { useAuth0 } from "@auth0/auth0-react";
+
+const FacebookSignin = (res) => {
+    const responseFacebook = {
+      Name: res.name,
+      email: res.email,
+      token: res.accessToken,
+      Image: res.picture.data.url,
+      ProviderId: 'Facebook'
+
+    }
+console.log(responseFacebook)
+
+    /* To use the below code snippet when integrating API */
+
+    // debugger;
+    // axios.post('http://localhost:60200/Api/Login/SocialmediaData', responseFacebook)
+    //   .then((result) => {
+    //     let responseJson = result;
+    //     console.log(result.data.name);
+    //     alert("data");
+    //     sessionStorage.setItem("userData", JSON.stringify(result));
+    //     this.props.history.push('/Dashboard')
+    //   });
+  };
+
+const responseFacebook = (response) => {
+	  console.log(response);
+	  var res = response.profileObj;
+	  console.log(res);
+	  debugger;
+	  // this.FacebookSignin(response);
+	}
+
+const GoogleSignin = (res) => {
+	const responseGoogle = {
+		Name: res.profileObj.name,
+		email: res.profileObj.email,
+		token: res.googleId,
+		Image: res.profileObj.imageUrl,
+		ProviderId: 'Google'
+	}
+
+console.log(responseGoogle)
+	// debugger;
+	// axios.post('http://localhost:60200/Api/Login/SocialmediaData', responseFacebook)
+	//   .then((result) => {
+	//     let responseJson = result;
+	//     console.log(result.data.name);
+	//     alert("data");
+	//     sessionStorage.setItem("userData", JSON.stringify(rsult));
+	//     this.props.history.push('/Dashboard')
+	//   });
+};
+
+const responseGoogle = (response) => {
+	console.log(response);
+	var res = response.profileObj;
+	console.log(res);
+	debugger;
+	// this.GoogleSignin(response);
+	}
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -159,11 +224,33 @@ const LoginForm = (props) => {
 			<Grid container justify="flex-start">
 				<Grid item>
 					<span className="social-media-icons s-font-size">
-						Login with: <FacebookIcon color="primary" style={{
-							fontSize: 30,
-							marginLeft: 5,
-							cursor: 'pointer'
-						}} /><GoogleButton />
+						Login with:<FacebookLogin
+					          appId="354726742586574"
+					          autoLoad
+										callback={responseFacebook}
+										fields="name,email"
+										render={renderProps => (
+								      <FaFacebook onClick={renderProps.onClick} style={{
+												fontSize: 30,
+												marginLeft: 5,
+												cursor: 'pointer',
+												color: '#4867AA'
+											}} />
+								    )}
+					        /><GoogleLogin
+		            clientId="248824929632-14pa3gsul00n3ko7e3v0430j83mni56p.apps.googleusercontent.com"
+								render={renderProps => (
+						      <FcGoogle onClick={renderProps.onClick} style={{
+										fontSize: 30,
+										marginLeft: 5,
+										cursor: 'pointer',
+										color: '#4867AA'
+									}} />
+						    )}
+		            onSuccess={responseGoogle}
+		            onFailure={responseGoogle}
+		            cookiePolicy={ 'single_host_origin' }
+		        />
 					</span>
 				</Grid>
 			</Grid>

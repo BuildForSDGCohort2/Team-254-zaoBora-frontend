@@ -19,6 +19,7 @@
     "normalize.css": "^8.0.1",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
+    "react-facebook-login": "^4.1.1",
     "react-google-login": "^5.1.21",
     "react-icons": "^3.11.0",
     "react-redux": "^7.1.3",

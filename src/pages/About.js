@@ -6,7 +6,7 @@ import MobileNav from '../components/MobileNav';
 const About = () => (
 	<div>
 		<Header />
-		<h1>About page</h1>
+		<h1>About page content Writing</h1>
 		<MobileNav />
 	</div>
 );

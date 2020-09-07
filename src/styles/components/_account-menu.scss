@@ -1,0 +1,44 @@
+.account-menu {
+	display: flex !important;
+	justify-content: space-around !important;
+	align-items: center !important;
+	width: 25% !important;
+	margin-right: $m-size;
+}
+
+.menu-link-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	width: 100%;
+	height: 100%;
+}
+
+.menu-link {
+	width: 100%;
+	border-bottom: .1rem solid $off-white;
+	padding: $m-size;
+}
+
+.menu-link-btn {
+	font-size: $m-size;
+	text-decoration: none;
+	color: $dark-grey;
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+}
+
+.arrow-right {
+	font-size: 2rem;
+	color: $dark-grey;
+}
+
+.menu-link-text {
+
+}
+
+.menu-link-active {
+	color: $base-color;
+	font-weight: bold;
+}

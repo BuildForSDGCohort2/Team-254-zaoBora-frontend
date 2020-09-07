@@ -1,0 +1,30 @@
+.account-page {
+	background: $off-white;
+	padding-bottom: $l-size;
+}
+
+.account-container {
+	padding: $m-size;
+	width: 70%;
+	margin: 0 auto;
+}
+
+.account-section-info {
+	display: flex;
+}
+
+.account-search-bar {
+	margin: $m-size 0;
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+}
+
+.search-bar-item {
+	width: 30%;
+}
+
+.account-info-container {
+	width: 75% !important;
+	padding: $m-size $l-size;
+}

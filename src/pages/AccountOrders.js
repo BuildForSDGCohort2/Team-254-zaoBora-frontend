@@ -3,12 +3,11 @@ import { fade, makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
-import { Formik } from "formik";
 
 import Header from '../components/Header';
 import MobileNav from '../components/MobileNav';
 import AccountMenu from '../components/AccountMenu';
-import AccountProfileForm from '../components/AccountProfileForm';
+import Orders from '../components/Orders';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -47,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
 	}
 }));
 
-const Account = () => {
+const AccountOrders = () => {
 	const classes = useStyles();
 
 	return (
@@ -72,24 +71,7 @@ const Account = () => {
 				<div className="account-section-info">
 					<AccountMenu />
 					<Card className="account-info-container">
-						<Formik
-	                        initialValues={{
-	                            firstName: '',
-	                            lastName: '',
-	                            email: '',
-	                            phoneNumber: '',
-	                            accountType: '',
-	                            password: '',
-	                            confirmPassword: '',
-	                            agreement: false
-	                        }}
-	                        // validationSchema={validationSchema}
-	                        onSubmit={(values, { setSubmitting, resetForm }) => {
-	                        	console.log(values)
-	                        }}
-	                    >
-	                    	{props => <AccountProfileForm {...props} />}
-	                    </Formik>
+						<Orders />
 					</Card>
 				</div>
 			</div>
@@ -98,4 +80,5 @@ const Account = () => {
 	);
 }
 
-export default Account;
+
+export default AccountOrders;

@@ -134,7 +134,7 @@ const Header = (props) => {
 											About us
 										</NavLink>
 										<NavLink
-											to='/account'
+											to='/profile'
 								            activeClassName="is-active"
 								            className="navbar-link"
 										>

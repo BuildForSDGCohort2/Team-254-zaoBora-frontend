@@ -11,6 +11,7 @@ import { createBrowserHistory } from 'history';
 // import MobileRoutes from './MobileRoutes';
 // import ErrorBoundary from '../components/ErrorBoundary';
 import Footer from '../components/Footer';
+import AccountOrders from '../pages/AccountOrders';
 import Account from '../pages/Account';
 import Register from '../pages/Register';
 import Login from '../pages/Login';
@@ -32,7 +33,8 @@ const AppRouter = () => (
 	                <Route path="/register" component={Register} />
 	                <Route path="/about" component={About} />
 	                <Route path="/checkout" component={Checkout} />
-	                <Route path="/account" component={Account} />
+	                <Route path="/orders" component={AccountOrders} />
+	                <Route path="/profile" component={Account} />
 	                <Route path="/cart" component={Cart} />
 	                <Route component={NotFound} />
 	            </Switch>

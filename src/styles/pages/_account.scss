@@ -13,18 +13,81 @@
 	display: flex;
 }
 
-.account-search-bar {
-	margin: $m-size 0;
+.account-filter-section {
+	// margin: $s-size 0;
 	width: 100%;
 	display: flex;
 	justify-content: flex-end;
+	padding-left: $m-size;
+}
+
+.account-filter-section-container {
+	width: 75%;
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
 }
 
 .search-bar-item {
 	width: 30%;
+	margin: .7rem 0;
 }
 
 .account-info-container {
 	width: 75% !important;
 	padding: $m-size $l-size;
+	margin-left: $m-size;
+}
+
+
+@media screen and (min-width: 84rem) {
+	.account-page {
+		padding-bottom: 30vh;
+	}
+}
+
+
+@media screen and (min-width: 64rem) and (max-width: 84em) {
+	.account-page {
+		padding-bottom: 50vh;
+	}
+
+	.account-container {
+		width: 80%;
+	}
+}
+
+@media screen and (min-width: $tablet-width) and (max-width: $laptop-width) {
+	.account-page {
+		padding-bottom: 30vh;
+	}
+
+	.account-container {
+		width: 95%;
+	}
+}
+
+@media screen and (min-width: $mobile-width) and (max-width: $tablet-width) {
+	.account-search-bar {
+		display: none;
+	}
+
+	.account-container {
+		width: 98%;
+	}
+
+	.account-info-container {
+		width: 100% !important;
+		padding: $m-size $l-size;
+	}
+
+	.account-section-info {
+		flex-direction: column;
+	}
+
+	.acc-title {
+		display: flex;
+		align-items: center;
+		height: $l-size;
+	}
 }

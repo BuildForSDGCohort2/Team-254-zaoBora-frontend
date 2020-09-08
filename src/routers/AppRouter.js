@@ -20,6 +20,8 @@ import About from '../pages/About';
 import Checkout from '../pages/Checkout';
 import Cart from '../pages/Cart';
 import NotFound from '../pages/NotFound';
+import FAQ from '../pages/FAQ';
+
 
 export const history = createBrowserHistory();
 
@@ -36,6 +38,7 @@ const AppRouter = () => (
 	                <Route path="/orders" component={AccountOrders} />
 	                <Route path="/profile" component={Account} />
 	                <Route path="/cart" component={Cart} />
+	                <Route path="/faq" component={FAQ} />
 	                <Route component={NotFound} />
 	            </Switch>
 	        </div>

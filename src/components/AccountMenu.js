@@ -15,7 +15,7 @@ const AccountMenu = () => {
 						activeClassName="menu-link-active"
 					>
 						<p className="menu-link-text">My Profile</p>
-						<MdKeyboardArrowRight className="arrow-right" />
+						<span className="arrow-container"><MdKeyboardArrowRight className="arrow-right" /></span>
 					</NavLink>
 				</div>
 				<div className="menu-link">
@@ -25,7 +25,7 @@ const AccountMenu = () => {
 						activeClassName="menu-link-active"
 					>
 						<p className="menu-link-text">My Orders</p>
-						<MdKeyboardArrowRight className="arrow-right" />
+						<span className="arrow-container"><MdKeyboardArrowRight className="arrow-right" /></span>
 					</NavLink>
 				</div>
 			</div>

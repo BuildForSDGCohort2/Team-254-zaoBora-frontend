@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
+import clsx from 'clsx';
 import { NavLink } from 'react-router-dom';
-import { FaShoppingCart } from "react-icons/fa";
 import { withStyles, fade, makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
@@ -8,9 +8,20 @@ import AppBar from '@material-ui/core/AppBar';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import Badge from '@material-ui/core/Badge';
 import Slide from '@material-ui/core/Slide';
+import { FaShoppingCart, FaQuestionCircle } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { CgMenuGridO } from "react-icons/cg";
+import { CgMenuGridO, CgProfile } from "react-icons/cg";
 import { FiShoppingCart } from "react-icons/fi";
+import { AiFillShop } from "react-icons/ai";
+import { BsInfoCircleFill } from "react-icons/bs";
+import { GoListOrdered } from "react-icons/go";
+import Drawer from '@material-ui/core/Drawer';
+import Button from '@material-ui/core/Button';
+import List from '@material-ui/core/List';
+import Divider from '@material-ui/core/Divider';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
 
 import tree from '../assets/tree.png';
 
@@ -62,6 +73,12 @@ const useStyles = makeStyles((theme) => ({
 		[theme.breakpoints.up('md')]: {
 			width: '20ch',
 		},
+	},
+	list: {
+		width: 250,
+	},
+	fullList: {
+		width: 'auto',
 	}
 }));
 
@@ -78,6 +95,116 @@ const StyledBadge = withStyles((theme) => ({
 
 const Header = (props) => {
 	const classes = useStyles();
+	const [state, setState] = React.useState({
+		top: false,
+		left: false,
+		bottom: false,
+		right: false,
+	});
+
+	const toggleDrawer = (anchor, open) => (event) => {
+		if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+			return;
+		}
+
+		setState({ ...state, [anchor]: open });
+	};
+
+	const displayIcon = (name) => {
+		switch(name) {
+			case 'Market':
+				return (
+					<AiFillShop style={{
+						fontSize: '2rem'
+					}}/>
+				);
+			case 'Profile':
+				return (
+					<CgProfile style={{
+						fontSize: '2rem'
+					}}/>
+				);
+			case 'Orders':
+				return (
+					<GoListOrdered style={{
+						fontSize: '2rem'
+					}}/>
+				);
+			case 'About Us':
+				return (
+					<BsInfoCircleFill style={{
+						fontSize: '2rem'
+					}}/>
+				);
+			case 'FAQ':
+				return (
+					<FaQuestionCircle style={{
+						fontSize: '2rem'
+					}}/>
+				);
+		}
+	}
+
+	const list = (anchor) => (
+		<div
+			className={clsx(classes.list, {
+				[classes.fullList]: anchor === 'top' || anchor === 'bottom',
+			})}
+			role="presentation"
+			onClick={toggleDrawer(anchor, false)}
+			onKeyDown={toggleDrawer(anchor, false)}
+		>
+			<List>
+				{[{
+					name: 'Market',
+					url: '/'
+				},
+				{
+					name: 'Profile',
+					url: '/profile'
+				},
+				{
+					name: 'Orders',
+					url: '/orders'
+				}].map((item, index) => (
+					<ListItem button key={item.name}>
+						<NavLink
+							to={item.url}
+							className="mb-menu-links"
+							activeClassName="mb-link-active"
+							exact={true}
+						>
+								<ListItemIcon>{displayIcon(item.name)}</ListItemIcon>
+								<ListItemText primary={item.name} />
+						</NavLink>
+					</ListItem>
+				))}
+			</List>
+			<Divider />
+			<List>
+				{[{
+					name:'About Us',
+					url: '/about'
+				},
+				{
+					name: 'FAQ',
+					url: '/faq'
+				}].map((item, index) => (
+					<ListItem button key={item.name}>
+						<NavLink
+							to={item.url}
+							className="mb-menu-links"
+							activeClassName="mb-link-active"
+							exact={true}
+						>
+							<ListItemIcon>{displayIcon(item.name)}</ListItemIcon>
+							<ListItemText primary={item.name} />
+						</NavLink>
+					</ListItem>
+				))}
+			</List>
+		</div>
+	);
 
 	return (
 		<HideOnScroll {...props}>
@@ -155,14 +282,21 @@ const Header = (props) => {
 										</NavLink>
 									</div>
 								</div>
-								<div className="mb-about">
-									<NavLink
-										to='/about'
-							            activeClassName="is-active"
-							            className="navbar-link"
-									>
-										About us
-									</NavLink>
+								<div className="mb mobile-hamburger-menu">
+									<GiHamburgerMenu
+										onClick={toggleDrawer('right', true)}
+										style={{
+											fontSize: '2rem',
+											color: '#666'
+										}}
+									/>
+							        <Drawer
+							        	anchor={'right'}
+							        	open={state['right']}
+							        	onClose={toggleDrawer('right', false)}
+						        	>
+							            {list('right')}
+							        </Drawer>
 								</div>
 							</div>
 							<div className="mb-search-filters-section mb">

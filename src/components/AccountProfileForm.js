@@ -78,12 +78,10 @@ const AccountProfileForm = (props) => {
 			firstName,
 			lastName,
 			phoneNumber,
-			accountType,
-			email,
+			address,
+			region,
 			info,
-			password,
-			confirmPassword,
-			agreement
+			city
 		},
 		errors,
 		handleChange,
@@ -154,15 +152,15 @@ const AccountProfileForm = (props) => {
 							variant="outlined"
 							required
 							fullWidth
-							id="email"
-							name="email"
-							value={email}
-							autoComplete="email"
+							id="address"
+							name="address"
+							value={address}
+							autoComplete="address"
 							onChange={handleChange}
-							label={errors.email ? 'Error' : 'Address'}
+							label={errors.address ? 'Error' : 'Address'}
 							InputProps={{ className: classes.root }}
-							helperText={errors.email ? errors.email : ''}
-							error={errors.email ? true : false}
+							helperText={errors.address ? errors.address : ''}
+							error={errors.address ? true : false}
 						/>
 					</ThemeProvider>
 				</Grid>
@@ -172,7 +170,7 @@ const AccountProfileForm = (props) => {
 							id="additional-info"
 							label={errors.info ? 'Error' : 'Additional info'}
 							variant="outlined"
-							name="Additional info"
+							name="info"
 							value={info}
 							onChange={handleChange}
 							InputProps={{ className: classes.root }}
@@ -191,24 +189,24 @@ const AccountProfileForm = (props) => {
 							className={classes.formControl}
 							fullWidth
 							required
-							id="account-type"
-							autoComplete="account-type"
-							name="accountType"
-							value={accountType}
+							id="region"
+							autoComplete="region"
+							name="region"
+							value={region}
 							onChange={handleChange}
-							label={errors.accountType ? 'Error' : 'Farmer(seller)/Buyer?'}
-							error={errors.accountType ? true : false}
+							label={errors.region ? 'Error' : 'Region'}
+							error={errors.region ? true : false}
 						>
-							<InputLabel htmlFor="outlined-age-native-simple">Region</InputLabel>
+							<InputLabel htmlFor="region">Region</InputLabel>
 					        <Select
 								native
-								label={errors.accountType ? 'Error' : 'Farmer(seller)/Buyer?'}
+								label={errors.region ? 'Error' : 'Region'}
 								inputProps={{
-									name: 'accountType',
-									id: 'outlined-account-type-native-simple',
+									name: 'region',
+									id: 'region',
 								}}
 					        >
-								<option aria-label="None" value={accountType} />
+								<option aria-label="None" value={region} />
 								<option value="consumer">Region One</option>
 								<option value="farmer">Region Two</option>
 								<option value="both">Region Three</option>
@@ -223,24 +221,24 @@ const AccountProfileForm = (props) => {
 							className={classes.formControl}
 							fullWidth
 							required
-							id="account-type"
-							autoComplete="account-type"
-							name="accountType"
-							value={accountType}
+							id="city"
+							autoComplete="city"
+							name="city"
+							value={city}
 							onChange={handleChange}
-							label={errors.accountType ? 'Error' : 'Farmer(seller)/Buyer?'}
-							error={errors.accountType ? true : false}
+							label={errors.city ? 'Error' : 'City'}
+							error={errors.city ? true : false}
 						>
-							<InputLabel htmlFor="outlined-age-native-simple">City</InputLabel>
+							<InputLabel htmlFor="city">City</InputLabel>
 					        <Select
 								native
-								label={errors.accountType ? 'Error' : 'Farmer(seller)/Buyer?'}
+								label={errors.city ? 'Error' : 'City'}
 								inputProps={{
-									name: 'accountType',
-									id: 'outlined-account-type-native-simple',
+									name: 'city',
+									id: 'city',
 								}}
 					        >
-								<option aria-label="None" value={accountType} />
+								<option aria-label="None" value={city} />
 								<option value="consumer">City One</option>
 								<option value="farmer">City Two</option>
 								<option value="both">City Three</option>

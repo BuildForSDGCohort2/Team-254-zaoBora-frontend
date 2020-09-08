@@ -9,6 +9,7 @@ import Header from '../components/Header';
 import MobileNav from '../components/MobileNav';
 import AccountMenu from '../components/AccountMenu';
 import AccountProfileForm from '../components/AccountProfileForm';
+import { updateAccountSchema } from '../utils/validate';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -70,20 +71,20 @@ const Account = () => {
 					</div>
 				</div>
 				<div className="account-section-info">
+					<b className="mb acc-title">Account Details</b>
 					<AccountMenu />
 					<Card className="account-info-container">
 						<Formik
 	                        initialValues={{
 	                            firstName: '',
 	                            lastName: '',
-	                            email: '',
+	                            address: '',
 	                            phoneNumber: '',
-	                            accountType: '',
-	                            password: '',
-	                            confirmPassword: '',
-	                            agreement: false
+	                            region: '',
+	                            city: '',
+	                            info: ''
 	                        }}
-	                        // validationSchema={validationSchema}
+	                        validationSchema={updateAccountSchema}
 	                        onSubmit={(values, { setSubmitting, resetForm }) => {
 	                        	console.log(values)
 	                        }}

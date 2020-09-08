@@ -183,7 +183,7 @@
 	}
 
 	.search-bar {
-		width: 95%;
+		flex: 80%;
 	}
 
 	.mb-search-filters-section {
@@ -191,5 +191,23 @@
 		margin-top: $m-size;
 		width: 100%;
 		justify-content: space-between;
+	}
+
+	.mobile-hamburger-menu {
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		flex: 10%;
+	}
+
+	.mb-menu-links {
+		text-decoration: none;
+		color: $dark-grey;
+		display: flex;
+		align-items: center;
+	}
+
+	.mb-link-active {
+		color: $base-color;
 	}
 }

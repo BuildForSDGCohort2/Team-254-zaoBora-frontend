@@ -1,0 +1,114 @@
+.dashboard-navbar {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	width: 13rem;
+	color: $grey;
+}
+
+.dashboard-content-menu {
+	height: 90vh;
+	width: 15vw;
+	background: $charcoal;
+	direction: flex;
+	flex-direction: column;
+}
+
+.content-menu-item {
+	width: 100%;
+}
+
+.content-menu-item-container {
+	width: 100%;
+	padding: $m-size;
+	display: flex;
+}
+
+.content-link-icon {
+	margin-right: $s-size;
+}
+
+.farmer-link-item {
+	text-decoration: none;
+	color: $off-white;
+}
+
+.farmers-market {
+	margin-bottom: $m-size;
+	border-bottom: .1rem solid $grey;
+}
+
+.update-farmer {
+	margin-top: $m-size;
+	border-top: .1rem solid $grey;
+}
+
+.farmer-logout {
+	cursor: pointer;
+	width: 100%;
+	padding: $m-size;
+	text-decoration: none;
+	color: $off-white;
+}
+
+.farmer-logout-container {
+	width: 100%;
+	text-align: center;
+}
+
+.farmer-logout:hover {
+	color: $base-color;
+}
+
+.farmer-link-item-active {
+	background: $base-color;
+}
+
+.farmer-link-item-active {
+	color: $base-color;
+}
+
+
+@media screen and (min-width: 84rem) {
+	.dashboard-content-menu {
+		height: 93vh;
+	}
+}
+
+@media screen and (min-width: 64rem) and (max-width: 84em) {
+	.dashboard-content-menu {
+		width: 20vw;
+	}
+
+	.dashboard-content-menu {
+		height: 95vh;
+	}
+}
+
+@media screen and (min-width: $tablet-width) and (max-width: $laptop-width) {
+	.dashboard-content-menu {
+		width: 25vw;
+	}
+
+	.dashboard-content-menu {
+		height: 95vh;
+	}
+
+	.content-menu-item-container {
+		font-size: $s-size;
+	}
+}
+
+@media screen and (min-width: $tablet-width) and (max-width: $laptop-width) and (orientation: landscape) {
+	.dashboard-content-menu {
+		height: auto;
+	}
+
+	.content-menu-item-container {
+		font-size: $s-size;
+	}
+}
+
+@media screen and (min-width: $mobile-width) and (max-width: $tablet-width) {
+
+}

@@ -1,0 +1,42 @@
+.dashboard-navbar-container {
+	background: $white;
+	padding: $m-size;
+	width: 100%;
+	height: 10vh;
+	box-sizing: border-box;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.dashboard-logo {
+	text-decoration: none;
+	color: $grey;
+}
+
+.farmer-mb-menu-icon {
+	color: $grey;
+}
+
+
+@media screen and (min-width: 84rem) {
+	.dashboard-navbar-container {
+		height: 7vh;
+	}
+}
+
+@media screen and (min-width: 64rem) and (max-width: 84em) {
+	.dashboard-navbar-container {
+		height: 7rem;
+	}
+}
+
+@media screen and (min-width: $tablet-width) and (max-width: $laptop-width) {
+	.dashboard-navbar-container {
+		height: 7rem;
+	}
+}
+
+@media screen and (min-width: $mobile-width) and (max-width: $tablet-width) {
+
+}

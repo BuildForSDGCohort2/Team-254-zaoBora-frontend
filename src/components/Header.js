@@ -8,11 +8,12 @@ import AppBar from '@material-ui/core/AppBar';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import Badge from '@material-ui/core/Badge';
 import Slide from '@material-ui/core/Slide';
-import { FaShoppingCart, FaQuestionCircle } from "react-icons/fa";
+import { FaShoppingCart, FaQuestionCircle, FaUserCog } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { CgMenuGridO, CgProfile } from "react-icons/cg";
 import { FiShoppingCart } from "react-icons/fi";
-import { AiFillShop } from "react-icons/ai";
+import { AiFillShop, AiOutlineLogout } from "react-icons/ai";
+import { RiArrowDropDownLine } from "react-icons/ri";
 import { BsInfoCircleFill } from "react-icons/bs";
 import { GoListOrdered } from "react-icons/go";
 import Drawer from '@material-ui/core/Drawer';
@@ -22,6 +23,8 @@ import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 
 import tree from '../assets/tree.png';
 
@@ -95,6 +98,7 @@ const StyledBadge = withStyles((theme) => ({
 
 const Header = (props) => {
 	const classes = useStyles();
+	const [anchorEl, setAnchorEl] = React.useState(null);
 	const [state, setState] = React.useState({
 		top: false,
 		left: false,
@@ -108,6 +112,14 @@ const Header = (props) => {
 		}
 
 		setState({ ...state, [anchor]: open });
+	};
+
+	const handleClick = (event) => {
+		setAnchorEl(event.currentTarget);
+	};
+
+	const handleClose = () => {
+		setAnchorEl(null);
 	};
 
 	const displayIcon = (name) => {
@@ -261,12 +273,119 @@ const Header = (props) => {
 											About us
 										</NavLink>
 										<NavLink
-											to='/profile'
+											to='/faq'
 								            activeClassName="is-active"
 								            className="navbar-link"
 										>
-											Account
+											FAQ
 										</NavLink>
+										<span
+											aria-controls="simple-menu"
+											aria-haspopup="true"
+											className="menu-btn"
+											onClick={handleClick}
+										>
+											<p className="navbar-link">Account</p>
+											<RiArrowDropDownLine
+												style={{
+													fontSize: '2rem',
+													color: '#818181',
+													marginLeft: '.5rem'
+												}}
+											/>
+										</span>
+										<div className="menu-item-nav-links">
+											<Menu
+												id="simple-menu"
+												anchorEl={anchorEl}
+												keepMounted
+												open={Boolean(anchorEl)}
+												onClose={handleClose}
+											>
+												<MenuItem onClick={handleClose}>
+													<span className="menu-item-group">
+														<FaUserCog
+															style={{
+																fontSize: '1.5rem',
+																color: '#818181',
+																marginRight: '.8rem'
+															}}
+														/>
+														<NavLink
+															to='/profile'
+												            activeClassName="is-active"
+												            exact={true}
+												            className="navbar-link option-link"
+														>
+															Profile
+														</NavLink>
+													</span>
+												</MenuItem>
+												<MenuItem
+													onClick={handleClose}
+												>
+													<span className="menu-item-group">
+														<GoListOrdered
+															style={{
+																fontSize: '1.5rem',
+																color: '#818181',
+																marginRight: '.8rem'
+															}}
+														/>
+														<NavLink
+															to='/orders'
+												            exact={true}
+												            activeClassName="is-active"
+												            className="navbar-link option-link"
+														>
+															Orders
+														</NavLink>
+													</span>
+												</MenuItem>
+												<MenuItem
+													onClick={handleClose}
+												>
+													<span className="menu-item-group">
+														<AiFillShop
+															style={{
+																fontSize: '1.5rem',
+																color: '#818181',
+																marginRight: '.8rem'
+															}}
+														/>
+														<NavLink
+															to='/farmer/profile'
+												            exact={true}
+												            activeClassName="is-active"
+												            className="navbar-link option-link"
+														>
+															My Shop
+														</NavLink>
+													</span>
+												</MenuItem>
+												<MenuItem
+													onClick={handleClose}
+												>
+													<span className="menu-item-group">
+														<AiOutlineLogout
+															style={{
+																fontSize: '1.5rem',
+																color: '#818181',
+																marginRight: '.8rem'
+															}}
+														/>
+														<NavLink
+															to='/'
+												            exact={true}
+												            activeClassName="is-active"
+												            className="navbar-link option-link"
+														>
+															Logout
+														</NavLink>
+													</span>
+												</MenuItem>
+											</Menu>
+										</div>
 										<NavLink
 											to='/cart'
 								            activeClassName="is-active"

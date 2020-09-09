@@ -105,6 +105,21 @@
 	color: $grey;
 }
 
+.menu-btn {
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+}
+
+.option-link {
+	font-size: $m-size*.9;
+}
+
+.menu-item-group {
+	display: flex;
+	align-items: center;
+}
+
 .cart-with-badge {
 	position: relative;
 }

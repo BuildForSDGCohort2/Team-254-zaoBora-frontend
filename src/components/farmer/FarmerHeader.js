@@ -102,8 +102,8 @@ const FarmerHeader = () => {
 							activeClassName="mb-link-active"
 							exact={true}
 						>
-								<ListItemIcon>{displayIcon(item.name)}</ListItemIcon>
-								<ListItemText primary={item.name} />
+							<ListItemIcon>{displayIcon(item.name)}</ListItemIcon>
+							<ListItemText primary={item.name} />
 						</NavLink>
 					</ListItem>
 				))}

@@ -2,8 +2,56 @@
 	display: flex;
 }
 
+.new-post-container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+}
+
+.new-post {
+	display: flex;
+	align-items: center;
+	color: $blue;
+	cursor: pointer;
+}
+
+.new-post-title {
+	color: $grey;
+}
+
+.new-post-title-container {
+	display: flex;
+	justify-content: space-between;
+}
+
+.del-post-title-container {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.close-btn {
+	cursor: pointer;
+}
+
+.farmer-del-action-btns {
+	display: flex;
+	width: 100%;
+	justify-content: center;
+}
+
+.danger-zone .MuiButton-containedPrimary {
+	background: $danger;
+}
+
+.new-post p {
+	margin-left: $s-size*.5;
+}
+
 .farmer-post-name {
 	flex: 25%;
+	color: $blue;
+	cursor: pointer;
 }
 
 .farmer-post-description {
@@ -16,8 +64,18 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+	align-items: flex-end;
+}
+
+.edit {
+	color: $base-color;
+}
+
+.del {
+	color: $danger;
 }
 
 .post-action-btn {
-	// text: flex;
+	cursor: pointer;
+	font-size: $m-size*1.1;
 }

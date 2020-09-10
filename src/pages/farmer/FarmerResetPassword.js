@@ -3,6 +3,7 @@ import React, { Fragment } from 'react';
 import FarmersDashboardMenu from '../../components/farmer/FarmersDashboardMenu';
 import FarmersProfile from '../../components/farmer/FarmersProfile';
 import FarmerHeader from '../../components/farmer/FarmerHeader';
+import ResetFarmersPassword from '../../components/farmer/ResetFarmersPassword';
 
 
 const FarmerResetPassword = () => (
@@ -11,7 +12,7 @@ const FarmerResetPassword = () => (
 		<div className="dashboard-content-container">
 			<FarmersDashboardMenu />
 			<div className="dashboard-content-details">
-				Farmers ResetPassword
+				<ResetFarmersPassword />
 			</div>
 		</div>
 	</div>

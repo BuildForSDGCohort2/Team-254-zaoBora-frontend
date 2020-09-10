@@ -23,7 +23,6 @@ import NotFound from '../pages/NotFound';
 import FarmersDashboard from '../pages/farmer/FarmersDashboard';
 import FarmersPosts from '../pages/farmer/FarmersPosts';
 import FarmersOrders from '../pages/farmer/FarmersOrders';
-import FarmersAddress from '../pages/farmer/FarmersAddress';
 import FarmerResetPassword from '../pages/farmer/FarmerResetPassword';
 import FAQ from '../pages/FAQ';
 
@@ -47,7 +46,6 @@ const AppRouter = () => (
 	                <Route path="/farmer/profile" component={FarmersDashboard} />
 	                <Route path="/farmer/posts" component={FarmersPosts} />
 	                <Route path="/farmer/orders" component={FarmersOrders} />
-	                <Route path="/farmer/address" component={FarmersAddress} />
 	                <Route path="/farmer/reset-password" component={FarmerResetPassword} />
 	                <Route component={NotFound} />
 	            </Switch>

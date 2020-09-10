@@ -62,37 +62,25 @@ const FarmersDashboardMenu = () => {
 				</div>
 			</NavLink>
 			<NavLink
-				to="/farmer/address"
+				to="/farmer/reset-password"
 				className="farmer-link-item"
 				activeClassName="farmer-link-item-active"
 				exact={true}
 			>
 				<div className="content-menu-item update-farmer">
 					<div className="content-menu-item-container">
-						Address
-					</div>
-				</div>
-			</NavLink>
-			<NavLink
-				to="/farmer/reset-password"
-				className="farmer-link-item"
-				activeClassName="farmer-link-item-active"
-				exact={true}
-			>
-				<div className="content-menu-item">
-					<div className="content-menu-item-container">
 						Reset Password
 					</div>
 				</div>
 			</NavLink>
-			<NavLink
-				to="/"
-				className="content-menu-item farmer-logout"
-			>
-				<div className="content-menu-item-container farmer-logout-container">
+			<div className="content-menu-item-container farmer-logout-container">
+				<NavLink
+					to="/"
+					className="farmer-logout"
+				>
 					Logout
-				</div>
-			</NavLink>
+				</NavLink>
+			</div>
 		</div>
 	);
 }

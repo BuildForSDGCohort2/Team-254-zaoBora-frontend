@@ -1,0 +1,23 @@
+.farmer-profile-card {
+	display: flex;
+}
+
+.farmer-post-name {
+	flex: 25%;
+}
+
+.farmer-post-description {
+	flex: 50%;
+}
+
+.farmer-post-actions {
+	flex: 25%;
+	text-align: right;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.post-action-btn {
+	// text: flex;
+}

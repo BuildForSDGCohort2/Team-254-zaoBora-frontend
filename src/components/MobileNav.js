@@ -101,7 +101,7 @@ const MobileNav = () => {
 				} />
 				<BottomNavigationAction label="Account" icon={
 					<NavLink
-						to='/account'
+						to='/profile'
 			            activeClassName="is-mb-active"
 					>
 						<FaRegUser style={{

@@ -1,0 +1,127 @@
+.orders-container {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+}
+
+.orders-content-section {
+	width: 100%;
+	margin-bottom: $l-size;
+}
+
+.order-item-description {
+	// width: 90%;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+}
+
+.order-item-details {
+	margin-left: $m-size;
+}
+
+.order-item-details p {
+	margin: 0;
+}
+
+.order-img {
+	height: 5rem;
+	width: 5rem;
+}
+
+.order-actions {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: flex-end;
+	height: 100%;
+}
+
+
+@media screen and (min-width: 84rem) {
+	.account-orders-page {
+		padding-bottom: 50vh;
+	}
+}
+
+
+@media screen and (min-width: 64rem) and (max-width: 84em) {
+	.account-orders-page {
+		padding-bottom: 65vh;
+	}
+
+	.orders-page-container {
+		width: 90%;
+	}
+}
+
+@media screen and (min-width: $tablet-width) and (max-width: $laptop-width) {
+	.account-page {
+		padding-bottom: 60vh;
+	}
+
+	.account-menu {
+		width: 10% !important;
+	}
+
+	.orders-page-container {
+		width: 100%;
+	}
+
+	.account-orders-info-container {
+		width: 90% !important;
+		padding: .5rem;
+	}
+
+	.account-filter-section {
+		padding-left: .5rem;
+	}
+
+	.order-img {
+		height: 2rem;
+		width: 2rem;
+	}
+
+	.order-item-details {
+		margin-left: .5rem;
+	}
+}
+
+@media screen and (min-width: $mobile-width) and (max-width: $tablet-width) {
+	.search-bar-item,
+	.orders-content-section {
+		display: none;
+	}
+
+	.orders-filter-section {
+		width: 100%;
+		display: flex;
+		justify-content: flex-end;
+	}
+
+	.mb-order-item-container {
+		margin-bottom: $m-size !important;
+	}
+
+	.mb-order-items {
+		margin-bottom: 20vh;
+	}
+
+	.mb-order-item-details p {
+		margin: 0;
+		font-size: 1.2rem;
+	}
+
+	.mb-order-actions-container {
+		padding: 0 $m-size;
+	}
+
+	.mb-order-icons {
+		padding: $m-size 0;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		width: 100%;
+		border-top: .1rem solid #ddd;
+	}
+}

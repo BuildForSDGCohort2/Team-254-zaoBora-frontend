@@ -3,6 +3,7 @@ import React, { Fragment } from 'react';
 import FarmersDashboardMenu from '../../components/farmer/FarmersDashboardMenu';
 import FarmersProfile from '../../components/farmer/FarmersProfile';
 import FarmerHeader from '../../components/farmer/FarmerHeader';
+import FarmersOrdersList from '../../components/farmer/FarmersOrdersList';
 
 
 const FarmersOrders = () => (
@@ -11,7 +12,7 @@ const FarmersOrders = () => (
 		<div className="dashboard-content-container">
 			<FarmersDashboardMenu />
 			<div className="dashboard-content-details">
-				Farmers Orders
+				<FarmersOrdersList />
 			</div>
 		</div>
 	</div>

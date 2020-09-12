@@ -124,6 +124,7 @@ const Header = (props) => {
 
 	const displayIcon = (name) => {
 		switch(name) {
+														
 			case 'Market':
 				return (
 					<AiFillShop style={{
@@ -139,6 +140,12 @@ const Header = (props) => {
 			case 'Orders':
 				return (
 					<GoListOrdered style={{
+						fontSize: '2rem'
+					}}/>
+				);
+			case 'My Shop':
+				return (
+					<AiFillShop style={{
 						fontSize: '2rem'
 					}}/>
 				);
@@ -178,6 +185,10 @@ const Header = (props) => {
 				{
 					name: 'Orders',
 					url: '/orders'
+				},
+				{
+					name: 'My Shop',
+					url: '/farmer/profile'
 				}].map((item, index) => (
 					<ListItem button key={item.name}>
 						<NavLink
@@ -186,8 +197,8 @@ const Header = (props) => {
 							activeClassName="mb-link-active"
 							exact={true}
 						>
-								<ListItemIcon>{displayIcon(item.name)}</ListItemIcon>
-								<ListItemText primary={item.name} />
+							<ListItemIcon>{displayIcon(item.name)}</ListItemIcon>
+							<ListItemText primary={item.name} />
 						</NavLink>
 					</ListItem>
 				))}

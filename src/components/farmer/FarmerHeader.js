@@ -52,6 +52,12 @@ const FarmerHeader = () => {
 
 	const displayIcon = (name) => {
 		switch(name) {
+			case 'Market Place':
+				return (
+					<AiFillShop style={{
+						fontSize: '2rem'
+					}}/>
+				);
 			case 'Profile':
 				return (
 					<FaUserCog style={{
@@ -84,6 +90,10 @@ const FarmerHeader = () => {
 		>
 			<List>
 				{[{
+					name: 'Market Place',
+					url: '/'
+				},
+				{
 					name: 'Profile',
 					url: '/farmer/profile'
 				},

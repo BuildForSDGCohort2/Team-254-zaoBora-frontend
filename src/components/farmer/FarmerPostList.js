@@ -65,7 +65,7 @@ const FarmerPostList = () => {
 		title: 'New Post',
         postName: '',
         description: ''
-	});openConfirmDelPost
+	});
 
 	const handleOpen = () => {
 		setOpen(true);

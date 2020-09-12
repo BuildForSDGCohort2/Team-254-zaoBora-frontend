@@ -79,3 +79,38 @@
 	cursor: pointer;
 	font-size: $m-size*1.1;
 }
+
+
+@media screen and (min-width: 64rem) and (max-width: 84em) {
+
+}
+
+@media screen and (min-width: $tablet-width) and (max-width: $laptop-width) {
+	.farmer-profile-card-container {
+		width: 90%;
+	}
+
+	.farmer-post-description p,
+	.farmer-post-name p,
+	.new-post-container,
+	.post-action-btn {
+		font-size: 1.3rem;
+	}
+}
+
+@media screen and (min-width: $mobile-width) and (max-width: $tablet-width) {
+	.farmer-profile-card {
+		flex-direction: column;
+	}
+
+	.farmer-post-actions {
+		display: flex;
+		padding: $m-size 0;
+		flex-direction: row;
+		align-items: center;
+	}
+
+	.farmer-profile-card-container {
+		height: auto !important;
+	}
+}

@@ -1,11 +1,14 @@
-import React, { Fragment } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
 
+import Header from '../components/Header';
+import MobileNav from '../components/MobileNav';
 
 const FAQ = () => (
-	<Fragment>
+	<div>
+		<Header />
 		<h1>Frequently Asked Questions</h1>
-	</Fragment>
+		<MobileNav />
+	</div>
 );
 
 export default FAQ;

@@ -1,10 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import Grid from '@material-ui/core/Grid';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -78,6 +78,7 @@ const AccountProfileForm = (props) => {
 			firstName,
 			lastName,
 			phoneNumber,
+			username,
 			address,
 			region,
 			info,
@@ -152,12 +153,30 @@ const AccountProfileForm = (props) => {
 							variant="outlined"
 							required
 							fullWidth
+							id="username"
+							name="username"
+							value={username}
+							autoComplete="username"
+							onChange={handleChange}
+							label={errors.username ? 'Error' : 'username'}
+							InputProps={{ className: classes.root }}
+							helperText={errors.username ? errors.username : ''}
+							error={errors.username ? true : false}
+						/>
+					</ThemeProvider>
+				</Grid>
+				<Grid item xs={12}>
+					<ThemeProvider theme={theme}>
+						<TextField
+							variant="outlined"
+							required
+							fullWidth
 							id="address"
 							name="address"
 							value={address}
 							autoComplete="address"
 							onChange={handleChange}
-							label={errors.address ? 'Error' : 'Address'}
+							label={errors.address ? 'Error' : 'Address (location/sub-location)'}
 							InputProps={{ className: classes.root }}
 							helperText={errors.address ? errors.address : ''}
 							error={errors.address ? true : false}
@@ -168,7 +187,7 @@ const AccountProfileForm = (props) => {
 					<ThemeProvider theme={theme}>
 						<TextField
 							id="additional-info"
-							label={errors.info ? 'Error' : 'Additional info'}
+							label={errors.info ? 'Error' : 'Additional info (Building/Street)'}
 							variant="outlined"
 							name="info"
 							value={info}

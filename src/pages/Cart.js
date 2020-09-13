@@ -83,7 +83,7 @@ const Cart = () => {
 											<div className="mb-cart-actions-container">
 												<div className="mb-del-icon">
 													<MdDeleteForever
-														
+
 														style={{
 															color: '#4caf50',
 															fontSize: '2rem'
@@ -96,6 +96,7 @@ const Cart = () => {
 															aria-label="reduce"
 															onClick={() => {
 																// setCount(Math.max(count - 1, 0));
+																console.log("count")
 															}}
 														>
 															<RemoveIcon fontSize="small" />
@@ -111,6 +112,7 @@ const Cart = () => {
 															aria-label="increase"
 															onClick={() => {
 																// setCount(count + 1);
+																console.log("count")
 															}}
 														>
 															<AddIcon fontSize="small" />

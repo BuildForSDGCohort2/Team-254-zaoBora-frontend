@@ -1,0 +1,68 @@
+.farmer-orders-container {
+	width: 70%;
+}
+
+.row-id {
+	color: $blue !important;
+	cursor: pointer;
+}
+
+.row-id:hover {
+	text-decoration: underline;
+}
+
+.item-unordered-list li {
+	text-align: left;
+}
+
+
+@media screen and (min-width: 64rem) and (max-width: 84em) {
+	.farmer-orders-container {
+		width: 80%;
+	}
+}
+
+@media screen and (min-width: $tablet-width) and (max-width: $laptop-width) {
+	.farmer-orders-container {
+		width: 100%;
+	}
+}
+
+@media screen and (min-width: $mobile-width) and (max-width: $tablet-width) {
+	.dashboard-content-details {
+		padding: .5rem !important;
+	}
+
+	.farmer-orders-container {
+		width: 100%;
+	}
+
+	.mb-farmer-orders-card {
+		width: 100%;
+		padding: $s-size 1rem;
+		font-size: 1.2rem;
+	}
+
+	.mb-farmer-item-row {
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+		margin: $s-size*1.1 0;
+	}
+
+	.mb-farmer-item-row p,
+	.mb-farmer-item-row ul {
+		margin: 0;
+	}
+
+	.mb-farmer-item-row b {
+		// flex: 60%;
+	}
+
+	.mb-farmer-item-row ul {
+		padding-inline-start: 0;
+		margin-block-start: 0;
+		margin-block-end: 0;
+	}
+}

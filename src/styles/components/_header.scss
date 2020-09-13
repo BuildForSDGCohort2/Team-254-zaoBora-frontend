@@ -1,3 +1,228 @@
+.header-container {
+	background: #fff;
+}
+
+.header-auth-section {
+	background: $off-white;
+	border-top: .2rem solid $base-color;
+	padding: .7rem;
+	font-size: $s-size;
+	display: flex;
+	justify-content: center;
+}
+
+.header-auth-section-container {
+	display: flex;
+	justify-content: flex-end;
+	width: 85%;
+}
+
+.header-btn {
+	padding: .5rem;
+	border-radius: .1rem;
+	font-weight: 600;
+	font-size: $s-size*.9;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+.header-auth-btns {
+	// width: 11%;
+	display: flex;
+	// justify-content: space-between;
+	align-items: center;
+}
+
+.header-login-button {
+	color: $grey;
+}
+
+.header-login-button:hover {
+	color: #6b6b6b;
+}
+
+.header-register-button {
+	border-radius: .2rem;
+}
+
+.header-auth-btns p {
+	color: $grey;
+	margin: 0 $s-size;
+}
+
+.header-links-section {
+	padding: .7rem;
+	width: 85%;
+	height: 8rem;
+	margin: 0 auto 3rem auto;
+	display: flex;
+	justify-content: space-between;
+	// background: blue;
+}
+
+.mb-about,
+.mb-register-title {
+	display: none;
+}
+
+.header-logo-links {
+	display: flex;
+	width: 100%;
+}
+
+.header-logo-links-container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+}
+
+.header-logo-section {
+	flex: 50%;
+}
+
 .app-logo {
 	display: flex;
+	color: #666;
+	text-decoration: none;
+}
+
+.header-nav-section {
+	display: flex;
+	flex: 50%;
+	justify-content: flex-end;
+}
+
+.navigation-bar {
+	width: 60%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.navbar-link {
+	text-decoration: none;
+	color: $grey;
+}
+
+.menu-btn {
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+}
+
+.option-link {
+	font-size: $m-size*.9;
+}
+
+.menu-item-group {
+	display: flex;
+	align-items: center;
+}
+
+.cart-with-badge {
+	position: relative;
+}
+
+.cart-badge {
+	padding: 13% 19%;
+	border-radius: 50%;
+	text-decoration: none;
+	position: absolute;
+	right: -20%;
+	top: -20%;
+	color: $off-white;
+	background: $base-color;
+	font-size: $s-size*.9;
+}
+
+.register-app-logo {
+	margin-right: $s-size;
+}
+
+
+@media screen and (min-width: 64rem) and (max-width: 84em) {
+	
+}
+
+@media screen and (min-width: $tablet-width) and (max-width: $laptop-width) {
+	.navigation-bar {
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.cart-badge {
+		border-radius: 50%;
+	}
+
+	.header-links-section {
+		height: 6rem;
+		margin: 0 auto 2rem auto;
+	}
+}
+
+@media screen and (min-width: $mobile-width) and (max-width: $tablet-width) {
+	.header-auth-btns-container p,
+	.register-title,
+	.header-nav-section {
+		display: none;
+	}
+
+	.mb-register-title {
+		display: flex;
+		align-items: center;
+	}
+
+	.mb-about {
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+	}
+
+	.header-links-section {
+		padding: .8rem .1rem;
+		margin-bottom: 1rem;
+		margin-top: 1rem;
+		width: 90%;
+		height: auto;
+		display: flex;
+		justify-content: space-between;
+	}
+
+	.header-logo-links {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+	}
+
+	.search-bar {
+		flex: 80%;
+	}
+
+	.mb-search-filters-section {
+		display: flex;
+		margin-top: $m-size;
+		width: 100%;
+		justify-content: space-between;
+	}
+
+	.mobile-hamburger-menu {
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		flex: 10%;
+	}
+
+	.mb-menu-links {
+		text-decoration: none;
+		color: $dark-grey;
+		display: flex;
+		align-items: center;
+	}
+
+	.mb-link-active {
+		color: $base-color;
+	}
 }

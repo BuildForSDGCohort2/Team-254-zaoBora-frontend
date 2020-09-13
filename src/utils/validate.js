@@ -73,7 +73,7 @@ export const ResetPassSchema = Yup.object().shape({
     newPassword: Yup.string()
         .min(6, "Password must be 6 characters at minimum")
         .required("Password is required"),
-    confirmPassword: Yup.string()
+    confirmNewPassword: Yup.string()
         .oneOf([Yup.ref('newPassword'), null], "Your passwords don't match")
         .required('Confirm password is required')
 });
@@ -81,15 +81,28 @@ export const ResetPassSchema = Yup.object().shape({
 export const updateAccountSchema = Yup.object().shape({
     firstName: Yup.string()
         .min(2, 'Too Short!')
-        .max(50, 'Too Long!')
-        .required('First name is required'),
+        .max(50, 'Too Long!'),
     lastName: Yup.string()
         .min(2, 'Too Short!')
-        .max(50, 'Too Long!')
-        .required('Last name is required'),
-    phoneNumber: Yup.number()
-        .min(8, 'Too Short!'),
-    // birthday: Yup.string()
-    //     .trim()
-    //     .matches(/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/, 'Is not in correct format')
+        .max(50, 'Too Long!'),
+    phoneNumber: Yup.string()
+        .test('validPhoneNumber', 'Please enter a valid phone number', 
+            (value) => {
+                // Get an instance of `PhoneNumberUtil`.
+                const phoneUtil = require('google-libphonenumber').PhoneNumberUtil.getInstance();
+
+                // Parse number with country code and keep raw input.
+                const number = phoneUtil.parseAndKeepRawInput(value, 'KE');
+
+                return phoneUtil.isValidNumberForRegion(number, 'KE');
+            }),
+    address: Yup.string()
+        .min(2, 'Too Short!')
+        .max(50, 'Too Long!'),
+    region: Yup.string()
+        .oneOf(['consumer', 'farmer', 'both']),
+    city: Yup.string()
+        .oneOf(['consumer', 'farmer', 'both']),
+    info: Yup.string()
+        .min(2, 'Too Short!')
 })

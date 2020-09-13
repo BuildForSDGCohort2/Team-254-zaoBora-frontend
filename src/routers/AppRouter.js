@@ -11,10 +11,21 @@ import { createBrowserHistory } from 'history';
 // import MobileRoutes from './MobileRoutes';
 // import ErrorBoundary from '../components/ErrorBoundary';
 import Footer from '../components/Footer';
+import AccountOrders from '../pages/AccountOrders';
+import Account from '../pages/Account';
 import Register from '../pages/Register';
 import Login from '../pages/Login';
-import Dashboard from '../pages/Dashboard';
+import Market from '../pages/Market';
 import About from '../pages/About';
+import Checkout from '../pages/Checkout';
+import Cart from '../pages/Cart';
+import NotFound from '../pages/NotFound';
+import FarmersDashboard from '../pages/farmer/FarmersDashboard';
+import FarmersPosts from '../pages/farmer/FarmersPosts';
+import FarmersOrders from '../pages/farmer/FarmersOrders';
+import FarmerResetPassword from '../pages/farmer/FarmerResetPassword';
+import FAQ from '../pages/FAQ';
+
 
 export const history = createBrowserHistory();
 
@@ -23,13 +34,23 @@ const AppRouter = () => (
         <div className="App">
 	        <div>
 	            <Switch>
-	                <Route path="/" component={Dashboard} exact={true} />
+	                <Route path="/" component={Market} exact={true} />
 	                <Route path="/login" component={Login} />
 	                <Route path="/register" component={Register} />
 	                <Route path="/about" component={About} />
+	                <Route path="/checkout" component={Checkout} />
+	                <Route path="/orders" component={AccountOrders} />
+	                <Route path="/profile" component={Account} />
+	                <Route path="/cart" component={Cart} />
+	                <Route path="/faq" component={FAQ} />
+	                <Route path="/farmer/profile" component={FarmersDashboard} />
+	                <Route path="/farmer/posts" component={FarmersPosts} />
+	                <Route path="/farmer/orders" component={FarmersOrders} />
+	                <Route path="/farmer/reset-password" component={FarmerResetPassword} />
+	                <Route component={NotFound} />
 	            </Switch>
-		    	<Footer />
 	        </div>
+	        <Footer />
         </div>
     </HashRouter>
 );

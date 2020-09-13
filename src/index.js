@@ -11,7 +11,7 @@ let hasRendered = false;
 render(<div className="spinner-border text-warning"></div>, document.getElementById('root'));
 
 const renderApp = () => {
-    
+
     if (!hasRendered) {
         	render(<App />, document.getElementById('root')
     	);

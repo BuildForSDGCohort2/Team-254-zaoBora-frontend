@@ -1,0 +1,304 @@
+.product-item-container {
+	background: $off-white;
+}
+
+.single-product-item {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	padding: $l-size 0;
+}
+
+.product-img-details {
+	width: 70%;
+	display: flex;
+	gap: 3%;
+}
+
+.single-product-item p {
+	margin: 0;
+}
+
+.product-item-img {
+	flex: 42.5%;
+	display: flex;
+	flex-direction: column;
+	height: auto;
+	gap: 2.5%;
+}
+
+.product-item-sub-img {
+	display: flex;
+	gap: 2.5%;
+	flex: 20%;
+	cursor: pointer;
+}
+
+.product-item-main-img {
+	display: flex;
+	flex: 77.5%;
+}
+
+.product-item-details {
+	flex: 52.5%;
+}
+
+.product-item-details-text {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 100%;
+}
+
+.product-main-img {
+	max-width: 100%;
+	max-height: 100%;
+	width: 100%;
+	height: 100%;
+	border-radius: .2rem;
+}
+
+.product-sub-img {
+	max-width: 19%;
+	max-height: 100%;
+	width: 18%;
+	height: 100%;
+	border-radius: .2rem;
+}
+
+.product-item-details {
+	display: flex;
+	flex-direction: column;
+}
+
+.price-detail {
+	color: $base-color;
+	font-weight: 400;
+}
+
+.product-item-title {
+	color: $dark-grey;
+	font-weight: 400;
+}
+
+.product-item-rating {
+	display: flex;
+	align-items: center;
+	margin-top: 1rem;
+}
+
+.rating-stars {
+	font-size: $m-size !important;
+	margin-right: .5rem;
+}
+
+.product-item-price,
+.product-item-quantity,
+.add-to-cart-btn {
+	margin-top: 1rem;
+}
+
+.add-to-cart-btn {
+	background: $base-color;
+	color: $off-white;
+	padding: $s-size;
+	opacity: .9;
+	border-radius: .3rem;
+	border: .1rem solid $base-color;
+	outline: none;
+	box-shadow: .1rem .1rem .5rem $dark-grey;
+}
+
+.add-to-cart-btn:hover {
+	opacity: 1;
+}
+
+.faded-title {
+	color: $dark-grey;
+}
+
+.mb-modify-quantity {
+	display: flex;
+}
+
+.product-item-modify-quantity {
+	display: flex;
+	justify-content: flex-start;
+}
+
+.modify-quantity-container {
+	display: flex;
+	width: 35%;
+	height: $l-size;
+	margin-top: .5rem;
+}
+
+.product-modify-btn {
+	background: $white;
+	border-radius: .3rem;
+	border: .1rem solid $grey;
+	outline: none;
+}
+
+.product-minus-btn {
+	margin-right: .2rem;
+	flex: 25%;
+}
+
+.modify-text-input {
+	flex: 50%;
+	max-width: 50%;
+	font-size: $s-size;
+	border-radius: .3rem;
+	border: .1rem solid $grey;
+	padding: 0 $s-size;
+}
+
+.modify-text-input:focus {
+	outline-width: .05rem;
+	outline-color: dodgerblue;
+}
+
+.product-add-btn {
+	margin-left: .2rem;
+	flex: 25%;
+}
+
+.available-items {
+	color: $grey;
+	margin-top: .2rem;
+}
+
+.product-item-nav {
+	text-decoration: none;
+	color: $dark-grey;
+}
+
+.product-item-options {
+	width: 70%;
+}
+
+.product-item-options-container {
+	width: 17rem;
+	display: flex;
+	justify-content: space-between;
+}
+
+.product-item-options-wrapper {
+	width: 100%;
+	border-bottom: .1rem solid $grey;
+}
+
+.product-item-nav-active {
+	border-bottom: .1rem solid $grey;
+}
+
+.product-item-nav {
+	padding: $s-size 0;
+}
+
+.share-section {
+	width: 25%;
+	display: flex;
+	justify-content: space-between;
+}
+
+.share-social-media {
+	width: 25%;
+	display: flex;
+	justify-content: space-between;
+}
+
+.social-media-icon {
+	font-size: $m-size;
+	cursor: pointer;
+}
+
+.description-text-content {
+	padding: $s-size;
+	background: $white;
+}
+
+
+@media screen and (min-width: 84rem) {
+	.product-item-container {
+		padding-bottom: 20rem;
+	}
+}
+
+@media screen and (min-width: 64rem) and (max-width: 84em) {
+	.product-item-container {
+		padding-bottom: 50rem;
+	}
+}
+
+@media screen and (min-width: $tablet-width) and (max-width: $laptop-width) {
+	.product-img-details {
+		width: 90%;
+	}
+
+	.product-item-options {
+		width: 90%;
+	}
+
+	.product-item-container {
+		padding-bottom: 30rem;
+	}
+
+	.price-detail,
+	.product-item-title {
+		font-size: 2.5rem;
+	}
+}
+
+@media screen and (min-width: $mobile-width) and (max-width: $tablet-width) {
+	.product-img-details {
+		width: 95%;
+	}
+
+	.product-item-options {
+		width: 95%;
+	}
+
+	.price-detail,
+	.product-item-title {
+		font-size: 2.2rem;
+	}
+
+	.product-img-details {
+		flex-direction: column;
+	}
+
+	.single-product-item {
+		padding: $s-size 0;
+	}
+
+	.product-item-img {
+		flex: 32%;
+		gap: 3.5%;
+	}
+
+	.product-item-details {
+		flex: 62%;
+		margin: $s-size 0;
+	}
+
+	.product-main-img {
+		max-height: 15rem;
+		height: 100%;
+	}
+
+	.product-sub-img {
+		max-height: 5rem;
+		height: 100%;
+	}
+
+	.review-text-content {
+		padding: 0;
+	}
+
+	.share-section {
+		width: 100%;
+	}
+
+}

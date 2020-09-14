@@ -1,0 +1,145 @@
+.review-text-content {
+	padding: $l-size;
+	background: $white;
+}
+
+.product-item-review-container {
+	background: $off-white;
+}
+
+.product-item-rating-container {
+	display: flex;
+	justify-content: space-between;
+	border-radius: .3rem;
+	border: .1rem solid $off-white;
+	padding: $s-size;
+}
+
+.total-reviews {
+	color: $dark-grey;
+}
+
+.alert-text-item {
+	font-size: $m-size !important;
+}
+
+.product-review-header {
+	display: flex;
+	align-items: center;
+}
+
+.review-owner {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 100%;
+	margin-left: $s-size;
+}
+
+.overall-rating {
+	font-size: $l-size*.9 !important;
+}
+
+.product-review-container {
+	margin: $l-size 0;
+}
+
+.product-review-item {
+	padding: $m-size 0;
+	border-bottom: .1rem solid $off-white
+}
+
+.review-date {
+	color: $grey;
+}
+
+.review-name {
+	color: $dark-grey;
+}
+
+.product-review-content {
+	margin-top: $m-size;
+	color: $dark-grey;
+}
+
+.rate-product-text {
+	color: $dark-grey;
+}
+
+.rate-product-item {
+	font-size: $l-size*.8 !important;
+}
+
+.rate-product-container {
+	width: 30%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+
+@media screen and (min-width: 64rem) and (max-width: 84em) {
+	.product-item-review-container {
+		padding-bottom: 50rem;
+	}
+
+}
+
+@media screen and (min-width: $tablet-width) and (max-width: $laptop-width) {
+	.product-item-review-container {
+		padding-bottom: 30rem;
+	}
+}
+
+@media screen and (min-width: $mobile-width) and (max-width: $tablet-width) {
+	.product-item-rating-container {
+		flex-direction: column;
+	}
+
+	.review-text-content {
+		padding: 0;
+		background: $white;
+	}
+
+	.overall-rating {
+		font-size: $l-size*.7 !important;
+	}
+
+	.product-item-rating-container {
+		border: none;
+		padding: $s-size;
+	}
+
+	.product-review-container {
+		padding: 0 $s-size;
+	}
+
+	.add-item-review {
+		margin-top: 1rem;
+	}
+
+	.product-review-content p {
+		font-size: 1.2rem;
+	}
+
+	.reviewer-name,
+	.reviewer-date {
+		font-size: 1.1rem;
+	}
+
+	.reviewer-rating {
+		font-size: 90%;
+	}
+
+	.product-review-container {
+		margin: $m-size 0;
+	}
+
+	.rate-product-item {
+		font-size: $l-size*.6 !important;
+	}
+
+	.rate-product-container {
+		width: 100%;
+	}
+}

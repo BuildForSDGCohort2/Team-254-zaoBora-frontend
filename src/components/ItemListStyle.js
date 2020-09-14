@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -20,6 +21,7 @@ import peas from '../assets/peas.jpg';
 import tomatoes from '../assets/tomatoes.jpg';
 import mangoes from '../assets/mangoes.jpg';
 import vegetables from '../assets/vegetables.jpg';
+import { ficticiousProduct } from '../pages/Market';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -77,294 +79,110 @@ const ItemListStyle = () => {
 
 	return (
 		<div className="product-list-style">
-			<div className="product-list-item list-style-item">
-				<Card className={classes.card}>
-					<div className="product-item">
-						<div className="product-img">
-							<div className="main-img">
-								<img
-									className="product-img-item"
-									src={mainImg1}
-								/>
-							</div>
-							<div className="sub-img">
-								<img
-									className="sub-product-img-item"
-									onClick={(e) => handleChangeMainImg('mainImg1', carrots)}
-									src={carrots}
-								/>
-								<img
-									className="sub-product-img-item"
-									onClick={(e) => handleChangeMainImg('mainImg1', tomatoes)}
-									src={tomatoes}
-								/>
-								<img
-									className="sub-product-img-item"
-									onClick={(e) => handleChangeMainImg('mainImg1', peas)}
-									src={peas}
-								/>
-								<img
-									className="sub-product-img-item"
-									onClick={(e) => handleChangeMainImg('mainImg1', mangoes)}
-									src={mangoes}
-								/>
-							</div>
-						</div>
-						<div className="product-item-content">
-							<CardHeader
-								className={classes.smallFontSize}
-								avatar={
-									<Avatar aria-label="recipe" className={classes.avatar}>
-									R
-									</Avatar>
-								}
-								action={
-									<IconButton aria-label="settings">
-										<MoreVertIcon />
-									</IconButton>
-								}
-								title="Shrimp and Chorizo Paella"
-								subheader="September 14, 2016"
-							/>
-							<CardContent className={classes.fixedHeight}>
-								<div
-									style={{
-										overflow: "hidden",
-										textOverflow: "ellipsis",
-										height: "100%"
-									}}
-								>
-									<Typography className={classes.fontSize} variant="body2" color="textSecondary" component="p">
-										This impressive paella is a perfect party dish and a fun meal to cook together with your
-										guests. Add 1 cup of frozen peas along with the mussels, if you like.
-									</Typography>
-								</div>
-							</CardContent>
-							<CardActions disableSpacing>
-								<div className="action-section">
-									<div className="chat-share">
-										<IconButton aria-label="share">
-											<ShareIcon
-												style={{
-													fontSize: '2rem'
-												}}
+			{
+				ficticiousProduct.map(product => (
+					<div className="product-list-item list-style-item" key={product.id}>
+						<NavLink to={`/product/${product.id}/description`} className="product-nav-link">
+							<Card className={classes.card}>
+								<div className="product-item">
+									<div className="product-img">
+										<div className="main-img">
+											<img
+												className="product-img-item"
+												src={product.image}
 											/>
-										</IconButton>
-										<IconButton>
-											<StyledBadge badgeContent={4} color="secondary">
-												<ChatBubbleIcon
-													style={{
-														fontSize: '2rem'
-													}}
-												/>
-											</StyledBadge>
-										</IconButton>
-									</div>
-									<IconButton aria-label="cart">
-										<FaCartPlus
-											style={{
-												fontSize: '2rem'
-											}}
-										/>
-									</IconButton>
-								</div>
-							</CardActions>
-						</div>
-					</div>
-				</Card>
-			</div>
-			<div className="product-list-item list-style-item">
-				<Card className={classes.card}>
-					<div className="product-item">
-						<div className="product-img">
-							<div className="main-img">
-								<img
-									className="product-img-item"
-									src={mainImg2}
-								/>
-							</div>
-							<div className="sub-img">
-								<img
-									className="sub-product-img-item"
-									onClick={(e) => handleChangeMainImg('mainImg2', carrots)}
-									src={carrots}
-								/>
-								<img
-									className="sub-product-img-item"
-									onClick={(e) => handleChangeMainImg('mainImg2', tomatoes)}
-									src={tomatoes}
-								/>
-								<img
-									className="sub-product-img-item"
-									onClick={(e) => handleChangeMainImg('mainImg2', beans)}
-									src={beans}
-								/>
-								<img
-									className="sub-product-img-item"
-									onClick={(e) => handleChangeMainImg('mainImg2', mangoes)}
-									src={mangoes}
-								/>
-							</div>
-						</div>
-						<div className="product-item-content">
-							<CardHeader
-								className={classes.smallFontSize}
-								avatar={
-									<Avatar aria-label="recipe" className={classes.avatar}>
-									R
-									</Avatar>
-								}
-								action={
-									<IconButton aria-label="settings">
-										<MoreVertIcon />
-									</IconButton>
-								}
-								title="Shrimp and Chorizo Paella"
-								subheader="September 14, 2016"
-							/>
-							<CardContent className={classes.fixedHeight}>
-								<div
-									style={{
-										overflow: "hidden",
-										textOverflow: "ellipsis",
-										height: "100%"
-									}}
-								>
-									<Typography className={classes.fontSize} variant="body2" color="textSecondary" component="p">
-										This impressive paella is a perfect party dish and a fun meal to cook together with your
-										guests. Add 1 cup of frozen peas along with the mussels, if you like.
-									</Typography>
-								</div>
-							</CardContent>
-							<CardActions disableSpacing>
-								<div className="action-section">
-									<div className="chat-share">
-										<IconButton aria-label="share">
-											<ShareIcon
-												style={{
-													fontSize: '2rem'
-												}}
+										</div>
+										<div className="sub-img">
+											<img
+												className="sub-product-img-item"
+												onClick={(e) => handleChangeMainImg('mainImg1', carrots)}
+												src={carrots}
 											/>
-										</IconButton>
-										<IconButton>
-											<StyledBadge badgeContent={4} color="secondary">
-												<ChatBubbleIcon
-													style={{
-														fontSize: '2rem'
-													}}
-												/>
-											</StyledBadge>
-										</IconButton>
-									</div>
-									<IconButton aria-label="cart">
-										<FaCartPlus
-											style={{
-												fontSize: '2rem'
-											}}
-										/>
-									</IconButton>
-								</div>
-							</CardActions>
-						</div>
-					</div>
-				</Card>
-			</div>
-			<div className="product-list-item list-style-item">
-				<Card className={classes.card}>
-					<div className="product-item">
-						<div className="product-img">
-							<div className="main-img">
-								<img
-									className="product-img-item"
-									src={mainImg3}
-								/>
-							</div>
-							<div className="sub-img">
-								<img
-									className="sub-product-img-item"
-									onClick={(e) => handleChangeMainImg('mainImg3', beans)}
-									src={beans}
-								/>
-								<img
-									className="sub-product-img-item"
-									onClick={(e) => handleChangeMainImg('mainImg3', tomatoes)}
-									src={tomatoes}
-								/>
-								<img
-									className="sub-product-img-item"
-									onClick={(e) => handleChangeMainImg('mainImg3', peas)}
-									src={peas}
-								/>
-								<img
-									className="sub-product-img-item"
-									onClick={(e) => handleChangeMainImg('mainImg3', mangoes)}
-									src={mangoes}
-								/>
-							</div>
-						</div>
-						<div className="product-item-content">
-							<CardHeader
-								className={classes.smallFontSize}
-								avatar={
-									<Avatar aria-label="recipe" className={classes.avatar}>
-									R
-									</Avatar>
-								}
-								action={
-									<IconButton aria-label="settings">
-										<MoreVertIcon />
-									</IconButton>
-								}
-								title="Shrimp and Chorizo Paella"
-								subheader="September 14, 2016"
-							/>
-							<CardContent className={classes.fixedHeight}>
-								<div
-									style={{
-										overflow: "hidden",
-										textOverflow: "ellipsis",
-										height: "100%"
-									}}
-								>
-									<Typography className={classes.fontSize} variant="body2" color="textSecondary" component="p">
-										This impressive paella is a perfect party dish and a fun meal to cook together with your
-										guests. Add 1 cup of frozen peas along with the mussels, if you like.
-									</Typography>
-								</div>
-							</CardContent>
-							<CardActions disableSpacing>
-								<div className="action-section">
-									<div className="chat-share">
-										<IconButton aria-label="share">
-											<ShareIcon
-												style={{
-													fontSize: '2rem'
-												}}
+											<img
+												className="sub-product-img-item"
+												onClick={(e) => handleChangeMainImg('mainImg1', tomatoes)}
+												src={tomatoes}
 											/>
-										</IconButton>
-										<IconButton>
-											<StyledBadge badgeContent={4} color="secondary">
-												<ChatBubbleIcon
-													style={{
-														fontSize: '2rem'
-													}}
-												/>
-											</StyledBadge>
-										</IconButton>
+											<img
+												className="sub-product-img-item"
+												onClick={(e) => handleChangeMainImg('mainImg1', peas)}
+												src={peas}
+											/>
+											<img
+												className="sub-product-img-item"
+												onClick={(e) => handleChangeMainImg('mainImg1', mangoes)}
+												src={mangoes}
+											/>
+										</div>
 									</div>
-									<IconButton aria-label="cart">
-										<FaCartPlus
-											style={{
-												fontSize: '2rem'
-											}}
+									<div className="product-item-content">
+										<CardHeader
+											className={classes.smallFontSize}
+											avatar={
+												<Avatar aria-label="recipe" className={classes.avatar}>
+												{product.avatar}
+												</Avatar>
+											}
+											action={
+												<IconButton aria-label="settings">
+													<MoreVertIcon />
+												</IconButton>
+											}
+											title={product.seller}
+											subheader={product.date}
 										/>
-									</IconButton>
+										<CardContent className={classes.fixedHeight}>
+											<div
+												style={{
+													overflow: "hidden",
+													textOverflow: "ellipsis",
+													height: "100%"
+												}}
+											>
+												<Typography variant="h5" gutterBottom>
+													{product.title}
+												</Typography>
+												<Typography className={classes.fontSize} variant="body2" color="textSecondary" component="p">
+													{product.description}
+												</Typography>
+											</div>
+										</CardContent>
+										<CardActions disableSpacing>
+											<div className="action-section">
+												<div className="chat-share">
+													<IconButton aria-label="share">
+														<ShareIcon
+															style={{
+																fontSize: '2rem'
+															}}
+														/>
+													</IconButton>
+													<IconButton>
+														<StyledBadge badgeContent={4} color="secondary">
+															<ChatBubbleIcon
+																style={{
+																	fontSize: '2rem'
+																}}
+															/>
+														</StyledBadge>
+													</IconButton>
+												</div>
+												<IconButton aria-label="cart">
+													<FaCartPlus
+														style={{
+															fontSize: '2rem'
+														}}
+													/>
+												</IconButton>
+											</div>
+										</CardActions>
+									</div>
 								</div>
-							</CardActions>
-						</div>
+							</Card>
+						</NavLink>
 					</div>
-				</Card>
-			</div>
+				))
+			}
 		</div>
 	);
 }

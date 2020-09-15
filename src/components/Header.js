@@ -29,20 +29,6 @@ import MenuItem from '@material-ui/core/MenuItem';
 import tree from '../assets/tree.png';
 
 
-const HideOnScroll = props => {
-	const { children, window } = props;
-	// Note that you normally won't need to set the window ref as useScrollTrigger
-	// will default to window.
-	// This is only being set here because the demo is in an iframe.
-	const trigger = useScrollTrigger({ target: window ? window() : undefined });
-
-	return (
-		<Slide appear={false} direction="down" in={!trigger}>
-			{children}
-		</Slide>
-	);
-}
-
 const useStyles = makeStyles((theme) => ({
 	search: {
 		position: 'relative',
@@ -85,86 +71,10 @@ const useStyles = makeStyles((theme) => ({
 	}
 }));
 
-const StyledBadge = withStyles((theme) => ({
-	badge: {
-		right: -3,
-		top: 13,
-		border: `2px solid ${theme.palette.background.paper}`,
-		padding: '0 4px',
-		fontSize: '1.1rem',
-		background: '#4caf50'
-	},
-}))(Badge);
-
-const Header = (props) => {
+export const list = (anchor, toggleDrawer, displayIcon) => {
 	const classes = useStyles();
-	const [anchorEl, setAnchorEl] = React.useState(null);
-	const [state, setState] = React.useState({
-		top: false,
-		left: false,
-		bottom: false,
-		right: false,
-	});
 
-	const toggleDrawer = (anchor, open) => (event) => {
-		if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-			return;
-		}
-
-		setState({ ...state, [anchor]: open });
-	};
-
-	const handleClick = (event) => {
-		setAnchorEl(event.currentTarget);
-	};
-
-	const handleClose = () => {
-		setAnchorEl(null);
-	};
-
-	const displayIcon = (name) => {
-		switch(name) {
-														
-			case 'Market':
-				return (
-					<AiFillShop style={{
-						fontSize: '2rem'
-					}}/>
-				);
-			case 'Profile':
-				return (
-					<CgProfile style={{
-						fontSize: '2rem'
-					}}/>
-				);
-			case 'Orders':
-				return (
-					<GoListOrdered style={{
-						fontSize: '2rem'
-					}}/>
-				);
-			case 'My Shop':
-				return (
-					<AiFillShop style={{
-						fontSize: '2rem'
-					}}/>
-				);
-			case 'About Us':
-				return (
-					<BsInfoCircleFill style={{
-						fontSize: '2rem'
-					}}/>
-				);
-			case 'FAQ':
-				return (
-					<FaQuestionCircle style={{
-						fontSize: '2rem'
-					}}/>
-				);
-		}
-	}
-
-	const list = (anchor) => (
+	return (
 		<div
 			className={clsx(classes.list, {
 				[classes.fullList]: anchor === 'top' || anchor === 'bottom',
@@ -228,6 +138,100 @@ const Header = (props) => {
 			</List>
 		</div>
 	);
+}
+
+export const displayIcon = (name) => {
+	switch(name) {
+													
+		case 'Market':
+			return (
+				<AiFillShop style={{
+					fontSize: '2rem'
+				}}/>
+			);
+		case 'Profile':
+			return (
+				<CgProfile style={{
+					fontSize: '2rem'
+				}}/>
+			);
+		case 'Orders':
+			return (
+				<GoListOrdered style={{
+					fontSize: '2rem'
+				}}/>
+			);
+		case 'My Shop':
+			return (
+				<AiFillShop style={{
+					fontSize: '2rem'
+				}}/>
+			);
+		case 'About Us':
+			return (
+				<BsInfoCircleFill style={{
+					fontSize: '2rem'
+				}}/>
+			);
+		case 'FAQ':
+			return (
+				<FaQuestionCircle style={{
+					fontSize: '2rem'
+				}}/>
+			);
+	}
+}
+
+const HideOnScroll = props => {
+	const { children, window } = props;
+	// Note that you normally won't need to set the window ref as useScrollTrigger
+	// will default to window.
+	// This is only being set here because the demo is in an iframe.
+	const trigger = useScrollTrigger({ target: window ? window() : undefined });
+
+	return (
+		<Slide appear={false} direction="down" in={!trigger}>
+			{children}
+		</Slide>
+	);
+}
+
+const StyledBadge = withStyles((theme) => ({
+	badge: {
+		right: -3,
+		top: 13,
+		border: `2px solid ${theme.palette.background.paper}`,
+		padding: '0 4px',
+		fontSize: '1.1rem',
+		background: '#4caf50'
+	},
+}))(Badge);
+
+const Header = (props) => {
+	const classes = useStyles();
+	const [anchorEl, setAnchorEl] = React.useState(null);
+	const [state, setState] = React.useState({
+		top: false,
+		left: false,
+		bottom: false,
+		right: false,
+	});
+
+	const toggleDrawer = (anchor, open) => (event) => {
+		if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+			return;
+		}
+
+		setState({ ...state, [anchor]: open });
+	};
+
+	const handleClick = (event) => {
+		setAnchorEl(event.currentTarget);
+	};
+
+	const handleClose = () => {
+		setAnchorEl(null);
+	};
 
 	return (
 		<HideOnScroll {...props}>
@@ -425,7 +429,7 @@ const Header = (props) => {
 							        	open={state['right']}
 							        	onClose={toggleDrawer('right', false)}
 						        	>
-							            {list('right')}
+							            {list('right', toggleDrawer, displayIcon)}
 							        </Drawer>
 								</div>
 							</div>

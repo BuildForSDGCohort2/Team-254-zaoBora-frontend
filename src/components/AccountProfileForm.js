@@ -134,25 +134,6 @@ const AccountProfileForm = (props) => {
 							variant="outlined"
 							required
 							fullWidth
-							id="phone-number"
-							label={errors.phoneNumber ? 'Error' : 'Phone Number(+254..)'}
-							name="phoneNumber"
-							type="number"
-							value={phoneNumber}
-							autoComplete="phone-number"
-							onChange={handleChange}
-							InputProps={{ className: classes.root }}
-							helperText={errors.phoneNumber ? errors.phoneNumber : ''}
-							error={errors.phoneNumber ? true : false}
-						/>
-					</ThemeProvider>
-				</Grid>
-				<Grid item xs={12} sm={6}>
-					<ThemeProvider theme={theme}>
-						<TextField
-							variant="outlined"
-							required
-							fullWidth
 							id="username"
 							name="username"
 							value={username}
@@ -165,39 +146,22 @@ const AccountProfileForm = (props) => {
 						/>
 					</ThemeProvider>
 				</Grid>
-				<Grid item xs={12}>
+				<Grid item xs={12} sm={6}>
 					<ThemeProvider theme={theme}>
 						<TextField
 							variant="outlined"
 							required
 							fullWidth
-							id="address"
-							name="address"
-							value={address}
-							autoComplete="address"
-							onChange={handleChange}
-							label={errors.address ? 'Error' : 'Address (location/sub-location)'}
-							InputProps={{ className: classes.root }}
-							helperText={errors.address ? errors.address : ''}
-							error={errors.address ? true : false}
-						/>
-					</ThemeProvider>
-				</Grid>
-				<Grid item xs={12}>
-					<ThemeProvider theme={theme}>
-						<TextField
-							id="additional-info"
-							label={errors.info ? 'Error' : 'Additional info (Building/Street)'}
-							variant="outlined"
-							name="info"
-							value={info}
+							id="phone-number"
+							label={errors.phoneNumber ? 'Error' : 'Phone Number(+254..)'}
+							name="phoneNumber"
+							type="number"
+							value={phoneNumber}
+							autoComplete="phone-number"
 							onChange={handleChange}
 							InputProps={{ className: classes.root }}
-							helperText={errors.info ? errors.info : ''}
-							error={errors.info ? true : false}
-							rows={4}
-							fullWidth
-							multiline
+							helperText={errors.phoneNumber ? errors.phoneNumber : ''}
+							error={errors.phoneNumber ? true : false}
 						/>
 					</ThemeProvider>
 				</Grid>
@@ -263,6 +227,42 @@ const AccountProfileForm = (props) => {
 								<option value="both">City Three</option>
 					        </Select>
 						</FormControl>
+					</ThemeProvider>
+				</Grid>
+				<Grid item xs={12}>
+					<ThemeProvider theme={theme}>
+						<TextField
+							variant="outlined"
+							required
+							fullWidth
+							id="address"
+							name="address"
+							value={address}
+							autoComplete="address"
+							onChange={handleChange}
+							label={errors.address ? 'Error' : 'Address (location/sub-location)'}
+							InputProps={{ className: classes.root }}
+							helperText={errors.address ? errors.address : ''}
+							error={errors.address ? true : false}
+						/>
+					</ThemeProvider>
+				</Grid>
+				<Grid item xs={12}>
+					<ThemeProvider theme={theme}>
+						<TextField
+							id="additional-info"
+							label={errors.info ? 'Error' : 'Additional info (Building/Street)'}
+							variant="outlined"
+							name="info"
+							value={info}
+							onChange={handleChange}
+							InputProps={{ className: classes.root }}
+							helperText={errors.info ? errors.info : ''}
+							error={errors.info ? true : false}
+							rows={4}
+							fullWidth
+							multiline
+						/>
 					</ThemeProvider>
 				</Grid>
 			</Grid>

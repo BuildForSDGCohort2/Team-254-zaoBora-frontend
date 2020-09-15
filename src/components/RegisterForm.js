@@ -10,7 +10,7 @@ import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import { FcGoogle } from "react-icons/fc";
-import {FaFacebook} from 'react-icons/fa'
+import { FaFacebook } from 'react-icons/fa'
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 
 import { GoogleLogin, GoogleLogout } from 'react-google-login';

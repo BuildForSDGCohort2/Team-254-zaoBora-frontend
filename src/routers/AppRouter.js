@@ -11,11 +11,13 @@ import { createBrowserHistory } from 'history';
 // import MobileRoutes from './MobileRoutes';
 // import ErrorBoundary from '../components/ErrorBoundary';
 import Footer from '../components/Footer';
+import ProductItemReviews from '../components/ProductItemReviews';
 import AccountOrders from '../pages/AccountOrders';
 import Account from '../pages/Account';
 import Register from '../pages/Register';
 import Login from '../pages/Login';
 import Market from '../pages/Market';
+import ProductItem from '../pages/ProductItem';
 import About from '../pages/About';
 import Checkout from '../pages/Checkout';
 import Cart from '../pages/Cart';
@@ -35,6 +37,8 @@ const AppRouter = () => (
 	        <div>
 	            <Switch>
 	                <Route path="/" component={Market} exact={true} />
+	                <Route path="/product/:id/description" component={ProductItem} exact={true} />
+	                <Route path="/product/:id/reviews" component={ProductItemReviews} exact={true} />
 	                <Route path="/login" component={Login} />
 	                <Route path="/register" component={Register} />
 	                <Route path="/about" component={About} />

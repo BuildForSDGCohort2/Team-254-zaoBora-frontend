@@ -15,6 +15,10 @@ import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props
 
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 
+import {connect} from 'react-redux'
+
+import { register } from '../actions/authentication'
+
 import {
 	makeStyles,
 	createMuiTheme,
@@ -381,4 +385,8 @@ const RegisterForm = (props) => {
 	);
 }
 
-export default RegisterForm;
+const mapStateToProps = (dispatch, state) => ({
+    register: state.register,
+})
+
+export default connect(mapStateToProps)(RegisterForm);

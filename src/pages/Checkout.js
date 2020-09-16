@@ -8,8 +8,9 @@ import { list, displayIcon } from '../components/Header';
 import { CheckoutForm } from '../components/CheckoutForm';
 import MobileNav from '../components/MobileNav';
 import tree from '../assets/tree.png';
-import mpesa from '../assets/mpesa.png';
-import royparcel from '../assets/royparcel.png';
+import peas from '../assets/peas.jpg';
+import tomatoes from '../assets/tomatoes.jpg';
+import carrots from '../assets/carrots.jpg';
 
 
 const Checkout = () => {
@@ -63,36 +64,60 @@ const Checkout = () => {
 			<div className="checkout-section">
 				<div className="shipping-info-section">
 					<div className="shipping-address-form">
-						<Card className="shipping-address-form-card">
-							<h4 className="shipping-address-title">Shipping Address</h4>
-							<CheckoutForm />
-						</Card>
-					</div>
-					<div className="mode-of-payment">
-						<Card>
-							<h4 className="shipping-address-title">Mode of Payment</h4>
-							<div className="payment-logo">
-								<img src={mpesa} alt="lipa na mpesa logo" className='lipa-na-mpesa' />
-							</div>
-						</Card>
-					</div>
-					<div className="shipping-method">
-						<Card>
-							<h4 className="shipping-address-title">Shipping Method</h4>
-							<div className="payment-logo">
-								<img src={royparcel} alt="royparcel logo" className='royparcel-logo' />
-							</div>
-						</Card>
-					</div>
-					<div className="checkout-options">
-						<NavLink to="/cart">back to cart</NavLink>
-						<NavLink to="/profile/orders">confirm purchase</NavLink>
+						<CheckoutForm />
 					</div>
 				</div>
-				<div className="cart-items-section">
-					<Card>
-						cart section
+				<div className="dsk cart-items-section">
+					<Card className="cart-section-container">
+						<h4 className="checkout-cart-item-title">Cart Items</h4>
+						<div className="checkout-cart-item">
+							<div className="checkout-cart-item-img">
+								<img src={tomatoes} alt={tomatoes} className="checkout-cart-img" />
+							</div>
+							<div className="checkout-cart-item-info">
+								<small>This impressive paella is a perfect party dish and a</small>
+							</div>
+							<div className="checkout-cart-item-price">
+								<b><small>KES 3,000</small></b>
+							</div>
+						</div>
+						<div className="checkout-cart-item">
+							<div className="checkout-cart-item-img">
+								<img src={peas} alt={peas} className="checkout-cart-img" />
+							</div>
+							<div className="checkout-cart-item-info">
+								<small>This impressive paella is a perfect party dish and a</small>
+							</div>
+							<div className="checkout-cart-item-price">
+								<b><small>KES 3,000</small></b>
+							</div>
+						</div>
+						<div className="checkout-cart-item">
+							<div className="checkout-cart-item-img">
+								<img src={carrots} alt={carrots} className="checkout-cart-img" />
+							</div>
+							<div className="checkout-cart-item-info">
+								<small>This impressive paella is a perfect party dish and a</small>
+							</div>
+							<div className="checkout-cart-item-price">
+								<b><small>KES 3,000</small></b>
+							</div>
+						</div>
 					</Card>
+					<div className="checkout-total-cost">
+						<div className="checkout-subtotal-total">
+							<p className="checkout-total-title">Subtotal</p>
+							<h3 className="checkout-total-price">KES 9,000</h3>
+						</div>
+						<div className="checkout-shipping-total">
+							<p className="checkout-total-title">Shipping</p>
+							<h3 className="checkout-total-price">-</h3>
+						</div>
+						<div className="checkout-cumulative-total">
+							<p className="checkout-total-title">Total</p>
+							<h3 className="checkout-total-price">KES 9,000</h3>
+						</div>
+					</div>
 				</div>
 			</div>
 			<MobileNav />

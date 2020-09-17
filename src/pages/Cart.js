@@ -16,12 +16,10 @@ import ButtonGroup from '@material-ui/core/ButtonGroup';
 import TextField from '@material-ui/core/TextField';
 import { MdDeleteForever } from "react-icons/md";
 import { Link } from 'react-router-dom';
+import { Image, Transformation } from 'cloudinary-react';
 
 import Header from '../components/Header';
 import MobileNav from '../components/MobileNav';
-import beans from '../assets/beans.jpg';
-import peas from '../assets/peas.jpg';
-import tomatoes from '../assets/tomatoes.jpg';
 
 
 const useStyles = makeStyles({
@@ -50,9 +48,9 @@ const Cart = () => {
 	}
 
 	const rows = [
-		createData('Tomatoes', tomatoes, 3, 500, 1500),
-		createData('Beans', beans, 20, 250, 5000),
-		createData('Peas', peas, 10, 400, 4000),
+		createData('Tomatoes', 'staticAssets/tomatoes_arzns2', 3, 500, 1500),
+		createData('Beans', 'staticAssets/beans_jgdn6y', 20, 250, 5000),
+		createData('Peas', 'staticAssets/peas_vkpymp', 10, 400, 4000),
 	];
 
 	return (
@@ -70,7 +68,9 @@ const Cart = () => {
 									<Card>
 										<div className="item-content">
 											<div className="cart-img-container">
-												<img src={row.img} alt={row.img} className="cart-img" />
+												<Image publicId={row.img} crop="scale" alt={row.img} className="cart-img">
+													<Transformation quality="auto" fetchFormat="auto" />
+												</Image>
 											</div>
 											<div className="item-details">
 												<b>Seller: John Doe</b>
@@ -142,7 +142,9 @@ const Cart = () => {
 											<TableRow key={row.item}>
 												<TableCell component="th" scope="row" className={classes.tableBody}>
 													<div className="item-content">
-														<img src={row.img} alt={row.img} className="cart-img" />
+														<Image publicId={row.img} crop="scale" alt={row.img} className="cart-img">
+															<Transformation quality="auto" fetchFormat="auto" />
+														</Image>
 														<div className="item-details">
 															<b>Seller: John Doe</b>
 															<p>{row.item}</p>

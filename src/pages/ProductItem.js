@@ -13,18 +13,19 @@ import {
 	FaFacebookF,
 	FaInstagram
 } from "react-icons/fa";
+import { Image, Transformation } from 'cloudinary-react';
 
 import Header from '../components/Header';
 import MobileNav from '../components/MobileNav';
-import beans from '../assets/beans.jpg';
-import carrots from '../assets/carrots.jpg';
-import peas from '../assets/peas.jpg';
-import tomatoes from '../assets/tomatoes.jpg';
-import mangoes from '../assets/mangoes.jpg';
-import vegetables from '../assets/vegetables.jpg';
 
 
-const imgs = [carrots, peas, tomatoes, mangoes, vegetables];
+const imgs = [
+	'staticAssets/carrots_k7k2ku',
+	'staticAssets/peas_vkpymp',
+	'staticAssets/tomatoes_arzns2',
+	'staticAssets/mangoes_ksuvfs',
+	'staticAssets/vegetables_bqz9sy'
+];
 
 const ProductItem = () => {
 	const [value, setValue] = React.useState(2);
@@ -36,14 +37,15 @@ const ProductItem = () => {
 				<div className="product-img-details">
 					<div className="product-item-img">
 						<div className="product-item-main-img">
-							<img src={beans} className="product-main-img" />
+							<Image productId="staticAssets/beans_jgdn6y" crop="scale" className="product-main-img" />
 						</div>
 						<div className="product-item-sub-img">
 							{
 								imgs.map(img => (
-									<img
+									<Image
 										key={img}
-										src={img}
+										productId={img}
+										crop="scale"
 										alt={img}
 										className="product-sub-img"
 									/>
@@ -126,9 +128,3 @@ const ProductItem = () => {
 }
 
 export default ProductItem;
-
-/*
-
-
-						
-*/

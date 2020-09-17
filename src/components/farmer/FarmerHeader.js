@@ -19,6 +19,7 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import { FaUserCog } from 'react-icons/fa';
 import { BsCardList } from 'react-icons/bs';
+import { Image, Transformation } from 'cloudinary-react';
 
 import tree from '../../assets/tree.png';
 
@@ -148,7 +149,7 @@ const FarmerHeader = () => {
 		<div className="dashboard-navbar-container">
 			<NavLink to="/" className="dashboard-logo">
 				<div className="dashboard-navbar">
-					<img src={tree} alt="tree seedling" className="farmer-dashboard-app-logo" />
+					<Image productId="staticAssets/tree_u1brqs" crop="scale" alt="tree seedling" className="farmer-dashboard-app-logo" />
 					<h4 className="mb-farmer-dashboard-title">Zao Bora</h4>
 				</div>
 			</NavLink>

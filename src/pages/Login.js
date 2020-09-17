@@ -6,11 +6,10 @@ import Container from '@material-ui/core/Container';
 import { FaArrowLeft } from "react-icons/fa";
 import { makeStyles } from '@material-ui/core/styles';
 import { Formik } from "formik";
+import { Image, Transformation } from 'cloudinary-react';
 
-import tree from '../assets/tree.png';
 import LoginForm from '../components/LoginForm';
 import { LoginSchema } from '../utils/validate';
-import farmer from '../assets/farmer-2.png';
 
 
 const useStyles = makeStyles(theme => ({
@@ -35,7 +34,12 @@ const Login = () => {
 				to="/"
 			>
     			<h1 className="register-title">
-					<img src={tree} alt="tree seedling" className="register-app-logo" />
+					<Image
+						publicId="staticAssets/tree_u1brqs"
+						alt="tree seedling"
+						className="register-app-logo"
+						crop="scale"
+					/>
 	        		Zao Bora
     			</h1>
 			</NavLink>
@@ -63,7 +67,15 @@ const Login = () => {
 	        <div className="login-section">
 	        	<div className="zao-bora-illustration dsk">
 	        		<div className="farmer-illustration zao-bora-info">
-	        			<img src={farmer} alt="farmer with wheelbarrow" id="farmer-illustration" />
+		    		<Image
+		    			publicId="staticAssets/farmer-2_zyqgic"
+		    			crop="scale"
+		    			className="register-app-logo"
+			    		alt="farmer with wheelbarrow"
+			    		id="farmer-illustration"
+	    			>
+						<Transformation quality="auto" fetchFormat="auto" />
+					</Image>
 	        		</div>
 	        	</div>
 	        	<div className="login-form">

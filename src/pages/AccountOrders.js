@@ -21,9 +21,8 @@ import TableRow from '@material-ui/core/TableRow';
 import { MdDeleteForever } from "react-icons/md";
 import { FaReceipt } from "react-icons/fa";
 import { ImRedo2 } from "react-icons/im";
+import { Image, Transformation } from 'cloudinary-react';
 
-import beans from '../assets/beans.jpg';
-import tomatoes from '../assets/tomatoes.jpg';
 import Header from '../components/Header';
 import MobileNav from '../components/MobileNav';
 import AccountMenu from '../components/AccountMenu';
@@ -102,8 +101,8 @@ const AccountOrders = () => {
 	}
 
 	const rows = [
-		createData('Tomatoes', tomatoes, 'pending', '01-01-2020', 1500, '#abc123'),
-		createData('Beans', beans, 'complete', '01-01-2020', 5000, '#def456'),
+		createData('Tomatoes', 'staticAssets/tomatoes_arzns2', 'pending', '01-01-2020', 1500, '#abc123'),
+		createData('Beans', 'staticAssets/beans_jgdn6y', 'complete', '01-01-2020', 5000, '#def456'),
 	];
 
 	return (
@@ -163,7 +162,9 @@ const AccountOrders = () => {
 							<Card key={row.item} className="mb-order-item-container">
 								<div className="item-content">
 									<div className="cart-img-container">
-										<img src={row.img} alt={row.img} className="cart-img" />
+										<Image publicId={row.img} alt={row.img} className="cart-img" crop="scale" >
+											<Transformation quality="auto" fetchFormat="auto" />
+										</Image>
 									</div>
 									<div className="item-details mb-order-item-details">
 										<b>Seller: John Doe</b>

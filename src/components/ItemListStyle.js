@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Avatar from '@material-ui/core/Avatar';
@@ -14,13 +13,8 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { FaCartPlus } from "react-icons/fa";
 import Badge from '@material-ui/core/Badge';
 import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
+import { Image, Transformation } from 'cloudinary-react';
 
-import beans from '../assets/beans.jpg';
-import carrots from '../assets/carrots.jpg';
-import peas from '../assets/peas.jpg';
-import tomatoes from '../assets/tomatoes.jpg';
-import mangoes from '../assets/mangoes.jpg';
-import vegetables from '../assets/vegetables.jpg';
 import { ficticiousProduct } from '../pages/Market';
 
 
@@ -59,9 +53,9 @@ const StyledBadge = withStyles((theme) => ({
 
 const ItemListStyle = () => {
 	const classes = useStyles();
-	const [mainImg1, setMain1Img] = React.useState(`${carrots}`);
-	const [mainImg2, setMain2Img] = React.useState(`${beans}`);
-	const [mainImg3, setMain3Img] = React.useState(`${peas}`);
+	const [mainImg1, setMain1Img] = React.useState('staticAssets/carrots_k7k2ku');
+	const [mainImg2, setMain2Img] = React.useState('staticAssets/beans_jgdn6y');
+	const [mainImg3, setMain3Img] = React.useState('staticAssets/peas_vkpymp');
 
 	const handleChangeMainImg = (img, imgName) => {
 		switch(img) {
@@ -87,32 +81,42 @@ const ItemListStyle = () => {
 								<div className="product-item">
 									<div className="product-img">
 										<div className="main-img">
-											<img
+											<Image
 												className="product-img-item"
-												src={product.image}
-											/>
+												publicId='staticAssets/beans_jgdn6y'
+											>
+												<Transformation quality="auto" fetchFormat="auto" />
+											</Image>
 										</div>
 										<div className="sub-img">
-											<img
+											<Image
 												className="sub-product-img-item"
-												onClick={(e) => handleChangeMainImg('mainImg1', carrots)}
-												src={carrots}
-											/>
-											<img
+												onClick={(e) => handleChangeMainImg('mainImg1', 'staticAssets/carrots_k7k2ku')}
+												publicId='staticAssets/carrots_k7k2ku'
+											>
+												<Transformation quality="auto" fetchFormat="auto" />
+											</Image>
+											<Image
 												className="sub-product-img-item"
-												onClick={(e) => handleChangeMainImg('mainImg1', tomatoes)}
-												src={tomatoes}
-											/>
-											<img
+												onClick={(e) => handleChangeMainImg('mainImg1', 'staticAssets/tomatoes_arzns2')}
+												publicId='staticAssets/tomatoes_arzns2'
+											>
+												<Transformation quality="auto" fetchFormat="auto" />
+											</Image>
+											<Image
 												className="sub-product-img-item"
-												onClick={(e) => handleChangeMainImg('mainImg1', peas)}
-												src={peas}
-											/>
-											<img
+												onClick={(e) => handleChangeMainImg('mainImg1', 'staticAssets/peas_vkpymp')}
+												publicId='staticAssets/peas_vkpymp'
+											>
+												<Transformation quality="auto" fetchFormat="auto" />
+											</Image>
+											<Image
 												className="sub-product-img-item"
-												onClick={(e) => handleChangeMainImg('mainImg1', mangoes)}
-												src={mangoes}
-											/>
+												onClick={(e) => handleChangeMainImg('mainImg1', 'staticAssets/mangoes_ksuvfs')}
+												publicId='staticAssets/mangoes_ksuvfs'
+											>
+												<Transformation quality="auto" fetchFormat="auto" />
+											</Image>
 										</div>
 									</div>
 									<div className="product-item-content">

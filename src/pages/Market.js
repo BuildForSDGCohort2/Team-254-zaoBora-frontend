@@ -28,23 +28,19 @@ import Badge from '@material-ui/core/Badge';
 import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
 import Pagination from '@material-ui/lab/Pagination';
 import clsx from 'clsx';
+import { Image, Transformation } from 'cloudinary-react';
 
 import Header from '../components/Header';
 import ItemListStyle from '../components/ItemListStyle';
 import MobileNav from '../components/MobileNav';
-import beans from '../assets/beans.jpg';
-import carrots from '../assets/carrots.jpg';
-import peas from '../assets/peas.jpg';
-import tomatoes from '../assets/tomatoes.jpg';
-import mangoes from '../assets/mangoes.jpg';
-import vegetables from '../assets/vegetables.jpg';
 
 
 export const ficticiousProduct = [{
 	id: 'abc123',
 	avatar: 'J',
 	seller: 'John Doe',
-	image: beans,
+	image: 'staticAssets/beans_jgdn6y',
+	imgUrl: 'https://res.cloudinary.com/zaobora/image/upload/v1600257745/staticAssets/beans_jgdn6y.jpg',
 	date: "September 14, 2016",
 	title: 'This impressive paella is a perfect party dish and a',
 	description: 'This impressive paella is a perfect party dish and a fun meal to cook together with your guests. Add 1 cup of frozen peas along with the mussels, if you like.'
@@ -52,7 +48,8 @@ export const ficticiousProduct = [{
 	id: 'abc124',
 	avatar: 'I',
 	seller: 'Irene Njeri',
-	image: carrots,
+	image: 'staticAssets/carrots_k7k2ku',
+	imgUrl: 'https://res.cloudinary.com/zaobora/image/upload/v1600257765/staticAssets/carrots_k7k2ku.jpg',
 	date: "October 14, 2016",
 	title: 'This impressive paella is a perfect party dish and a',
 	description: 'This impressive paella is a perfect party dish and a fun meal to cook together with your guests. Add 1 cup of frozen peas along with the mussels, if you like.'
@@ -60,7 +57,8 @@ export const ficticiousProduct = [{
 	id: 'abc125',
 	avatar: 'M',
 	seller: 'Mark Njenga',
-	image: peas,
+	image: 'staticAssets/peas_vkpymp',
+	imgUrl: 'https://res.cloudinary.com/zaobora/image/upload/v1600257759/staticAssets/peas_vkpymp.jpg',
 	date: "January 3, 2020",
 	title: 'This impressive paella is a perfect party dish and a',
 	description: 'This impressive paella is a perfect party dish and a fun meal to cook together with your guests. Add 1 cup of frozen peas along with the mussels, if you like.'
@@ -68,7 +66,8 @@ export const ficticiousProduct = [{
 	id: 'abc126',
 	avatar: 'T',
 	seller: 'Tobius Malombe',
-	image: tomatoes,
+	image: 'staticAssets/tomatoes_arzns2',
+	imgUrl: 'https://res.cloudinary.com/zaobora/image/upload/v1600257757/staticAssets/tomatoes_arzns2.jpg',
 	date: "December 1, 2018",
 	title: 'This impressive paella is a perfect party dish and a',
 	description: 'This impressive paella is a perfect party dish and a fun meal to cook together with your guests. Add 1 cup of frozen peas along with the mussels, if you like.'
@@ -76,7 +75,8 @@ export const ficticiousProduct = [{
 	id: 'abc127',
 	avatar: 'K',
 	seller: 'Kevin Mutunga',
-	image: mangoes,
+	image: 'staticAssets/mangoes_ksuvfs',
+	imgUrl: 'https://res.cloudinary.com/zaobora/image/upload/v1600257780/staticAssets/mangoes_ksuvfs.jpg',
 	date: "February 14, 2020",
 	title: 'This impressive paella is a perfect party dish and a',
 	description: 'This impressive paella is a perfect party dish and a fun meal to cook together with your guests. Add 1 cup of frozen peas along with the mussels, if you like.'
@@ -84,7 +84,8 @@ export const ficticiousProduct = [{
 	id: 'abc128',
 	avatar: 'P',
 	seller: 'Philip Otieno',
-	image: vegetables,
+	image: 'staticAssets/vegetables_bqz9sy',
+	imgUrl: 'https://res.cloudinary.com/zaobora/image/upload/v1600257761/staticAssets/vegetables_bqz9sy.jpg',
 	date: "August 14, 2016",
 	title: 'This impressive paella is a perfect party dish and a',
 	description: 'This impressive paella is a perfect party dish and a fun meal to cook together with your guests. Add 1 cup of frozen peas along with the mussels, if you like.'
@@ -166,17 +167,17 @@ const StyledBadge = withStyles((theme) => ({
 
 const Slider = () => {
 	const items = [{
-			image: `${beans}`,
+			image: 'staticAssets/beans_jgdn6y',
 	        name: "Random Name #1",
 	        description: "Probably the most random thing you have ever seen!"
 	    },
 	    {
-	    	image: `${carrots}`,
+	    	image: 'staticAssets/carrots_k7k2ku',
 	        name: "Random Name #2",
 	        description: "Hello World!"
     	},
 	    {
-	    	image: `${peas}`,
+	    	image: 'staticAssets/peas_vkpymp',
 	        name: "Random Name #3",
 	        description: "Hello World Again!"
     }];
@@ -195,7 +196,7 @@ const Slider = () => {
 
 
 const Item = props => (
-	<img src={props.item.image} alt="crops" className="slider-image-item" />
+	<Image publicId={props.item.image} crop="scale" alt="crops" className="slider-image-item" />
 );
 
 const Market = () => {
@@ -313,7 +314,7 @@ const Market = () => {
 													/>
 													<CardMedia
 														className={classes.media}
-														image={`${product.image}`}
+														image={product.imgUrl}
 														title="Paella dish"
 													/>
 													<CardContent className={classes.fixedHeight}>

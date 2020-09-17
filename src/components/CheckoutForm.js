@@ -24,10 +24,9 @@ import { Form } from "formik";
 import { Formik } from "formik";
 import Card from '@material-ui/core/Card';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import { Image, Transformation } from 'cloudinary-react';
 
 import { updateAccountSchema } from '../utils/validate';
-import mpesa from '../assets/mpesa.png';
-import royparcel from '../assets/royparcel.png';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -327,7 +326,7 @@ export const CheckoutForm = () => {
 										/>
 										<FormHelperText>{errors.agreement && errors.agreement}</FormHelperText>
 									</FormControl>
-									<img src={mpesa} alt="lipa na mpesa logo" className='lipa-na-mpesa' />
+									<Image publicId="staticAssets/mpesa_mk6trd" crop="scale" alt="lipa na mpesa logo" className='lipa-na-mpesa' />
 								</div>
 							</div>
 						</Card>
@@ -357,7 +356,7 @@ export const CheckoutForm = () => {
 										/>
 										<FormHelperText>{errors.agreement && errors.agreement}</FormHelperText>
 									</FormControl>
-									<img src={royparcel} alt="royparcel logo" className='royparcel-logo' />
+									<Image publicId="staticAssets/royparcel_hmuczg" crop="scale" alt="royparcel logo" className='royparcel-logo' />
 								</div>
 							</div>
 						</Card>

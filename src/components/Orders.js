@@ -16,9 +16,7 @@ import RemoveIcon from '@material-ui/icons/Remove';
 import Card from '@material-ui/core/Card';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import TextField from '@material-ui/core/TextField';
-
-import beans from '../assets/beans.jpg';
-import tomatoes from '../assets/tomatoes.jpg';
+import { Image, Transformation } from 'cloudinary-react';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -47,8 +45,8 @@ const Orders = () => {
 	}
 
 	const rows = [
-		createData('Tomatoes', tomatoes, 'pending', '01-01-2020', 1500, '#abc123'),
-		createData('Beans', beans, 'complete', '01-01-2020', 5000, '#def456'),
+		createData('Tomatoes', 'staticAssets/tomatoes_arzns2', 'pending', '01-01-2020', 1500, '#abc123'),
+		createData('Beans', 'staticAssets/beans_jgdn6y', 'complete', '01-01-2020', 5000, '#def456'),
 	];
 
 	return (
@@ -70,7 +68,7 @@ const Orders = () => {
 								<TableRow key={row.item}>
 									<TableCell component="th" scope="row" className={classes.tableBody}>
 										<div className="order-item-description">
-											<img src={row.img} alt={row.img} className="order-img" />
+											<Image productId={row.img} crop="scale" alt={row.img} className="order-img" />
 											<div className="order-item-details">
 												<p>Order id: {row.id}</p>
 												<b>Seller: John Doe</b>

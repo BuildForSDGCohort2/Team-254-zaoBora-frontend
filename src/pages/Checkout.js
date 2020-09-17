@@ -3,14 +3,11 @@ import Drawer from '@material-ui/core/Drawer';
 import { GiHamburgerMenu } from "react-icons/gi";
 import { NavLink } from 'react-router-dom';
 import Card from '@material-ui/core/Card';
+import { Image, Transformation } from 'cloudinary-react';
 
 import { list, displayIcon } from '../components/Header';
 import { CheckoutForm } from '../components/CheckoutForm';
 import MobileNav from '../components/MobileNav';
-import tree from '../assets/tree.png';
-import peas from '../assets/peas.jpg';
-import tomatoes from '../assets/tomatoes.jpg';
-import carrots from '../assets/carrots.jpg';
 
 
 const Checkout = () => {
@@ -35,11 +32,15 @@ const Checkout = () => {
 						className="app-logo"
 					>
 		    			<h2 className="register-title">
-							<img src={tree} alt="tree seedling" className="register-app-logo" />
+							<Image publicId="staticAssets/tree_u1brqs" crop="scale" alt="tree seedling" className="register-app-logo">
+								<Transformation quality="auto" fetchFormat="auto" />
+							</Image>
 			        		Zao Bora
 		    			</h2>
 		    			<h5 className="mb mb-register-title">
-							<img src={tree} alt="tree seedling" className="register-app-logo" />
+							<Image publicId="staticAssets/tree_u1brqs" crop="scale" alt="tree seedling" className="register-app-logo">
+								<Transformation quality="auto" fetchFormat="auto" />
+							</Image>
 			        		Zao Bora
 		    			</h5>
 					</NavLink>
@@ -72,7 +73,9 @@ const Checkout = () => {
 						<h4 className="checkout-cart-item-title">Cart Items</h4>
 						<div className="checkout-cart-item">
 							<div className="checkout-cart-item-img">
-								<img src={tomatoes} alt={tomatoes} className="checkout-cart-img" />
+								<Image publicId="staticAssets/tomatoes_arzns2" alt="staticAssets/tomatoes_arzns2" className="checkout-cart-img">
+									<Transformation quality="auto" fetchFormat="auto" />
+								</Image>
 							</div>
 							<div className="checkout-cart-item-info">
 								<small>This impressive paella is a perfect party dish and a</small>
@@ -83,7 +86,9 @@ const Checkout = () => {
 						</div>
 						<div className="checkout-cart-item">
 							<div className="checkout-cart-item-img">
-								<img src={peas} alt={peas} className="checkout-cart-img" />
+								<Image publicId="staticAssets/peas_vkpymp" alt="staticAssets/peas_vkpymp" className="checkout-cart-img">
+									<Transformation quality="auto" fetchFormat="auto" />
+								</Image>
 							</div>
 							<div className="checkout-cart-item-info">
 								<small>This impressive paella is a perfect party dish and a</small>
@@ -94,7 +99,9 @@ const Checkout = () => {
 						</div>
 						<div className="checkout-cart-item">
 							<div className="checkout-cart-item-img">
-								<img src={carrots} alt={carrots} className="checkout-cart-img" />
+								<Image publicId="staticAssets/carrots_k7k2ku" alt="staticAssets/carrots_k7k2ku" className="checkout-cart-img">
+									<Transformation quality="auto" fetchFormat="auto" />
+								</Image>
 							</div>
 							<div className="checkout-cart-item-info">
 								<small>This impressive paella is a perfect party dish and a</small>

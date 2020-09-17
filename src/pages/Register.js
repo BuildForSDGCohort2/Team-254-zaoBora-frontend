@@ -6,10 +6,10 @@ import Container from '@material-ui/core/Container';
 import { FaTwitter, FaFacebook, FaArrowLeft } from "react-icons/fa";
 import { makeStyles } from '@material-ui/core/styles';
 import { Formik } from "formik";
+import { Image, Transformation } from 'cloudinary-react';
 
 import RegisterForm from '../components/RegisterForm';
 import { validationSchema } from '../utils/validate';
-import tree from '../assets/tree.png';
 
 
 const useStyles = makeStyles(theme => ({
@@ -34,7 +34,12 @@ const Register = () => {
 				to="/"
 			>
     			<h1 className="register-title">
-					<img src={tree} alt="tree seedling" className="register-app-logo" />
+		    		<Image
+		    			publicId="staticAssets/tree_u1brqs"
+		    			alt="tree seedling"
+		    			crop="scale"
+		    			className="register-app-logo"
+	    			/>
 	        		Zao Bora
     			</h1>
 			</NavLink>
@@ -65,7 +70,12 @@ const Register = () => {
 		        		<div className="zao-bora-info">
 			        		<div className="zao-bora-info__wrapper">
 			        			<h1 className="register-title">
-									<img src={tree} alt="tree seedling" className="register-app-logo" />
+									<Image
+						    			publicId="staticAssets/tree_u1brqs"
+						    			alt="tree seedling"
+						    			crop="scale"
+						    			className="register-app-logo"
+					    			/>
 					        		Zao Bora
 			        			</h1>
 			        			<div className="register-text">

@@ -25,8 +25,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-
-import tree from '../assets/tree.png';
+import { Image, Transformation } from 'cloudinary-react';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -261,11 +260,21 @@ const Header = (props) => {
 										className="app-logo"
 									>
 						    			<h2 className="register-title">
-											<img src={tree} alt="tree seedling" className="register-app-logo" />
+											<Image
+												publicId="staticAssets/tree_u1brqs"
+												alt="tree seedling"
+												className="register-app-logo"
+												crop="scale"
+											/>
 							        		Zao Bora
 						    			</h2>
 						    			<h5 className="mb-register-title">
-											<img src={tree} alt="tree seedling" className="register-app-logo" />
+											<Image
+												publicId="staticAssets/tree_u1brqs"
+												alt="tree seedling"
+												className="register-app-logo"
+												crop="scale"
+											/>
 							        		Zao Bora
 						    			</h5>
 									</NavLink>

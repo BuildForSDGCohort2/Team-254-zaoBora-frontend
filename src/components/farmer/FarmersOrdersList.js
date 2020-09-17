@@ -22,9 +22,7 @@ import TextField from '@material-ui/core/TextField';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import { GrClose } from "react-icons/gr";
-
-import beans from '../../assets/beans.jpg';
-import tomatoes from '../../assets/tomatoes.jpg';
+import { Image, Transformation } from 'cloudinary-react';
 
 
 const useStyles = makeStyles((theme) => ({

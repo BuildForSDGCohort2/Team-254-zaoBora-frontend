@@ -9,38 +9,71 @@ import {
 
 } from './types'
 
+/*To do
+*Connect register to API
+*Connect login to API
+*Connect backend and db : 
+*
+*/
+
 /**
 * Authentication Actions
 */
 
-export const register = (user) => {
-  return dispatch => {
-    dispatch(registerRequest(user));
-    console.log(user)
-  //   axios.post(`https://jsonplaceholder.typicode.com/users`, { user })
-  //     .then(
-  //       user => {
-  //         dispatch(registerSuccess());
-  //         useHistory.push('/login');
-  //         console.log(user)
-  //     })
-  //     .catch (error => {
-  //       dispatch(registerFailure(error.toString()));
-  //       console.log(error)
-  //     }
-  //     );
-   }
+export const register = (user) => dispatch => {
+    console.log('user')
+    axios.get('http://127.0.0.1:5000/users',)
+      .then(user => {
+        // dispatch(registerSuccess());
+        dispatch({
+          type: REGISTER_REQUEST,
+          payload: user
+        });
+        // useHistory.push('/login');
+        // console.log(user)
+      })
+      .catch (error => {
+        // dispatch(registerFailure(error.toString()));
+        console.log(error)
+      });
+}
 
+
+export const login = (email, password) => dispatch => {
+    console.log('user')
+    // axios.get('http://127.0.0.1:5000/users',email, password)
+      // .then(user => {
+      //   // dispatch(registerSuccess());
+      //   dispatch({
+      //     type: LOGIN_SUCCESS,
+      //     payload: user
+      //   });
+      //   // useHistory.push('/login');
+      //   // console.log(user)
+      // })
+      // .catch (error => {
+      //   // dispatch(registerFailure(error.toString()));
+      //   console.log(error)
+      // });
 }
 
 const registerRequest = () => ({
-  type: REGISTER_REQUEST,
-})
+ type: REGISTER_REQUEST,
+});
 
 const registerSuccess = () => ({
-  type: REGISTER_SUCCESS,
+ type: REGISTER_SUCCESS,
 });
 
 const registerFailure = () => ({
-  type: REGISTER_FAILURE,
+ type: REGISTER_FAILURE,
+});
+
+
+const loginSuccess = () => ({
+  type: LOGIN_SUCCESS,
+})
+
+const loginFailure = () => ({
+  type: LOGIN_FAILURE,
 })

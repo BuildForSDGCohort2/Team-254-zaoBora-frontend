@@ -153,7 +153,12 @@ const RegisterForm = (props) => {
 		},
 		errors,
 		handleChange,
+		register,
+		authentication,
 	} = props;
+
+register('user');
+console.log(authentication)
 
 	return (
 		<Form
@@ -385,8 +390,12 @@ const RegisterForm = (props) => {
 	);
 }
 
-const mapStateToProps = (dispatch, state) => ({
-    register: state.register,
+const mapDispatchToProps = (dispatch) => ({
+    register: (user) => dispatch(register(user)),
 })
 
-export default connect(mapStateToProps)(RegisterForm);
+const mapStateToProps = (state,props) => ({
+		authentication: state.authentication
+})
+
+export default connect(mapStateToProps,mapDispatchToProps)(RegisterForm);

@@ -12,6 +12,10 @@ import { FaFacebook } from "react-icons/fa";
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 
+import {connect} from 'react-redux'
+
+import { login } from '../actions/authentication'
+
 import {
 	makeStyles,
 	createMuiTheme,
@@ -127,7 +131,12 @@ const LoginForm = (props) => {
 		values: { email, password, remember },
 		errors,
 		handleChange,
+		login,
+		authentication,
 	} = props;
+
+	login('user')
+	console.log(login)
 
 	return (
 		<Form
@@ -258,4 +267,12 @@ const LoginForm = (props) => {
 	);
 }
 
-export default LoginForm;
+const mapDispatchToProps = dispatch => ({
+	login: user => dispatch(login(user))
+})
+
+const mapStateToProps = (state,props) => ({
+	authentication: state.authentication
+})
+
+export default connect(mapStateToProps,mapDispatchToProps)(LoginForm);

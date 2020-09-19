@@ -31,7 +31,7 @@ const FacebookSignin = (res) => {
       ProviderId: 'Facebook'
 
     }
-console.log(responseFacebook)
+// console.log(responseFacebook)
 
     /* To use the below code snippet when integrating API */
 
@@ -47,10 +47,10 @@ console.log(responseFacebook)
   };
 
 const responseFacebook = (response) => {
-	  console.log(response);
+	  // console.log(response);
 	  var res = response.profileObj;
-	  console.log(res);
-	  debugger;
+	  // console.log(res);
+	  // debugger;
 	  // this.FacebookSignin(response);
 	}
 
@@ -63,7 +63,7 @@ const GoogleSignin = (res) => {
 		ProviderId: 'Google'
 	}
 
-console.log(responseGoogle)
+// console.log(responseGoogle)
 	// debugger;
 	// axios.post('http://localhost:60200/Api/Login/SocialmediaData', responseFacebook)
 	//   .then((result) => {
@@ -76,10 +76,10 @@ console.log(responseGoogle)
 };
 
 const responseGoogle = (response) => {
-	console.log(response);
+	// console.log(response);
 	var res = response.profileObj;
-	console.log(res);
-	debugger;
+	// console.log(res);
+	// debugger;
 	// this.GoogleSignin(response);
 	}
 

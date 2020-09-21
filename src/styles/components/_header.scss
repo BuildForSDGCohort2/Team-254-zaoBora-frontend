@@ -17,6 +17,20 @@
 	width: 85%;
 }
 
+.header-auth-section-wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 30%;
+}
+
+.about-faq {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex: 25%;
+}
+
 .header-btn {
 	padding: .5rem;
 	border-radius: .1rem;
@@ -29,7 +43,8 @@
 .header-auth-btns {
 	// width: 11%;
 	display: flex;
-	// justify-content: space-between;
+	flex: 60%;
+	justify-content: flex-end;
 	align-items: center;
 }
 
@@ -57,7 +72,6 @@
 	margin: 0 auto 3rem auto;
 	display: flex;
 	justify-content: space-between;
-	// background: blue;
 }
 
 .mb-about,
@@ -75,10 +89,15 @@
 	justify-content: space-between;
 	align-items: center;
 	width: 100%;
+	gap: 2.5%;
+}
+
+.search-filters-section {
+	flex: 55%;
 }
 
 .header-logo-section {
-	flex: 40%;
+	flex: 15%;
 }
 
 .app-logo {
@@ -89,12 +108,12 @@
 
 .header-nav-section {
 	display: flex;
-	flex: 60%;
-	justify-content: flex-end;
+	flex: 25%;
+	justify-content: space-around;
 }
 
 .navigation-bar {
-	width: 60%;
+	width: 90%;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -140,9 +159,23 @@
 	margin-right: $s-size;
 }
 
+.pipe-divider {
+	color: $grey;
+}
+
 
 @media screen and (min-width: 64rem) and (max-width: 84em) {
-	
+	.header-links-section {
+		width: 95%;
+	}
+
+	.register-title {
+		font-size: $m-size;
+	}
+
+	.navigation-bar {
+		font-size: $s-size;
+	}
 }
 
 @media screen and (min-width: $tablet-width) and (max-width: $laptop-width) {
@@ -160,6 +193,35 @@
 	.header-links-section {
 		height: 6rem;
 		margin: 0 auto 2rem auto;
+		width: 95%;
+	}
+
+	.header-auth-section-wrapper {
+		width: 50%;
+	}
+
+	.register-title {
+		font-size: $m-size;
+	}
+
+	.header-logo-links-container {
+		gap: 7.5%;
+	}
+
+	.search-filters-section {
+		flex: 40%;
+	}
+	
+	.header-logo-section {
+		flex: 20%;
+	}
+	
+	.header-nav-section {
+		flex: 25%;
+	}
+
+	.navigation-bar {
+		font-size: $s-size;
 	}
 }
 
@@ -224,5 +286,13 @@
 
 	.mb-link-active {
 		color: $base-color;
+	}
+
+	.header-auth-section-wrapper {
+		width: 100%;
+	}
+
+	.pipe-divider {
+		margin: 0 .2rem;
 	}
 }

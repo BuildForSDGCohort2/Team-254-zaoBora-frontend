@@ -21,6 +21,11 @@ import { Image, Transformation } from 'cloudinary-react';
 import Header from '../components/Header';
 import MobileNav from '../components/MobileNav';
 
+const port = window.location.port;
+const localEnv = (port === "8080");
+const tomatoes = localEnv && require('../assets/tomatoes.jpg');
+const beans = localEnv && require('../assets/beans.jpg');
+const peas = localEnv && require('../assets/peas.jpg');
 
 const useStyles = makeStyles({
 	table: {
@@ -43,15 +48,41 @@ theme = responsiveFontSizes(theme);
 const Cart = () => {
 	const classes = useStyles();
 
-	const createData = (item, img, quantity, price, total) => {
-		return { item, img, quantity, price, total };
+	const createData = (item, localImg, img, quantity, price, total) => {
+		return { item, img, localImg, quantity, price, total };
 	}
 
 	const rows = [
-		createData('Tomatoes', 'staticAssets/tomatoes_arzns2', 3, 500, 1500),
-		createData('Beans', 'staticAssets/beans_jgdn6y', 20, 250, 5000),
-		createData('Peas', 'staticAssets/peas_vkpymp', 10, 400, 4000),
+		createData('Tomatoes', tomatoes, 'staticAssets/tomatoes_arzns2', 3, 500, 1500),
+		createData('Beans', beans, 'staticAssets/beans_jgdn6y', 20, 250, 5000),
+		createData('Peas', peas, 'staticAssets/peas_vkpymp', 10, 400, 4000),
 	];
+	
+	const renderImg = (port, localImgUrl, hostedUrl, className) => {
+		switch(port) {
+			case "":
+				return (
+					<Image
+						publicId={hostedUrl}
+						crop="scale"
+						alt={className}
+						className={className}
+					>
+						<Transformation quality="auto" fetchFormat="auto" />
+					</Image>
+				);
+			case "8080":
+				return (
+					<img
+						src={localImgUrl}
+						alt={className}
+						className={className}
+					/>
+				)
+			default:
+				return;
+		}
+	}
 
 	return (
 		<Fragment>
@@ -68,9 +99,7 @@ const Cart = () => {
 									<Card>
 										<div className="item-content">
 											<div className="cart-img-container">
-												<Image publicId={row.img} crop="scale" alt={row.img} className="cart-img">
-													<Transformation quality="auto" fetchFormat="auto" />
-												</Image>
+												{renderImg(port, row.localImg, row.img, "cart-img")}
 											</div>
 											<div className="item-details">
 												<b>Seller: John Doe</b>
@@ -83,7 +112,6 @@ const Cart = () => {
 											<div className="mb-cart-actions-container">
 												<div className="mb-del-icon">
 													<MdDeleteForever
-
 														style={{
 															color: '#4caf50',
 															fontSize: '2rem'
@@ -142,9 +170,7 @@ const Cart = () => {
 											<TableRow key={row.item}>
 												<TableCell component="th" scope="row" className={classes.tableBody}>
 													<div className="item-content">
-														<Image publicId={row.img} crop="scale" alt={row.img} className="cart-img">
-															<Transformation quality="auto" fetchFormat="auto" />
-														</Image>
+														{renderImg(port, row.localImg, row.img, "cart-img")}
 														<div className="item-details">
 															<b>Seller: John Doe</b>
 															<p>{row.item}</p>

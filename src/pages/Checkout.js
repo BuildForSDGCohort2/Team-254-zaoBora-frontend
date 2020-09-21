@@ -5,10 +5,16 @@ import { NavLink } from 'react-router-dom';
 import Card from '@material-ui/core/Card';
 import { Image, Transformation } from 'cloudinary-react';
 
-import { list, displayIcon } from '../components/Header';
+import { ListMenu, displayIcon } from '../components/Header';
 import { CheckoutForm } from '../components/CheckoutForm';
 import MobileNav from '../components/MobileNav';
 
+const port = window.location.port;
+const localEnv = (port === "8080");
+const tree = localEnv && require('../assets/tree.png');
+const tomatoes = localEnv && require('../assets/tomatoes.jpg');
+const carrots = localEnv && require('../assets/carrots.jpg');
+const peas = localEnv && require('../assets/peas.jpg');
 
 const Checkout = () => {
 	const [state, setState] = React.useState({
@@ -20,8 +26,34 @@ const Checkout = () => {
 			return;
 		}
 
-		setState({ ...state, ['right']: open });
+		setState({ ...state, right: open });
 	};
+	
+	const renderImg = (port, localImgUrl, hostedUrl, className) => {
+		switch(port) {
+			case "":
+				return (
+					<Image
+						publicId={hostedUrl}
+						crop="scale"
+						alt={className}
+						className={className}
+					>
+						<Transformation quality="auto" fetchFormat="auto" />
+					</Image>
+				);
+			case "8080":
+				return (
+					<img
+						src={localImgUrl}
+						alt={className}
+						className={className}
+					/>
+				)
+			default:
+				return;
+		}
+	}
 
 	return (
 		<div className="checkout-container">
@@ -32,15 +64,11 @@ const Checkout = () => {
 						className="app-logo"
 					>
 		    			<h2 className="register-title">
-							<Image publicId="staticAssets/tree_u1brqs" crop="scale" alt="tree seedling" className="register-app-logo">
-								<Transformation quality="auto" fetchFormat="auto" />
-							</Image>
+							{renderImg(port, tree, "staticAssets/tree_u1brqs", "register-app-logo")}
 			        		Zao Bora
 		    			</h2>
 		    			<h5 className="mb mb-register-title">
-							<Image publicId="staticAssets/tree_u1brqs" crop="scale" alt="tree seedling" className="register-app-logo">
-								<Transformation quality="auto" fetchFormat="auto" />
-							</Image>
+							{renderImg(port, tree, "staticAssets/tree_u1brqs", "register-app-logo")}
 			        		Zao Bora
 		    			</h5>
 					</NavLink>
@@ -58,7 +86,7 @@ const Checkout = () => {
 			        	open={state['right']}
 			        	onClose={toggleDrawer('right', false)}
 		        	>
-			            {list('right', toggleDrawer, displayIcon)}
+			            {ListMenu('right', toggleDrawer, displayIcon)}
 			        </Drawer>
 				</div>
 			</div>
@@ -73,9 +101,7 @@ const Checkout = () => {
 						<h4 className="checkout-cart-item-title">Cart Items</h4>
 						<div className="checkout-cart-item">
 							<div className="checkout-cart-item-img">
-								<Image publicId="staticAssets/tomatoes_arzns2" alt="staticAssets/tomatoes_arzns2" className="checkout-cart-img">
-									<Transformation quality="auto" fetchFormat="auto" />
-								</Image>
+								{renderImg(port, tomatoes, "staticAssets/tomatoes_arzns2", "checkout-cart-img")}
 							</div>
 							<div className="checkout-cart-item-info">
 								<small>This impressive paella is a perfect party dish and a</small>
@@ -86,9 +112,7 @@ const Checkout = () => {
 						</div>
 						<div className="checkout-cart-item">
 							<div className="checkout-cart-item-img">
-								<Image publicId="staticAssets/peas_vkpymp" alt="staticAssets/peas_vkpymp" className="checkout-cart-img">
-									<Transformation quality="auto" fetchFormat="auto" />
-								</Image>
+								{renderImg(port, peas, "staticAssets/peas_vkpymp", "checkout-cart-img")}
 							</div>
 							<div className="checkout-cart-item-info">
 								<small>This impressive paella is a perfect party dish and a</small>
@@ -99,9 +123,7 @@ const Checkout = () => {
 						</div>
 						<div className="checkout-cart-item">
 							<div className="checkout-cart-item-img">
-								<Image publicId="staticAssets/carrots_k7k2ku" alt="staticAssets/carrots_k7k2ku" className="checkout-cart-img">
-									<Transformation quality="auto" fetchFormat="auto" />
-								</Image>
+								{renderImg(port, carrots, "staticAssets/carrots_k7k2ku", "checkout-cart-img")}
 							</div>
 							<div className="checkout-cart-item-info">
 								<small>This impressive paella is a perfect party dish and a</small>

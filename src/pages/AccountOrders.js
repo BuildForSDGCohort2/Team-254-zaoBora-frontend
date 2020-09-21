@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import { connect } from 'react-redux';
 import {
 	fade,
 	makeStyles,
@@ -12,22 +13,18 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Grid from '@material-ui/core/Grid';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import { MdDeleteForever } from "react-icons/md";
 import { FaReceipt } from "react-icons/fa";
 import { ImRedo2 } from "react-icons/im";
-import { Image, Transformation } from 'cloudinary-react';
 
 import Header from '../components/Header';
 import MobileNav from '../components/MobileNav';
 import AccountMenu from '../components/AccountMenu';
 import Orders from '../components/Orders';
-
+import filterOrders from '../selectors/orders';
+import {
+	setOrderTextFilter,
+	sortByStatus
+} from '../actions/filters';
 
 const useStyles = makeStyles((theme) => ({
 	formControl: {
@@ -87,23 +84,21 @@ const theme = createMuiTheme({
 	}
 });
 
-const AccountOrders = () => {
+const AccountOrders = ({
+	orders,
+	setOrderTextFilter,
+	sortByStatus,
+	filters
+}) => {
 	const classes = useStyles();
 	const [state, setState] = React.useState({ status: 'open' });
 
 	const handleChange = (event) => {
 		const status = event.target.value;
 		setState({ status });
+		sortByStatus(status);
 	};
-
-	const createData = (item, img, status, date, total, id) => {
-		return { item, img, status, date, total, id };
-	}
-
-	const rows = [
-		createData('Tomatoes', 'staticAssets/tomatoes_arzns2', 'pending', '01-01-2020', 1500, '#abc123'),
-		createData('Beans', 'staticAssets/beans_jgdn6y', 'complete', '01-01-2020', 5000, '#def456'),
-	];
+	console.log(orders);
 
 	return (
 		<div className="account-page account-orders-page">
@@ -121,7 +116,9 @@ const AccountOrders = () => {
 									root: classes.inputRoot,
 									input: classes.inputInput,
 								}}
+								value={filters.orderText}
 								inputProps={{ 'aria-label': 'search' }}
+								onChange={e => setOrderTextFilter(e.target.value)}
 							/>
 						</div>
 						<div className="orders-filter-section">
@@ -145,6 +142,7 @@ const AccountOrders = () => {
 										>
 									        <option aria-label="None" value="" />
 											<option value="complete">Complete</option>
+											<option value="pending">Pending</option>
 											<option value="declined">Declined</option>
 											<option value="processing">Processing</option>
 											<option value="cancelled">Cancelled</option>
@@ -158,16 +156,10 @@ const AccountOrders = () => {
 				<div className="account-section-info">
 					<AccountMenu />
 					<div className="mb mb-order-items">
-						{rows.map(row => (
+						{orders.map(row => (
 							<Card key={row.item} className="mb-order-item-container">
 								<div className="item-content">
-									<div className="cart-img-container">
-										<Image publicId={row.img} alt={row.img} className="cart-img" crop="scale" >
-											<Transformation quality="auto" fetchFormat="auto" />
-										</Image>
-									</div>
 									<div className="item-details mb-order-item-details">
-										<b>Seller: John Doe</b>
 										<p>Description: {row.item}</p>
 										<p>Status: {row.status}</p>
 										<p>Date: {row.date}</p>
@@ -210,4 +202,14 @@ const AccountOrders = () => {
 }
 
 
-export default AccountOrders;
+const mapStateToProps = ({ orders, filters }) => ({
+	filters,
+	orders: filterOrders(orders, filters)
+})
+
+const mapDispatchToProps = dispatch => ({
+	setOrderTextFilter: (text) => dispatch(setOrderTextFilter(text)),
+	sortByStatus: (value) => dispatch(sortByStatus(value))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(AccountOrders);

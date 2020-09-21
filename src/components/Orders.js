@@ -10,14 +10,19 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import Button from '@material-ui/core/Button';
-import AddIcon from '@material-ui/icons/Add';
-import RemoveIcon from '@material-ui/icons/Remove';
-import Card from '@material-ui/core/Card';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
-import TextField from '@material-ui/core/TextField';
-import { Image, Transformation } from 'cloudinary-react';
+import { Image } from 'cloudinary-react';
+import { connect } from 'react-redux';
+import filterOrders from '../selectors/orders';
 
+import {
+	setOrderTextFilter,
+	sortByStatus
+} from '../actions/filters';
+
+const port = window.location.port;
+const localEnv = (port === "8080");
+const tomatoes = localEnv && require('../assets/tomatoes.jpg');
+const beans = localEnv && require('../assets/beans.jpg');
 
 const useStyles = makeStyles((theme) => ({
 	selectEmpty: {
@@ -37,17 +42,8 @@ const useStyles = makeStyles((theme) => ({
 	}
 }));
 
-const Orders = () => {
+const Orders = ({ orders }) => {
 	const classes = useStyles();
-
-	const createData = (item, img, status, date, total, id) => {
-		return { item, img, status, date, total, id };
-	}
-
-	const rows = [
-		createData('Tomatoes', 'staticAssets/tomatoes_arzns2', 'pending', '01-01-2020', 1500, '#abc123'),
-		createData('Beans', 'staticAssets/beans_jgdn6y', 'complete', '01-01-2020', 5000, '#def456'),
-	];
 
 	return (
 		<div className="orders-container">
@@ -64,21 +60,19 @@ const Orders = () => {
 							</TableRow>
 						</TableHead>
 						<TableBody>
-							{rows.map((row) => (
-								<TableRow key={row.item}>
+							{orders.map(order => (
+								<TableRow key={order.item}>
 									<TableCell component="th" scope="row" className={classes.tableBody}>
 										<div className="order-item-description">
-											<Image productId={row.img} crop="scale" alt={row.img} className="order-img" />
 											<div className="order-item-details">
-												<p>Order id: {row.id}</p>
-												<b>Seller: John Doe</b>
-												<p>{row.item}</p>
+												<p>Order id: {order.id}</p>
+												<p>{order.item}</p>
 											</div>
 										</div>
 									</TableCell>
-									<TableCell className={row.status} align="right" className={classes.tableBody}>{row.status}</TableCell>
-									<TableCell align="right" className={classes.tableBody}>{row.total}</TableCell>
-									<TableCell align="right" className={classes.tableBody}>{row.date}</TableCell>
+									<TableCell className={`${order.status} ${classes.tableBody}`} align="right">{order.status}</TableCell>
+									<TableCell align="right" className={classes.tableBody}>{order.total}</TableCell>
+									<TableCell align="right" className={classes.tableBody}>{order.date}</TableCell>
 									<TableCell align="right" className={classes.tableBody}>
 										<div className="order-actions">
 											<FaReceipt
@@ -107,4 +101,8 @@ const Orders = () => {
 }
 
 
-export default Orders;
+const mapStateToProps = ({ orders, filters }) => ({
+	orders: filterOrders(orders, filters)
+})
+
+export default connect(mapStateToProps)(Orders);

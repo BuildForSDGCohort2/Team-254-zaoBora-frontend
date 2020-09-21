@@ -341,6 +341,7 @@ const Header = (props) => {
 													root: classes.inputRoot,
 													input: classes.inputInput,
 												}}
+												value={filters.text}
 												onChange={e => setTextFilter(e.target.value)}
 												inputProps={{ 'aria-label': 'search' }}
 												onFocus={() => focusResults()}
@@ -513,10 +514,18 @@ const Header = (props) => {
 												root: classes.inputRoot,
 												input: classes.inputInput,
 											}}
+											value={filters.text}
 											onChange={e => setTextFilter(e.target.value)}
 											inputProps={{ 'aria-label': 'search' }}
+											onFocus={() => focusResults()}
+											onBlur={() => blurResults()}
 										/>
 									</div>
+								</div>
+								<div className="filtered-content">
+									{
+										(!!filters.text && filters.searching) && <FilterProducts />
+									}
 								</div>
 							</div>
 						</div>

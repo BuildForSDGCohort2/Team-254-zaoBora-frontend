@@ -226,6 +226,10 @@
 }
 
 @media screen and (min-width: $mobile-width) and (max-width: $tablet-width) {
+	.header-container {
+		position: relative;
+	}
+
 	.header-auth-btns-container p,
 	.register-title,
 	.header-nav-section {
@@ -259,6 +263,14 @@
 		width: 100%;
 	}
 
+	.search-filters-section {
+		flex: 0;
+	}
+
+	.header-logo-section {
+		flex: 40%;
+	}
+
 	.search-bar {
 		flex: 80%;
 	}
@@ -268,6 +280,12 @@
 		margin-top: $m-size;
 		width: 100%;
 		justify-content: space-between;
+		position: relative;
+	}
+
+	.filtered-content {
+		position: absolute;
+		top: 100%;
 	}
 
 	.mobile-hamburger-menu {

@@ -18,4 +18,4 @@ const RenderApp = () => {
         hasRendered = true;
     }
 }
-RenderApp();
+renderApp();

@@ -65,6 +65,8 @@ const MobileNav = () => {
 							setHomeColor(homeColor, '#818181')
 							setCartColor(cartColor, '#818181')
 							setAccountColor(accountColor, '#4caf50')
+						default:
+							return;
 					}
 		    	}}
 				showLabels

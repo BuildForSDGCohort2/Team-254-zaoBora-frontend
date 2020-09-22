@@ -1,14 +1,8 @@
 import React, { Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
-import Card from '@material-ui/core/Card';
 import Rating from '@material-ui/lab/Rating';
-import { makeStyles, createMuiTheme } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
+import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import AddIcon from '@material-ui/icons/Add';
-import RemoveIcon from '@material-ui/icons/Remove';
 import TextField from '@material-ui/core/TextField';
 import Alert from '@material-ui/lab/Alert';
 import BorderColorIcon from '@material-ui/icons/BorderColor';
@@ -18,11 +12,19 @@ import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import { Formik } from "formik";
 import { GrClose } from "react-icons/gr";
-import { Image, Transformation } from 'cloudinary-react';
+import { Image } from 'cloudinary-react';
 
 import Header from '../components/Header';
 import MobileNav from '../components/MobileNav';
 
+const port = window.location.port;
+const localEnv = (port === "8080");
+const tomatoes = localEnv && require('../assets/tomatoes.jpg');
+const carrots = localEnv && require('../assets/carrots.jpg');
+const peas = localEnv && require('../assets/peas.jpg');
+const beans = localEnv && require('../assets/beans.jpg');
+const mangoes = localEnv && require('../assets/mangoes.jpg');
+const vegetables = localEnv && require('../assets/vegetables.jpg');
 
 const useStyles = makeStyles((theme) => ({
 	modal: {
@@ -49,30 +51,12 @@ const useStyles = makeStyles((theme) => ({
 	}
 }));
 
-const theme = createMuiTheme({
-	overrides: {
-	    MuiInputLabel: {
-	    	root: {
-	        	"&$focused": {
-	          		color: "#4dbc51"
-	        	}
-	    	}
-	    }
-	},
-	palette: {
-		primary: {
-			main: '#4dbc51',
-			contrastText: "#fff"
-		},
-	}
-});
-
 const imgs = [
-	'staticAssets/carrots_k7k2ku',
-	'staticAssets/peas_vkpymp',
-	'staticAssets/tomatoes_arzns2',
-	'staticAssets/mangoes_ksuvfs',
-	'staticAssets/vegetables_bqz9sy'
+	[carrots, 'staticAssets/carrots_k7k2ku'],
+	[peas, 'staticAssets/peas_vkpymp'],
+	[tomatoes, 'staticAssets/tomatoes_arzns2'],
+	[mangoes, 'staticAssets/mangoes_ksuvfs'],
+	[vegetables, 'staticAssets/vegetables_bqz9sy']
 ];
 
 const ProductItemReviews = () => {
@@ -91,6 +75,32 @@ const ProductItemReviews = () => {
 	const handleNewReview = () => {
 		handleOpen()
 	}
+	
+	const renderImg = (port, localImgUrl, hostedUrl, className) => {
+		switch(port) {
+			case "":
+				return (
+					<Image
+						key={hostedUrl}
+						publicId={hostedUrl}
+						crop="scale"
+						alt={className}
+						className={className}
+					/>
+				);
+			case "8080":
+				return (
+					<img
+						key={localImgUrl}
+						src={localImgUrl}
+						alt={className}
+						className={className}
+					/>
+				)
+			default:
+				return;
+		}
+	}
 
 	return (
 		<div className="product-item-review-container">
@@ -99,18 +109,11 @@ const ProductItemReviews = () => {
 				<div className="product-img-details">
 					<div className="product-item-img">
 						<div className="product-item-main-img">
-							<Image productId="staticAssets/beans_jgdn6y" crop="scale" className="product-main-img" />
+							{renderImg(port, beans, "staticAssets/beans_jgdn6y", "product-main-img")}
 						</div>
 						<div className="product-item-sub-img">
 							{
-								imgs.map(img => (
-									<Image
-										key={img}
-										productId={img}
-										alt={img}
-										className="product-sub-img"
-									/>
-								))
+								imgs.map(img => renderImg(port, img[0], img[1], "product-sub-img"))
 							}
 						</div>
 					</div>

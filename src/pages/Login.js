@@ -11,6 +11,10 @@ import { Image, Transformation } from 'cloudinary-react';
 import LoginForm from '../components/LoginForm';
 import { LoginSchema } from '../utils/validate';
 
+const port = window.location.port;
+const localEnv = (port === "8080");
+const farmer = localEnv && require('../assets/farmer-2.png');
+const tree = localEnv && require('../assets/tree.png');
 
 const useStyles = makeStyles(theme => ({
     paper: {
@@ -26,6 +30,34 @@ const useStyles = makeStyles(theme => ({
 
 const Login = () => {
     const classes = useStyles();
+	
+	const renderImg = (port, localImgUrl, hostedUrl, className, id="") => {
+		switch(port) {
+			case "":
+				return (
+					<Image
+						publicId={hostedUrl}
+						crop="scale"
+						alt={className}
+						className={className}
+						id={id}
+					>
+						<Transformation quality="auto" fetchFormat="auto" />
+					</Image>
+				);
+			case "8080":
+				return (
+					<img
+						src={localImgUrl}
+						alt={className}
+						className={className}
+						id={id}
+					/>
+				)
+			default:
+				return;
+		}
+	}
 
     return (
     	<div className="login-page register-page">
@@ -34,12 +66,7 @@ const Login = () => {
 				to="/"
 			>
     			<h1 className="register-title">
-					<Image
-						publicId="staticAssets/tree_u1brqs"
-						alt="tree seedling"
-						className="register-app-logo"
-						crop="scale"
-					/>
+					{renderImg(port, tree, "staticAssets/tree_u1brqs", "register-app-logo")}
 	        		Zao Bora
     			</h1>
 			</NavLink>
@@ -67,15 +94,7 @@ const Login = () => {
 	        <div className="login-section">
 	        	<div className="zao-bora-illustration dsk">
 	        		<div className="farmer-illustration zao-bora-info">
-		    		<Image
-		    			publicId="staticAssets/farmer-2_zyqgic"
-		    			crop="scale"
-		    			className="register-app-logo"
-			    		alt="farmer with wheelbarrow"
-			    		id="farmer-illustration"
-	    			>
-						<Transformation quality="auto" fetchFormat="auto" />
-					</Image>
+					{renderImg(port, farmer, "staticAssets/farmer-2_zyqgic", "register-app-logo", "farmer-illustration")}
 	        		</div>
 	        	</div>
 	        	<div className="login-form">

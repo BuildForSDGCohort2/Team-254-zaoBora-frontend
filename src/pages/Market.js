@@ -1,95 +1,45 @@
-import React, { Fragment, useState } from 'react';
+// Market page
+
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { fade, makeStyles, withStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
 import { GiHamburgerMenu } from "react-icons/gi";
 import { CgMenuGridO } from "react-icons/cg";
-import Button from "@material-ui/core/Button";
 import Carousel from 'react-material-ui-carousel';
-import { Paper } from '@material-ui/core';
 import Card from '@material-ui/core/Card';
-import Box from '@material-ui/core/Box';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
-import Collapse from '@material-ui/core/Collapse';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import { red } from '@material-ui/core/colors';
-import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { FaCartPlus } from "react-icons/fa";
 import Badge from '@material-ui/core/Badge';
 import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
 import Pagination from '@material-ui/lab/Pagination';
-import clsx from 'clsx';
-import { Image, Transformation } from 'cloudinary-react';
+import { Image } from 'cloudinary-react';
+import { connect } from 'react-redux';
+import Alert from '@material-ui/lab/Alert';
+import AlertTitle from '@material-ui/lab/AlertTitle';
+import Collapse from '@material-ui/core/Collapse';
 
 import Header from '../components/Header';
 import ItemListStyle from '../components/ItemListStyle';
 import MobileNav from '../components/MobileNav';
+import filterProducts from '../selectors/products';
+import { setTextFilter } from '../actions/filters';
 
+const port = window.location.port;
+const localEnv = (port === "8080");
+const beans = localEnv && require('../assets/beans.jpg');
+const carrots = localEnv && require('../assets/carrots.jpg');
+const peas = localEnv && require('../assets/peas.jpg');
 
-export const ficticiousProduct = [{
-	id: 'abc123',
-	avatar: 'J',
-	seller: 'John Doe',
-	image: 'staticAssets/beans_jgdn6y',
-	imgUrl: 'https://res.cloudinary.com/zaobora/image/upload/v1600257745/staticAssets/beans_jgdn6y.jpg',
-	date: "September 14, 2016",
-	title: 'This impressive paella is a perfect party dish and a',
-	description: 'This impressive paella is a perfect party dish and a fun meal to cook together with your guests. Add 1 cup of frozen peas along with the mussels, if you like.'
-},{
-	id: 'abc124',
-	avatar: 'I',
-	seller: 'Irene Njeri',
-	image: 'staticAssets/carrots_k7k2ku',
-	imgUrl: 'https://res.cloudinary.com/zaobora/image/upload/v1600257765/staticAssets/carrots_k7k2ku.jpg',
-	date: "October 14, 2016",
-	title: 'This impressive paella is a perfect party dish and a',
-	description: 'This impressive paella is a perfect party dish and a fun meal to cook together with your guests. Add 1 cup of frozen peas along with the mussels, if you like.'
-},{
-	id: 'abc125',
-	avatar: 'M',
-	seller: 'Mark Njenga',
-	image: 'staticAssets/peas_vkpymp',
-	imgUrl: 'https://res.cloudinary.com/zaobora/image/upload/v1600257759/staticAssets/peas_vkpymp.jpg',
-	date: "January 3, 2020",
-	title: 'This impressive paella is a perfect party dish and a',
-	description: 'This impressive paella is a perfect party dish and a fun meal to cook together with your guests. Add 1 cup of frozen peas along with the mussels, if you like.'
-},{
-	id: 'abc126',
-	avatar: 'T',
-	seller: 'Tobius Malombe',
-	image: 'staticAssets/tomatoes_arzns2',
-	imgUrl: 'https://res.cloudinary.com/zaobora/image/upload/v1600257757/staticAssets/tomatoes_arzns2.jpg',
-	date: "December 1, 2018",
-	title: 'This impressive paella is a perfect party dish and a',
-	description: 'This impressive paella is a perfect party dish and a fun meal to cook together with your guests. Add 1 cup of frozen peas along with the mussels, if you like.'
-},{
-	id: 'abc127',
-	avatar: 'K',
-	seller: 'Kevin Mutunga',
-	image: 'staticAssets/mangoes_ksuvfs',
-	imgUrl: 'https://res.cloudinary.com/zaobora/image/upload/v1600257780/staticAssets/mangoes_ksuvfs.jpg',
-	date: "February 14, 2020",
-	title: 'This impressive paella is a perfect party dish and a',
-	description: 'This impressive paella is a perfect party dish and a fun meal to cook together with your guests. Add 1 cup of frozen peas along with the mussels, if you like.'
-},{
-	id: 'abc128',
-	avatar: 'P',
-	seller: 'Philip Otieno',
-	image: 'staticAssets/vegetables_bqz9sy',
-	imgUrl: 'https://res.cloudinary.com/zaobora/image/upload/v1600257761/staticAssets/vegetables_bqz9sy.jpg',
-	date: "August 14, 2016",
-	title: 'This impressive paella is a perfect party dish and a',
-	description: 'This impressive paella is a perfect party dish and a fun meal to cook together with your guests. Add 1 cup of frozen peas along with the mussels, if you like.'
-}]
 
 const useStyles = makeStyles((theme) => ({
 	search: {
@@ -134,7 +84,7 @@ const useStyles = makeStyles((theme) => ({
 		marginLeft: 'auto',
 		transition: theme.transitions.create('transform', {
 			duration: theme.transitions.duration.shortest,
-	}),
+		}),
 	},
 	expandOpen: {
 		transform: 'rotate(180deg)',
@@ -167,48 +117,84 @@ const StyledBadge = withStyles((theme) => ({
 
 const Slider = () => {
 	const items = [{
-			image: 'staticAssets/beans_jgdn6y',
-	        name: "Random Name #1",
-	        description: "Probably the most random thing you have ever seen!"
-	    },
-	    {
-	    	image: 'staticAssets/carrots_k7k2ku',
-	        name: "Random Name #2",
-	        description: "Hello World!"
-    	},
-	    {
-	    	image: 'staticAssets/peas_vkpymp',
-	        name: "Random Name #3",
-	        description: "Hello World Again!"
-    }];
+		image: 'staticAssets/beans_jgdn6y',
+		localImg: beans,
+		name: "Random Name #1",
+		description: "Probably the most random thing you have ever seen!"
+	},
+	{
+		image: 'staticAssets/carrots_k7k2ku',
+		localImg: carrots,
+		name: "Random Name #2",
+		description: "Hello World!"
+	},
+	{
+		image: 'staticAssets/peas_vkpymp',
+		localImg: peas,
+		name: "Random Name #3",
+		description: "Hello World Again!"
+	}];
 
 	return (
 		<Carousel
 			interval="3000"
 			animation="slide"
 		>
-            {
-                items.map( (item, i) => <Item key={i} item={item} /> )
-            }
-        </Carousel>
-    );
+			{
+				items.map((item, i) => <Item key={i} item={item} />)
+			}
+		</Carousel>
+	);
 }
 
+const Item = ({
+	item: { image, localImg }
+}) => {
 
-const Item = props => (
-	<Image publicId={props.item.image} crop="scale" alt="crops" className="slider-image-item" />
-);
+	const renderImg = (port, className, id = "") => {
+		switch (port) {
+			case "":
+				return (
+					<Image
+						publicId={image}
+						crop="scale"
+						alt={className}
+						className={className}
+					/>
+				);
+			case "8080":
+				return (
+					<img
+						src={localImg}
+						alt={className}
+						className={className}
+						id={id}
+					/>
+				)
+			default:
+				return;
+		}
+	}
 
-const Market = () => {
+	return renderImg(port, "slider-image-item");
+}
+
+const Market = ({
+	products,
+	filters,
+	setTextFilter
+}) => {
 	const classes = useStyles();
-	const [expanded, setExpanded] = React.useState(false);
+	const [open, setOpen] = React.useState(true);
 	const [styleType, setStyleType] = React.useState('grid');
 	const deviceHeightBool = window.innerWidth >= 720;
-	const id = 'abc123';
 
-	const handleExpandClick = () => {
-		setExpanded(!expanded);
-	};
+	setTimeout(
+		() => {
+			setOpen(false)
+			/** Delete msg here */
+		}, 10000
+	)
 
 	const setDisplayStyle = (e) => {
 		const list = document.querySelector('.list');
@@ -217,7 +203,7 @@ const Market = () => {
 
 		console.log(value)
 
-		switch(value) {
+		switch (value) {
 			case 'grid':
 				grid.style.color = '#4caf50';
 				list.style.color = '#BFBFBF';
@@ -228,12 +214,19 @@ const Market = () => {
 				list.style.color = '#4caf50';
 				setStyleType('list')
 				break;
+			default:
+				return;
 		}
 	}
 
 	return (
 		<div className="market-container">
 			<Header />
+			<Collapse in={open}>
+				<Alert severity="info" className="flash-msg">
+					<AlertTitle>You've been successfully logged out!</AlertTitle>
+				</Alert>
+			</Collapse>
 			<div className="product-list-filters">
 				<div className="product-list-filters-container">
 					<div className="image-slider">
@@ -280,6 +273,8 @@ const Market = () => {
 												root: classes.inputRoot,
 												input: classes.inputInput,
 											}}
+											value={filters.text}
+											onChange={e => setTextFilter(e.target.value)}
 											inputProps={{ 'aria-label': 'search' }}
 										/>
 									</div>
@@ -293,28 +288,28 @@ const Market = () => {
 								className="product-list-container"
 							>
 								{
-									ficticiousProduct.map(product => (
+									products.map(product => (
 										<div className="product-list-item" key={product.id}>
-											<NavLink to={`/product/${product.id}/description`} className="product-nav-link">
-												<Card className={classes.fontSize}>
-													<CardHeader
-														className={classes.smallFontSize}
-														avatar={
-															<Avatar aria-label="recipe" className={classes.avatar}>
+											<Card className={classes.fontSize}>
+												<CardHeader
+													className={classes.smallFontSize}
+													avatar={
+														<Avatar aria-label="recipe" className={classes.avatar}>
 															{product.avatar}
-															</Avatar>
-														}
-														action={
-															<IconButton aria-label="settings">
-																<MoreVertIcon />
-															</IconButton>
-														}
-														title={`${product.seller}`}
-														subheader={product.date}
-													/>
+														</Avatar>
+													}
+													action={
+														<IconButton aria-label="settings">
+															<MoreVertIcon />
+														</IconButton>
+													}
+													title={`${product.seller}`}
+													subheader={product.date}
+												/>
+												<NavLink to={`/product/${product.id}/description`} className="product-nav-link">
 													<CardMedia
 														className={classes.media}
-														image={product.imgUrl}
+														image={localEnv ? product.localImg : product.imgUrl}
 														title="Paella dish"
 													/>
 													<CardContent className={classes.fixedHeight}>
@@ -339,14 +334,14 @@ const Market = () => {
 																style={{
 																	fontSize: '2rem'
 																}}
-															/>
+																/>
 														</IconButton>
 														<IconButton aria-label="share">
 															<ShareIcon
 																style={{
 																	fontSize: '2rem'
 																}}
-															/>
+																/>
 														</IconButton>
 														<IconButton>
 															<StyledBadge badgeContent={4} color="secondary">
@@ -354,23 +349,27 @@ const Market = () => {
 																	style={{
 																		fontSize: '2rem'
 																	}}
-																/>
+																	/>
 															</StyledBadge>
 														</IconButton>
 													</CardActions>
-													</Card>
-											</NavLink>
+												</NavLink>
+											</Card>
 										</div>
 									))
 								}
 							</div>
 						}
 					</div>
-					<div className="paginator">
-						<div className="paginator-container">
-							<Pagination count={10} variant="outlined" shape="rounded" />
+					{
+						!!products.length && <div
+							className="paginator"
+						>
+							<div className="paginator-container">
+								<Pagination count={10} variant="outlined" shape="rounded" />
+							</div>
 						</div>
-					</div>
+					}
 				</div>
 			</div>
 			<MobileNav />
@@ -378,4 +377,14 @@ const Market = () => {
 	);
 }
 
-export default Market;
+
+const mapStateToProps = ({ products, filters }) => ({
+	filters,
+    products: filterProducts(products, filters)
+})
+
+const mapDispatchToProps = (dispatch) => ({
+	setTextFilter: (text) => dispatch(setTextFilter(text))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Market);

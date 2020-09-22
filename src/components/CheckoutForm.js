@@ -5,15 +5,11 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Radio from '@material-ui/core/Radio';
-import Checkbox from '@material-ui/core/Checkbox';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormHelperText from '@material-ui/core/FormHelperText';
-import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import { green } from '@material-ui/core/colors';
-import { FcGoogle } from "react-icons/fc";
-import { FaFacebook } from "react-icons/fa";
 import {
 	makeStyles,
 	createMuiTheme,
@@ -24,11 +20,15 @@ import { Form } from "formik";
 import { Formik } from "formik";
 import Card from '@material-ui/core/Card';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
-import { Image, Transformation } from 'cloudinary-react';
+import { Image } from 'cloudinary-react';
 
 import { updateAccountSchema } from '../utils/validate';
 
 
+const port = window.location.port;
+const localEnv = (port === "8080");
+const mpesa = localEnv && require('../assets/mpesa.png');
+const royparcel = localEnv && require('../assets/royparcel.png');
 const useStyles = makeStyles((theme) => ({
     root: {
     	"&.Mui-focused": {
@@ -89,6 +89,30 @@ checked: {},
 
 export const CheckoutForm = () => {
 	const classes = useStyles();
+
+	const renderImg = (port, localImgUrl, hostedUrl, className) => {
+		switch(port) {
+			case "":
+				return (
+					<Image
+						publicId={hostedUrl}
+						crop="scale"
+						alt={className}
+						className={className}
+					/>
+				);
+			case "8080":
+				return (
+					<img
+						src={localImgUrl}
+						alt={className}
+						className={className}
+					/>
+				)
+			default:
+				return;
+		}
+	}
 
 	return (
 		<Formik
@@ -326,7 +350,7 @@ export const CheckoutForm = () => {
 										/>
 										<FormHelperText>{errors.agreement && errors.agreement}</FormHelperText>
 									</FormControl>
-									<Image publicId="staticAssets/mpesa_mk6trd" crop="scale" alt="lipa na mpesa logo" className='lipa-na-mpesa' />
+									{renderImg(port, mpesa, "staticAssets/mpesa_mk6trd", "lipa-na-mpesa")}
 								</div>
 							</div>
 						</Card>
@@ -356,7 +380,7 @@ export const CheckoutForm = () => {
 										/>
 										<FormHelperText>{errors.agreement && errors.agreement}</FormHelperText>
 									</FormControl>
-									<Image publicId="staticAssets/royparcel_hmuczg" crop="scale" alt="royparcel logo" className='royparcel-logo' />
+									{renderImg(port, royparcel, "staticAssets/royparcel_hmuczg", "royparcel-logo")}
 								</div>
 							</div>
 						</Card>

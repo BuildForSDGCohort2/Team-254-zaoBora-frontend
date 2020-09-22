@@ -22,7 +22,6 @@ import TextField from '@material-ui/core/TextField';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import { GrClose } from "react-icons/gr";
-import { Image, Transformation } from 'cloudinary-react';
 
 
 const useStyles = makeStyles((theme) => ({

@@ -10,7 +10,7 @@ let hasRendered = false;
 
 render(<div className="spinner-border text-warning"></div>, document.getElementById('root'));
 
-const renderApp = () => {
+const RenderApp = () => {
 
     if (!hasRendered) {
         	render(<App />, document.getElementById('root')
@@ -18,4 +18,4 @@ const renderApp = () => {
         hasRendered = true;
     }
 }
-renderApp();
+RenderApp();

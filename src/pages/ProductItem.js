@@ -8,6 +8,10 @@ import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 import TextField from '@material-ui/core/TextField';
+
+import { connect } from 'react-redux'
+import { addItem } from '../actions/cart'
+
 import {
 	FaTwitter,
 	FaFacebookF,
@@ -27,7 +31,7 @@ const imgs = [
 	'staticAssets/vegetables_bqz9sy'
 ];
 
-const ProductItem = () => {
+const ProductItem = ({addItem,cart}) => {
 	const [value, setValue] = React.useState(2);
 
 	return (
@@ -82,7 +86,7 @@ const ProductItem = () => {
 									<small className="available-items"><i>(30 kilos available)</i></small>
 								</div>
 							</div>
-							<button className="add-to-cart-btn">ADD TO CART</button>
+							<button className="add-to-cart-btn" onClick={() => addItem(cart)}>ADD TO CART</button>
 						</div>
 					</div>
 				</div><br /><br /><br /><br />
@@ -127,4 +131,12 @@ const ProductItem = () => {
 	);
 }
 
-export default ProductItem;
+const mapStateToProps = state => ({
+	cart : state.cart
+})
+
+const mapDispatchToProps = dispatch => ({
+    addItem: item => dispatch(addItem(item))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductItem);

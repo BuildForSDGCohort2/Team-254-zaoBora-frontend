@@ -1,3 +1,4 @@
+
 import React, { Fragment } from 'react';
 import clsx from 'clsx';
 import { NavLink } from 'react-router-dom';
@@ -141,7 +142,7 @@ export const list = (anchor, toggleDrawer, displayIcon) => {
 
 export const displayIcon = (name) => {
 	switch(name) {
-													
+
 		case 'Market':
 			return (
 				<AiFillShop style={{

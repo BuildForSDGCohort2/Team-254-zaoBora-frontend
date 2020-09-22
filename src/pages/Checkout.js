@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import Card from '@material-ui/core/Card';
 import { Image, Transformation } from 'cloudinary-react';
 
-import { list, displayIcon } from '../components/Header';
+import {list, displayIcon } from '../components/Header';
 import { CheckoutForm } from '../components/CheckoutForm';
 import MobileNav from '../components/MobileNav';
 
@@ -58,7 +58,7 @@ const Checkout = () => {
 			        	open={state['right']}
 			        	onClose={toggleDrawer('right', false)}
 		        	>
-			            {list('right', toggleDrawer, displayIcon)}
+			            list('right', toggleDrawer, displayIcon)}
 			        </Drawer>
 				</div>
 			</div>

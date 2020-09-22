@@ -2,7 +2,7 @@ import {
   ADD_ITEM_TO_CART,
   REMOVE_ITEM_FROM_CART,
   CLEAR_ITEM_FROM_CART,
-} from './types'
+} from '../utils/Constants'
 
 export const addItemToCart = (cartItems, cartItemToAdd) => dispatch => {
   const existingCartItem = cartItems.find(

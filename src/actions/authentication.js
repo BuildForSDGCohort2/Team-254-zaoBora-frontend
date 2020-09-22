@@ -7,7 +7,7 @@ import {
   REGISTER_SUCCESS,
   REGISTER_FAILURE
 
-} from './types'
+} from '../utils/Constants'
 
 /*To do
 *Connect register to API

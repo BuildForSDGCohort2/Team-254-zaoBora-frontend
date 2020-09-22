@@ -1,5 +1,5 @@
-
-import React, { Fragment } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
 import clsx from 'clsx';
 import { NavLink } from 'react-router-dom';
 import { withStyles, fade, makeStyles } from '@material-ui/core/styles';
@@ -11,14 +11,12 @@ import Badge from '@material-ui/core/Badge';
 import Slide from '@material-ui/core/Slide';
 import { FaShoppingCart, FaQuestionCircle, FaUserCog } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { CgMenuGridO, CgProfile } from "react-icons/cg";
-import { FiShoppingCart } from "react-icons/fi";
+import { CgProfile } from "react-icons/cg";
 import { AiFillShop, AiOutlineLogout } from "react-icons/ai";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { BsInfoCircleFill } from "react-icons/bs";
 import { GoListOrdered } from "react-icons/go";
 import Drawer from '@material-ui/core/Drawer';
-import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
@@ -26,8 +24,19 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import { Image, Transformation } from 'cloudinary-react';
+import { Image } from 'cloudinary-react';
 
+import filterProducts from '../selectors/products';
+import FilterProducts from './FilterProducts';
+import {
+	setTextFilter,
+	focusResults,
+	blurResults
+} from '../actions/filters';
+
+const port = window.location.port;
+const localEnv = (port === "8080");
+const tree = localEnv && require('../assets/tree.png');
 
 const useStyles = makeStyles((theme) => ({
 	search: {
@@ -52,9 +61,9 @@ const useStyles = makeStyles((theme) => ({
 		color: 'inherit',
 	},
 	inputInput: {
-		fontSize: '1.2rem',
+		fontSize: '1.5rem',
 		color: '#666',
-		padding: theme.spacing(1, 1, 1, 0),
+		padding: theme.spacing(1.5, 1.5, 1.5, 0),
 		// vertical padding + font size from searchIcon
 		paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
 		transition: theme.transitions.create('width'),
@@ -71,7 +80,7 @@ const useStyles = makeStyles((theme) => ({
 	}
 }));
 
-export const list = (anchor, toggleDrawer, displayIcon) => {
+export const ListMenu = (anchor, toggleDrawer, displayIcon) => {
 	const classes = useStyles();
 
 	return (
@@ -179,6 +188,8 @@ export const displayIcon = (name) => {
 					fontSize: '2rem'
 				}}/>
 			);
+		default:
+			return;
 	}
 }
 
@@ -216,6 +227,12 @@ const Header = (props) => {
 		bottom: false,
 		right: false,
 	});
+	const {
+		setTextFilter,
+		filters,
+		focusResults,
+		blurResults
+	} = props;
 
 	const toggleDrawer = (anchor, open) => (event) => {
 		if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -232,6 +249,30 @@ const Header = (props) => {
 	const handleClose = () => {
 		setAnchorEl(null);
 	};
+	
+	const renderImg = (port, localImgUrl, hostedUrl, className) => {
+		switch(port) {
+			case "":
+				return (
+					<Image
+						publicId={hostedUrl}
+						crop="scale"
+						alt={className}
+						className={className}
+					/>
+				);
+			case "8080":
+				return (
+					<img
+						src={localImgUrl}
+						alt={className}
+						className={className}
+					/>
+				)
+			default:
+				return;
+		}
+	}
 
 	return (
 		<HideOnScroll {...props}>
@@ -239,16 +280,34 @@ const Header = (props) => {
 				<div className="header-container">
 					<div className="header-auth-section">
 						<div className="header-auth-section-container">
-							<div className="header-auth-btns">
-								<NavLink
-									className="header-login-button no-background-btn header-btn"
-									to="/login"
-								>Sign in</NavLink>
-								<p>|</p>
-								<NavLink
-									className="header-register-button primary-btn header-btn"
-									to="/register"
-								>Register</NavLink>
+							<div className="header-auth-section-wrapper">
+								<div className="about-faq">
+									<NavLink
+										to='/about'
+										activeClassName="is-active"
+										className="navbar-link"
+										>
+										About us
+									</NavLink>
+									<NavLink
+										to='/faq'
+										activeClassName="is-active"
+										className="navbar-link"
+										>
+										FAQ
+									</NavLink>
+								</div>
+								<div className="header-auth-btns">
+									<NavLink
+										className="header-login-button no-background-btn header-btn"
+										to="/login"
+									>Sign in</NavLink>
+									<p>|</p>
+									<NavLink
+										className="header-register-button primary-btn header-btn"
+										to="/register"
+									>Register</NavLink>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -261,24 +320,38 @@ const Header = (props) => {
 										className="app-logo"
 									>
 						    			<h2 className="register-title">
-											<Image
-												publicId="staticAssets/tree_u1brqs"
-												alt="tree seedling"
-												className="register-app-logo"
-												crop="scale"
-											/>
+											{renderImg(port, tree, "staticAssets/tree_u1brqs", "register-app-logo")}
 							        		Zao Bora
 						    			</h2>
 						    			<h5 className="mb-register-title">
-											<Image
-												publicId="staticAssets/tree_u1brqs"
-												alt="tree seedling"
-												className="register-app-logo"
-												crop="scale"
-											/>
+											{renderImg(port, tree, "staticAssets/tree_u1brqs", "register-app-logo")}
 							        		Zao Bora
 						    			</h5>
 									</NavLink>
+								</div>
+								<div className="search-filters-section dsk">
+									<div className="search-bar">
+										<div className={classes.search}>
+											<div className={classes.searchIcon}>
+												<SearchIcon />
+											</div>
+											<InputBase
+												placeholder="Search…"
+												classes={{
+													root: classes.inputRoot,
+													input: classes.inputInput,
+												}}
+												value={filters.text}
+												onChange={e => setTextFilter(e.target.value)}
+												inputProps={{ 'aria-label': 'search' }}
+												onFocus={() => focusResults()}
+												onBlur={() => blurResults()}
+											/>
+										</div>
+									</div>
+									{
+										(!!filters.text && filters.searching) && <FilterProducts />
+									}
 								</div>
 								<div className="header-nav-section">
 									<div className="navigation-bar">
@@ -289,20 +362,6 @@ const Header = (props) => {
 								            className="navbar-link"
 										>
 											Market
-										</NavLink>
-										<NavLink
-											to='/about'
-								            activeClassName="is-active"
-								            className="navbar-link"
-										>
-											About us
-										</NavLink>
-										<NavLink
-											to='/faq'
-								            activeClassName="is-active"
-								            className="navbar-link"
-										>
-											FAQ
 										</NavLink>
 										<span
 											aria-controls="simple-menu"
@@ -439,7 +498,7 @@ const Header = (props) => {
 							        	open={state['right']}
 							        	onClose={toggleDrawer('right', false)}
 						        	>
-							            {list('right', toggleDrawer, displayIcon)}
+							            {ListMenu('right', toggleDrawer, displayIcon)}
 							        </Drawer>
 								</div>
 							</div>
@@ -455,9 +514,18 @@ const Header = (props) => {
 												root: classes.inputRoot,
 												input: classes.inputInput,
 											}}
+											value={filters.text}
+											onChange={e => setTextFilter(e.target.value)}
 											inputProps={{ 'aria-label': 'search' }}
+											onFocus={() => focusResults()}
+											onBlur={() => blurResults()}
 										/>
 									</div>
+								</div>
+								<div className="filtered-content">
+									{
+										(!!filters.text && filters.searching) && <FilterProducts />
+									}
 								</div>
 							</div>
 						</div>
@@ -468,4 +536,15 @@ const Header = (props) => {
 	);
 }
 
-export default Header;
+const mapStateToProps = ({ products, filters }) => ({
+	filters,
+    products: filterProducts(products, filters)
+})
+
+const mapDispatchToProps = (dispatch) => ({
+	setTextFilter: (text) => dispatch(setTextFilter(text)),
+	focusResults: () => dispatch(focusResults()),
+	blurResults: () => dispatch(blurResults())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

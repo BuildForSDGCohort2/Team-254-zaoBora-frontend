@@ -3,27 +3,22 @@ import { NavLink } from 'react-router-dom';
 import { GiHamburgerMenu } from "react-icons/gi";
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
-import { CgProfile } from "react-icons/cg";
-import { AiFillShop, AiOutlineLogout } from "react-icons/ai";
-import { BsInfoCircleFill } from "react-icons/bs";
-import { FaQuestionCircle } from "react-icons/fa";
+import { AiFillShop } from "react-icons/ai";
 import { GoListOrdered } from "react-icons/go";
 import Drawer from '@material-ui/core/Drawer';
-import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 import { FaUserCog } from 'react-icons/fa';
 import { BsCardList } from 'react-icons/bs';
-import { Image, Transformation } from 'cloudinary-react';
-
-import tree from '../../assets/tree.png';
+import { Image } from 'cloudinary-react';
 
 
+const port = window.location.port;
+const localEnv = (port === "8080");
+const tree = localEnv && require('../../assets/tree.png');
 const useStyles = makeStyles({
 	list: {
 		width: 250,
@@ -35,7 +30,6 @@ const useStyles = makeStyles({
 
 const FarmerHeader = () => {
 	const classes = useStyles();
-	const [anchorEl, setAnchorEl] = React.useState(null);
 	const [state, setState] = React.useState({
 		top: false,
 		left: false,
@@ -77,6 +71,8 @@ const FarmerHeader = () => {
 						fontSize: '2rem'
 					}}/>
 				);
+			default:
+				return;
 		}
 	}
 
@@ -145,11 +141,35 @@ const FarmerHeader = () => {
 		</div>
 	);
 
+	const renderImg = (port, localImgUrl, hostedUrl, className) => {
+		switch(port) {
+			case "":
+				return (
+					<Image
+						publicId={hostedUrl}
+						crop="scale"
+						alt={hostedUrl}
+						className={className}
+					/>
+				);
+			case "8080":
+				return (
+					<img
+						src={localImgUrl}
+						alt={localImgUrl}
+						className={className}
+					/>
+				)
+			default:
+				return;
+		}
+	}
+
 	return (
 		<div className="dashboard-navbar-container">
 			<NavLink to="/" className="dashboard-logo">
 				<div className="dashboard-navbar">
-					<Image productId="staticAssets/tree_u1brqs" crop="scale" alt="tree seedling" className="farmer-dashboard-app-logo" />
+					{renderImg(port, tree, "staticAssets/tree_u1brqs", "farmer-dashboard-app-logo")}
 					<h4 className="mb-farmer-dashboard-title">Zao Bora</h4>
 				</div>
 			</NavLink>

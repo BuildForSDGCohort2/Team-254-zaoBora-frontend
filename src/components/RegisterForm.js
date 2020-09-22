@@ -15,10 +15,6 @@ import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props
 
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 
-import {connect} from 'react-redux'
-
-import { register } from '../actions/authentication'
-
 import {
 	makeStyles,
 	createMuiTheme,
@@ -88,6 +84,12 @@ const responseGoogle = (response) => {
 	// this.GoogleSignin(response);
 	}
 
+
+
+
+
+
+
 const useStyles = makeStyles((theme) => ({
     root: {
     	"&.Mui-focused": {
@@ -153,12 +155,7 @@ const RegisterForm = (props) => {
 		},
 		errors,
 		handleChange,
-		register,
-		authentication,
 	} = props;
-
-register('user');
-console.log(authentication)
 
 	return (
 		<Form
@@ -392,12 +389,4 @@ console.log(authentication)
 	);
 }
 
-const mapDispatchToProps = (dispatch) => ({
-    register: (user) => dispatch(register(user)),
-})
-
-const mapStateToProps = (state,props) => ({
-		authentication: state.authentication
-})
-
-export default connect(mapStateToProps,mapDispatchToProps)(RegisterForm);
+export default RegisterForm;

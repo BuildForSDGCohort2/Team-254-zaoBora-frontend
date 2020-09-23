@@ -19,6 +19,16 @@ export default ( state = initialState, action ) => {
           ...state,
           cartItems: action.payload
         };
+    case 'FETCH_CART_ITEMS':
+        return {
+          ...state,
+          cartItems: action.payload
+        };
+    case 'UPDATE_CART_ITEMS':
+        return {
+          ...state,
+          cartItems: action.payload
+        };
     default:
         return state;
   }

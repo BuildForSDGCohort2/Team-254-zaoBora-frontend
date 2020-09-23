@@ -11,6 +11,8 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import { Image } from 'cloudinary-react';
+
+import { completeOrder } from '../actions/orders'
 import { connect } from 'react-redux';
 import filterOrders from '../selectors/orders';
 
@@ -42,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
 	}
 }));
 
-const Orders = ({ orders }) => {
+const Orders = ({ orders, completeOrder }) => {
 	const classes = useStyles();
 
 	return (
@@ -100,9 +102,12 @@ const Orders = ({ orders }) => {
 	);
 }
 
-
 const mapStateToProps = ({ orders, filters }) => ({
 	orders: filterOrders(orders, filters)
 })
 
-export default connect(mapStateToProps)(Orders);
+const mapDispatchToProps = dispatch => ({
+	completeOrder: item => dispatch(completeOrder(item))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Orders);

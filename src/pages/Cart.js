@@ -21,6 +21,9 @@ import { Image, Transformation } from 'cloudinary-react';
 import Header from '../components/Header';
 import MobileNav from '../components/MobileNav';
 
+import { connect } from 'react-redux'
+import { loadCurrentOrder } from '../actions/orders'
+
 const port = window.location.port;
 const localEnv = (port === "8080");
 const tomatoes = localEnv && require('../assets/tomatoes.jpg');
@@ -45,7 +48,7 @@ const useStyles = makeStyles({
 let theme = createMuiTheme();
 theme = responsiveFontSizes(theme);
 
-const Cart = () => {
+const Cart = ({ orders, loadCurrentOrder }) => {
 	const classes = useStyles();
 
 	const createData = (item, localImg, img, quantity, price, total) => {
@@ -57,7 +60,7 @@ const Cart = () => {
 		createData('Beans', beans, 'staticAssets/beans_jgdn6y', 20, 250, 5000),
 		createData('Peas', peas, 'staticAssets/peas_vkpymp', 10, 400, 4000),
 	];
-	
+
 	const renderImg = (port, localImgUrl, hostedUrl, className) => {
 		switch(port) {
 			case "":
@@ -225,4 +228,8 @@ const Cart = () => {
 	);
 }
 
-export default Cart;
+const mapStateToProps = (state) => ({
+	orders: state.orders
+})
+
+export default connect(mapStateToProps)(Cart);

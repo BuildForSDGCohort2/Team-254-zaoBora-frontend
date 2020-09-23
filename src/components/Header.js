@@ -151,7 +151,7 @@ export const ListMenu = (anchor, toggleDrawer, displayIcon) => {
 
 export const displayIcon = (name) => {
 	switch(name) {
-													
+
 		case 'Market':
 			return (
 				<AiFillShop style={{
@@ -535,7 +535,6 @@ const Header = (props) => {
 		</HideOnScroll>
 	);
 }
-
 
 const mapStateToProps = ({ products, filters }) => ({
 	filters,

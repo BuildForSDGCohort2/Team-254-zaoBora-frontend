@@ -7,12 +7,12 @@ import {
   REGISTER_SUCCESS,
   REGISTER_FAILURE
 
-} from './types'
+} from '../utils/Constants'
 
 /*To do
 *Connect register to API
 *Connect login to API
-*Connect backend and db : 
+*Connect backend and db :
 *
 */
 
@@ -22,20 +22,20 @@ import {
 
 export const register = (user) => dispatch => {
     console.log('user')
-    axios.get('http://127.0.0.1:5000/users',)
-      .then(user => {
-        // dispatch(registerSuccess());
-        dispatch({
-          type: REGISTER_REQUEST,
-          payload: user
-        });
-        // useHistory.push('/login');
-        // console.log(user)
-      })
-      .catch (error => {
-        // dispatch(registerFailure(error.toString()));
-        console.log(error)
-      });
+    // axios.get('http://127.0.0.1:5000/users',user)
+    //   .then(user => {
+    //     // dispatch(registerSuccess());
+    //     dispatch({
+    //       type: REGISTER_REQUEST,
+    //       payload: user
+    //     });
+    //     // useHistory.push('/login');
+    //     // console.log(user)
+    //   })
+    //   .catch (error => {
+    //     // dispatch(registerFailure(error.toString()));
+    //     console.log(error)
+    //   });
 }
 
 

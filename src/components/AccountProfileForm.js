@@ -12,6 +12,10 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
+
+import {connect} from 'react-redux'
+import { updateProfile } from '../actions/authentication'
+
 import {
 	makeStyles,
 	createMuiTheme,
@@ -85,7 +89,12 @@ const AccountProfileForm = (props) => {
 		},
 		errors,
 		handleChange,
+		updateProfile,
+		authentication,
 	} = props;
+
+updateProfile('updates!!!');
+console.log(authentication)
 
 	return (
 		<Form
@@ -262,5 +271,13 @@ const AccountProfileForm = (props) => {
 	);
 }
 
+const mapDispatchToProps = dispatch => ({
+	updateProfile: (updates) => dispatch(updateProfile(updates))
+})
 
-export default AccountProfileForm;
+const mapStateToProps = (state) => ({
+	authentication: state.authentication
+})
+
+
+export default connect(mapStateToProps,mapDispatchToProps)(AccountProfileForm);

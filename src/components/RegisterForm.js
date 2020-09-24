@@ -394,7 +394,7 @@ const mapDispatchToProps = (dispatch) => ({
     register: (user) => dispatch(register(user)),
 })
 
-const mapStateToProps = (state,props) => ({
+const mapStateToProps = (state) => ({
 		authentication: state.authentication
 })
 

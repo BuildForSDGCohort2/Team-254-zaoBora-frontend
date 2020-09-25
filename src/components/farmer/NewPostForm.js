@@ -1,15 +1,13 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Grid from '@material-ui/core/Grid';
+import { Form } from "formik";
 import {
 	makeStyles,
 	createMuiTheme,
 	ThemeProvider,
 } from '@material-ui/core/styles';
-import { Form } from "formik";
 
 
 const useStyles = makeStyles((theme) => ({

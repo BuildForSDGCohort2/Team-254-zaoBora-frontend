@@ -7,9 +7,11 @@ import { FaTwitter, FaFacebook, FaArrowLeft } from "react-icons/fa";
 import { makeStyles } from '@material-ui/core/styles';
 import { Formik } from "formik";
 import { Image } from 'cloudinary-react';
+import { connect } from 'react-redux';
 
 import RegisterForm from '../components/RegisterForm';
 import { validationSchema } from '../utils/validate';
+import { verifiyEmail } from '../actions/authentication';
 
 const port = window.location.port;
 const localEnv = (port === "8080");
@@ -27,7 +29,9 @@ const useStyles = makeStyles(theme => ({
 	},
 }));
 
-const Register = () => {
+const Register = ({
+	verifiyEmail
+}) => {
 	const classes = useStyles();
 	
 	const renderImg = (port, localImgUrl, hostedUrl, className, id="") => {
@@ -156,12 +160,28 @@ const Register = () => {
 												accountType: '',
 												password: '',
 												confirmPassword: '',
+												username: '',
 												agreement: false
 											}}
 											validationSchema={validationSchema}
 											onSubmit={(values, { setSubmitting, resetForm }) => {
+												const is_farmer = (values['accountType'] === 'farmer') || (values['accountType'] === 'both') ? true : false;
 												values['phoneNumber'] = values['phoneNumber'].toString();
-												window.location.replace('/#/profile');
+												window.location.replace('/#/email-verification');
+												verifiyEmail({
+													first_name: values['firstName'],
+													last_name: values['lastName'],
+													username: values['username'],
+													phone_number: values['phoneNumber'],
+													email: values['email'],
+													city: "",
+													region: "",
+													address: "",
+													street_address: "",
+													is_farmer,
+													password: values['password'],
+													confirm_password: values['confirmPassword']
+												})
 											}}
 										>
 											{props => <RegisterForm {...props} />}
@@ -178,4 +198,8 @@ const Register = () => {
     );
 }
 
-export default Register;
+const mapDispatchToProps = (dispatch) => ({
+	verifiyEmail: (obj) => dispatch(verifiyEmail(obj))
+})
+
+export default connect(null, mapDispatchToProps)(Register);

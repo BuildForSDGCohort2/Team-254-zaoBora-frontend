@@ -12,6 +12,7 @@ import { connect } from 'react-redux';
 import RegisterForm from '../components/RegisterForm';
 import { validationSchema } from '../utils/validate';
 import { verifiyEmail } from '../actions/authentication';
+import RenderResMsg from '../utils/Common';
 
 const port = window.location.port;
 const localEnv = (port === "8080");
@@ -30,7 +31,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Register = ({
-	verifiyEmail
+	verifiyEmail,
+	resMsg
 }) => {
 	const classes = useStyles();
 	
@@ -72,6 +74,7 @@ const Register = ({
 						Zao Bora
 					</h1>
 				</NavLink>
+				{resMsg.msg && <RenderResMsg type='error' msg={resMsg.msg} />}
 				<span className="mb mb-register">
 					<span className="mb mb-register__wrapper">
 						<NavLink
@@ -167,7 +170,6 @@ const Register = ({
 											onSubmit={(values, { setSubmitting, resetForm }) => {
 												const is_farmer = (values['accountType'] === 'farmer') || (values['accountType'] === 'both') ? true : false;
 												values['phoneNumber'] = values['phoneNumber'].toString();
-												window.location.replace('/#/email-verification');
 												verifiyEmail({
 													first_name: values['firstName'],
 													last_name: values['lastName'],
@@ -198,8 +200,12 @@ const Register = ({
     );
 }
 
+const mapStateToProps = (state) => ({
+	resMsg: state.resMsg
+})
+
 const mapDispatchToProps = (dispatch) => ({
 	verifiyEmail: (obj) => dispatch(verifiyEmail(obj))
 })
 
-export default connect(null, mapDispatchToProps)(Register);
+export default connect(mapStateToProps, mapDispatchToProps)(Register);

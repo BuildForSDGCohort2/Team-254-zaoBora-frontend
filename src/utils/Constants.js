@@ -6,3 +6,6 @@ export const REGISTER_FAILURE = 'REGISTER_FAILURE';
 export const ADD_ITEM_TO_CART = 'ADD_ITEM_TO_CART';
 export const REMOVE_ITEM_FROM_CART = 'REMOVE_ITEM_FROM_CART';
 export const CLEAR_ITEM_FROM_CART = 'CLEAR_ITEM_FROM_CART';
+export const SET_MSG = 'SET_MSG';
+export const CLEAR_MSG = 'CLEAR_MSG';
+export const BASE_URL = 'https://zaobora-backend.herokuapp.com/api/v1';

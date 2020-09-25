@@ -5,8 +5,9 @@ import {
 	LOGIN_FAILURE,
 	REGISTER_REQUEST,
 	REGISTER_SUCCESS,
-	REGISTER_FAILURE
-
+	REGISTER_FAILURE,
+	BASE_URL,
+	SET_MSG
 } from '../utils/Constants'
 
 /*To do
@@ -57,9 +58,21 @@ export const login = (email, password) => dispatch => {
 	// });
 }
 
-export const verifiyEmail = (userObj) => dispatch => {
+export const verifiyEmail = (userObj) => async (dispatch) => {
 	// make request to verify email here
-	console.log(userObj)
+	// window.location.replace('/#/email-verification');
+	try {
+		const res = await axios.post(`${BASE_URL}/auth/signup`, userObj)
+		console.log(res);
+	} catch (e) {
+		console.log(e.response.data);
+		const errObj = e.response.data;
+		
+		dispatch({
+			type: SET_MSG,
+			payload: errObj.error
+		})
+	}
 }
 
 const registerRequest = () => ({

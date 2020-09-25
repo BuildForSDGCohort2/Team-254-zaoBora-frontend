@@ -5,6 +5,7 @@ import cart from './cart'
 import filters from './filters';
 import products from './products';
 import orders from './orders';
+import resMsg from './resMsg';
 
 export default combineReducers({
     products,
@@ -12,5 +13,6 @@ export default combineReducers({
     orders,
     register,
     login,
-    cart
-})
+    cart,
+    resMsg
+});

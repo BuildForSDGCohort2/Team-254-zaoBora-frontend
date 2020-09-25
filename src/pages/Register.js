@@ -11,7 +11,7 @@ import { connect } from 'react-redux';
 
 import RegisterForm from '../components/RegisterForm';
 import { validationSchema } from '../utils/validate';
-import { verifiyEmail } from '../actions/authentication';
+import { registerUser } from '../actions/authentication';
 import RenderResMsg from '../utils/Common';
 
 const port = window.location.port;
@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Register = ({
-	verifiyEmail,
+	registerUser,
 	resMsg
 }) => {
 	const classes = useStyles();
@@ -170,7 +170,7 @@ const Register = ({
 											onSubmit={(values, { setSubmitting, resetForm }) => {
 												const is_farmer = (values['accountType'] === 'farmer') || (values['accountType'] === 'both') ? true : false;
 												values['phoneNumber'] = values['phoneNumber'].toString();
-												verifiyEmail({
+												registerUser({
 													first_name: values['firstName'],
 													last_name: values['lastName'],
 													username: values['username'],
@@ -205,7 +205,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-	verifiyEmail: (obj) => dispatch(verifiyEmail(obj))
+	registerUser: (obj) => dispatch(registerUser(obj))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Register);

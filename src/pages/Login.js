@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
@@ -10,6 +11,7 @@ import { Image, Transformation } from 'cloudinary-react';
 
 import LoginForm from '../components/LoginForm';
 import { LoginSchema } from '../utils/validate';
+import RenderResMsg from '../utils/Common';
 
 const port = window.location.port;
 const localEnv = (port === "8080");
@@ -28,7 +30,9 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const Login = () => {
+const Login = ({
+	resMsg
+}) => {
     const classes = useStyles();
 	
 	const renderImg = (port, localImgUrl, hostedUrl, className, id="") => {
@@ -70,6 +74,7 @@ const Login = () => {
 	        		Zao Bora
     			</h1>
 			</NavLink>
+			{resMsg.msg && <RenderResMsg type='success' msg={resMsg.msg} />}
 			<span className="mb mb-register">
 				<span className="mb mb-register__wrapper">
 					<NavLink
@@ -133,4 +138,8 @@ const Login = () => {
     );
 }
 
-export default Login;
+const mapStateToProps = (state) => ({
+	resMsg: state.resMsg
+})
+
+export default connect(mapStateToProps)(Login);

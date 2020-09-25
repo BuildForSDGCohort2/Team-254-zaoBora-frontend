@@ -1,3 +1,8 @@
+
+/**
+* Authentication Actions
+*/
+
 import axios from 'axios'
 import { history } from '../routers/AppRouter';
 import {
@@ -9,63 +14,30 @@ import {
 	BASE_URL,
 	SET_MSG
 } from '../utils/Constants'
-
-/*To do
-*Connect register to API
-*Connect login to API
-*Connect backend and db :
-*
-*/
-
-/**
-* Authentication Actions
-*/
-
-export const register = (user) => dispatch => {
-	console.log('user')
-	// axios.get('http://127.0.0.1:5000/users',user)
-	//   .then(user => {
-	//     // dispatch(registerSuccess());
-	//     dispatch({
-	//       type: REGISTER_REQUEST,
-	//       payload: user
-	//     });
-	//     // history.push('/login');
-	//     // console.log(user)
-	//   })
-	//   .catch (error => {
-	//     // dispatch(registerFailure(error.toString()));
-	//     console.log(error)
-	//   });
-}
+import CookieStorage from '../utils/CookieStorage';
 
 
-export const login = (email, password) => dispatch => {
-	console.log('user')
-	// axios.get('http://127.0.0.1:5000/users',email, password)
-	// .then(user => {
-	//   // dispatch(registerSuccess());
-	//   dispatch({
-	//     type: LOGIN_SUCCESS,
-	//     payload: user
-	//   });
-	//   // history.push('/login');
-	//   // console.log(user)
-	// })
-	// .catch (error => {
-	//   // dispatch(registerFailure(error.toString()));
-	//   console.log(error)
-	// });
-}
+const cookieStorage = new CookieStorage();
 
-export const verifiyEmail = (userObj) => async (dispatch) => {
-	// make request to verify email here
-	// window.location.replace('/#/email-verification');
+export const login = (details) => async (dispatch) => {
 	try {
-		const res = await axios.post(`${BASE_URL}/auth/signup`, userObj)
-		console.log(res);
+		const res = await axios.post(`${BASE_URL}/auth/login`, details);
+		window.location.replace('/#/profile');
+		const storeUser = JSON.stringify(res.data);
+
+		cookieStorage.setCookie('user', storeUser, 30);
+		dispatch({
+			type: LOGIN_SUCCESS,
+			payload: {
+				access_token: res.data.access_token,
+				refresh_token: res.data.refresh_token
+			}
+		});
+		dispatch({
+			type: SET_MSG,
+			payload: res.data.message
+		});
 	} catch (e) {
-		console.log(e.response.data);
 		const errObj = e.response.data;
 		
 		dispatch({
@@ -75,23 +47,33 @@ export const verifiyEmail = (userObj) => async (dispatch) => {
 	}
 }
 
-const registerRequest = () => ({
-	type: REGISTER_REQUEST,
-});
+export const registerUser = (userObj) => async (dispatch) => {
+	try {
+		const res = await axios.post(`${BASE_URL}/auth/signup`, userObj);
+		const storeUser = JSON.stringify(res.data);
 
-const registerSuccess = () => ({
-	type: REGISTER_SUCCESS,
-});
-
-const registerFailure = () => ({
-	type: REGISTER_FAILURE,
-});
-
-
-const loginSuccess = () => ({
-	type: LOGIN_SUCCESS,
-})
-
-const loginFailure = () => ({
-	type: LOGIN_FAILURE,
-})
+		cookieStorage.setCookie('user', storeUser, 30);
+		
+		// window.location.replace('/#/email-verification');
+		window.location.replace('/#/login');
+		dispatch({
+			type: REGISTER_SUCCESS,
+			payload: {
+				access_token: res.data.access_token,
+				refresh_token: res.data.refresh_token,
+				username: res.data.username
+			}
+		});
+		dispatch({
+			type: SET_MSG,
+			payload: "Registration was successful, login to continue."
+		});
+	} catch (e) {
+		const errObj = e.response.data;
+		
+		dispatch({
+			type: SET_MSG,
+			payload: errObj.error
+		})
+	}
+}

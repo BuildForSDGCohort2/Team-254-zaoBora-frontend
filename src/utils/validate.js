@@ -12,6 +12,9 @@ export const validationSchema = Yup.object().shape({
     lastName: Yup.string()
         .min(2, 'Too Short!')
         .max(50, 'Too Long!'),
+    username: Yup.string()
+        .min(2, 'Too Short!')
+        .max(50, 'Too Long!'),
     phoneNumber: Yup.string()
         .test('validPhoneNumber', 'Please enter a valid phone number', 
             (value) => {
@@ -105,4 +108,10 @@ export const updateAccountSchema = Yup.object().shape({
         .oneOf(['consumer', 'farmer', 'both']),
     info: Yup.string()
         .min(2, 'Too Short!')
+})
+
+export const verifyEmailValidationSchema = Yup.object().shape({
+    email: Yup.string()
+        .email("Invalid email address format")
+        .required("Email is required")
 })

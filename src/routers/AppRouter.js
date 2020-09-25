@@ -20,6 +20,7 @@ import Market from '../pages/Market';
 import ProductItem from '../pages/ProductItem';
 import About from '../pages/About';
 import Checkout from '../pages/Checkout';
+import EmailVerification from '../pages/EmailVerification';
 import Cart from '../pages/Cart';
 import NotFound from '../pages/NotFound';
 import FarmersDashboard from '../pages/farmer/FarmersDashboard';
@@ -43,6 +44,7 @@ const AppRouter = () => (
 	                <Route path="/register" component={Register} />
 	                <Route path="/about" component={About} />
 	                <Route path="/checkout" component={Checkout} />
+	                <Route path="/email-verification" component={EmailVerification} />
 	                <Route path="/orders" component={AccountOrders} />
 	                <Route path="/profile" component={Account} />
 	                <Route path="/cart" component={Cart} />

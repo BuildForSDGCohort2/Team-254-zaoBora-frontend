@@ -151,7 +151,8 @@ const RegisterForm = (props) => {
 			email,
 			password,
 			confirmPassword,
-			agreement
+			agreement,
+			username
 		},
 		errors,
 		handleChange,
@@ -235,7 +236,7 @@ const RegisterForm = (props) => {
 						/>
 					</ThemeProvider>
 				</Grid>
-				<Grid item xs={12}>
+				<Grid item xs={12} sm={6}>
 					<ThemeProvider theme={theme}>
 						<FormControl
 							variant="outlined"
@@ -265,6 +266,24 @@ const RegisterForm = (props) => {
 								<option value="both">Both</option>
 					        </Select>
 						</FormControl>
+					</ThemeProvider>
+				</Grid>
+				<Grid item xs={12} sm={6}>
+					<ThemeProvider theme={theme}>
+						<TextField
+							variant="outlined"
+							required
+							fullWidth
+							id="username"
+							name="username"
+							value={username}
+							autoComplete="username"
+							onChange={handleChange}
+							label={errors.username ? 'Error' : 'Username'}
+							InputProps={{ className: classes.root }}
+							helperText={errors.username ? errors.username : ''}
+							error={errors.username ? true : false}
+						/>
 					</ThemeProvider>
 				</Grid>
 				<Grid item xs={12} sm={6}>

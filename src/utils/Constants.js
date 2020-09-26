@@ -8,4 +8,6 @@ export const REMOVE_ITEM_FROM_CART = 'REMOVE_ITEM_FROM_CART';
 export const CLEAR_ITEM_FROM_CART = 'CLEAR_ITEM_FROM_CART';
 export const SET_MSG = 'SET_MSG';
 export const CLEAR_MSG = 'CLEAR_MSG';
+export const CHECK_AUTH_STATE = 'CHECK_AUTH_STATE';
 export const BASE_URL = 'https://zaobora-backend.herokuapp.com/api/v1';
+export const DEV_BASE_URL = 'http://localhost:5000/api/v1';

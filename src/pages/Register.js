@@ -12,7 +12,7 @@ import { connect } from 'react-redux';
 import RegisterForm from '../components/RegisterForm';
 import { validationSchema } from '../utils/validate';
 import { registerUser } from '../actions/authentication';
-import RenderResMsg from '../utils/Common';
+import { RenderResMsg } from '../utils/Common';
 
 const port = window.location.port;
 const localEnv = (port === "8080");
@@ -35,9 +35,9 @@ const Register = ({
 	resMsg
 }) => {
 	const classes = useStyles();
-	
-	const renderImg = (port, localImgUrl, hostedUrl, className, id="") => {
-		switch(port) {
+
+	const renderImg = (port, localImgUrl, hostedUrl, className, id = "") => {
+		switch (port) {
 			case "":
 				return (
 					<Image
@@ -190,14 +190,14 @@ const Register = ({
 										</Formik>
 									</div>
 								</Container>
+							</div>
 						</div>
 					</div>
 				</div>
+				<div className="r-footer-margin"></div>
 			</div>
-			<div className="r-footer-margin"></div>
-			</div>
-    	</Fragment >
-    );
+		</Fragment >
+	);
 }
 
 const mapStateToProps = (state) => ({

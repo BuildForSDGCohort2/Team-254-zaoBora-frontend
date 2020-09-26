@@ -2,7 +2,8 @@
 
 
 const resMsgReducerDefaultState = {
-    msg: ''
+    msg: '',
+    type: '' // error | success | info
 }
 
 export default (state = resMsgReducerDefaultState, action) => {
@@ -10,12 +11,12 @@ export default (state = resMsgReducerDefaultState, action) => {
         case 'SET_MSG':
             return {
                 ...state,
-                msg: action.payload
-            };
+                ...action.payload
+            }
         case 'CLEAR_MSG':
             return {
-                ...state,
-                msg: ''
+                msg: '',
+                type: ''
             }
         default:
             return state;

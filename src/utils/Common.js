@@ -1,31 +1,47 @@
-import React from 'react'
-import { connect } from 'react-redux';
+import React, { Fragment } from 'react';
 import Alert from '@material-ui/lab/Alert';
+import AlertTitle from '@material-ui/lab/AlertTitle';
+import Collapse from '@material-ui/core/Collapse';
+import axios from 'axios';
 
-import { clearMsg } from '../actions/resMsg';
+import { BASE_URL, DEV_BASE_URL } from './Constants';
 
 
-const RenderResMsg = ({ type, msg, clearMsg }) => {
-    const [renderMsg, setMsg] = React.useState(true);
-
-	setTimeout(
-		() => {
-            setMsg(false)
-            clearMsg()
-		}, 10000
-	)
-
+export const RenderResMsg = ({ type, msg, title=null }) => {
     return (
-        <React.Fragment>
+        <Fragment>
             {
-                (renderMsg || !!msg) ? <Alert severity={type} className="error-res">{msg}</Alert> : ''
+                <Collapse in={!!msg}>
+                    <Alert severity={type} className="flash-msg">
+                        {
+                            !!title ? <React.Fragment>
+                                <AlertTitle>{title}</AlertTitle>
+                                <small>{msg}</small>
+                            </React.Fragment> : msg
+                        }
+                    </Alert>
+                </Collapse>
             }
-        </React.Fragment>
+        </Fragment>
     );
 }
 
-const mapDispatchToProps = (dispatch) => ({
-    clearMsg: () => dispatch(clearMsg())
-})
+export const forceRefreshToken = async (refreshToken, callback) => {
+    try {
+        const headers = {
+			'Content-Type': 'application/json',
+			'Authorization': `Bearer ${refreshToken}`
+        }
+        const res = await axios.get(`${DEV_BASE_URL}/refresh`, { headers })
+        const accessToken = res.access_token;
+        
+        callback({
+            access_token: accessToken,
+            refresh_token: refreshToken
+        });
+    } catch (e) {
+        const error = e.response.data;
 
-export default connect(null, mapDispatchToProps)(RenderResMsg)
+        console.log(error);
+    }
+}

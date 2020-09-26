@@ -231,7 +231,8 @@ const Header = (props) => {
 		setTextFilter,
 		filters,
 		focusResults,
-		blurResults
+		blurResults,
+		authentication
 	} = props;
 
 	const toggleDrawer = (anchor, open) => (event) => {
@@ -273,6 +274,7 @@ const Header = (props) => {
 				return;
 		}
 	}
+	console.log(authentication)
 
 	return (
 		<HideOnScroll {...props}>
@@ -297,17 +299,19 @@ const Header = (props) => {
 										FAQ
 									</NavLink>
 								</div>
-								<div className="header-auth-btns">
-									<NavLink
-										className="header-login-button no-background-btn header-btn"
-										to="/login"
-									>Sign in</NavLink>
-									<p>|</p>
-									<NavLink
-										className="header-register-button primary-btn header-btn"
-										to="/register"
-									>Register</NavLink>
-								</div>
+								{
+									authentication?.user?.authenticated && <div className="header-auth-btns">
+										<NavLink
+											className="header-login-button no-background-btn header-btn"
+											to="/login"
+										>Sign in</NavLink>
+										<p>|</p>
+										<NavLink
+											className="header-register-button primary-btn header-btn"
+											to="/register"
+										>Register</NavLink>
+									</div>
+								}
 							</div>
 						</div>
 					</div>
@@ -426,27 +430,29 @@ const Header = (props) => {
 														</NavLink>
 													</span>
 												</MenuItem>
-												<MenuItem
-													onClick={handleClose}
-												>
-													<span className="menu-item-group">
-														<AiFillShop
-															style={{
-																fontSize: '1.5rem',
-																color: '#818181',
-																marginRight: '.8rem'
-															}}
-														/>
-														<NavLink
-															to='/farmer/profile'
-												            exact={true}
-												            activeClassName="is-active"
-												            className="navbar-link option-link"
-														>
-															My Shop
-														</NavLink>
-													</span>
-												</MenuItem>
+												{
+													authentication?.user?.is_farmer && <MenuItem
+														onClick={handleClose}
+													>
+														<span className="menu-item-group">
+															<AiFillShop
+																style={{
+																	fontSize: '1.5rem',
+																	color: '#818181',
+																	marginRight: '.8rem'
+																}}
+															/>
+															<NavLink
+																to='/farmer/profile'
+																exact={true}
+																activeClassName="is-active"
+																className="navbar-link option-link"
+															>
+																My Shop
+															</NavLink>
+														</span>
+													</MenuItem>
+												}
 												<MenuItem
 													onClick={handleClose}
 												>
@@ -536,9 +542,10 @@ const Header = (props) => {
 	);
 }
 
-const mapStateToProps = ({ products, filters }) => ({
+const mapStateToProps = ({ products, filters, authentication }) => ({
 	filters,
-    products: filterProducts(products, filters)
+	products: filterProducts(products, filters),
+	authentication
 })
 
 const mapDispatchToProps = (dispatch) => ({

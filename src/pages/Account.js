@@ -1,18 +1,17 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
 import { Formik } from "formik";
-import Alert from '@material-ui/lab/Alert';
-import AlertTitle from '@material-ui/lab/AlertTitle';
-import Collapse from '@material-ui/core/Collapse';
+import { connect } from 'react-redux';
 
 import Header from '../components/Header';
 import MobileNav from '../components/MobileNav';
 import AccountMenu from '../components/AccountMenu';
 import AccountProfileForm from '../components/AccountProfileForm';
 import { updateAccountSchema } from '../utils/validate';
+import { RenderResMsg } from '../utils/Common';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -51,26 +50,16 @@ const useStyles = makeStyles((theme) => ({
 	}
 }));
 
-const Account = () => {
+const Account = ({
+	resMsg,
+	authentication
+}) => {
 	const classes = useStyles();
-	const [open, setOpen] = React.useState(true);
-
-	setTimeout(
-		() => {
-			setOpen(false)
-			/** Delete msg here */
-		}, 10000
-	)
 
 	return (
 		<div className="account-page">
 			<Header />
-			<Collapse in={open}>
-				<Alert severity="success" className="flash-msg">
-					<AlertTitle>Welcome John,</AlertTitle>
-					<small>you've been successfully logged in <strong>Check out your profile!</strong></small>
-				</Alert>
-			</Collapse>
+			{resMsg.msg && <RenderResMsg type='success' msg={resMsg.msg} title={`Welcome ${authentication.user.username},`} />}
 			<div className="account-container">
 				<div className="account-search-bar">
 					<div className={`${classes.search} search-bar-item`}>
@@ -116,4 +105,9 @@ const Account = () => {
 	);
 }
 
-export default Account;
+const mapStateToProps = (state) => ({
+	resMsg: state.resMsg,
+	authentication: state.authentication
+});
+
+export default connect(mapStateToProps)(Account);

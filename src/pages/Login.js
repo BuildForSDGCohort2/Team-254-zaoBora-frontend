@@ -8,10 +8,12 @@ import { FaArrowLeft } from "react-icons/fa";
 import { makeStyles } from '@material-ui/core/styles';
 import { Formik } from "formik";
 import { Image, Transformation } from 'cloudinary-react';
+import { withRouter } from "react-router";
 
 import LoginForm from '../components/LoginForm';
 import { LoginSchema } from '../utils/validate';
-import RenderResMsg from '../utils/Common';
+import { RenderResMsg } from '../utils/Common';
+import { loginUser } from '../actions/authentication';
 
 const port = window.location.port;
 const localEnv = (port === "8080");
@@ -31,7 +33,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Login = ({
-	resMsg
+	resMsg,
+	loginUser
 }) => {
     const classes = useStyles();
 	
@@ -74,7 +77,7 @@ const Login = ({
 	        		Zao Bora
     			</h1>
 			</NavLink>
-			{resMsg.msg && <RenderResMsg type='success' msg={resMsg.msg} />}
+			{resMsg.msg && <RenderResMsg type={resMsg.type} msg={resMsg.msg} />}
 			<span className="mb mb-register">
 				<span className="mb mb-register__wrapper">
 					<NavLink
@@ -123,7 +126,10 @@ const Login = ({
 			                        }}
 			                        validationSchema={LoginSchema}
 			                        onSubmit={(values, { setSubmitting, resetForm }) => {
-			                        	console.log(values);
+										loginUser({
+											email: values['email'],
+											password: values['password']
+										});
 			                        }}
 			                    >
 			                    	{props => <LoginForm {...props} />}
@@ -142,4 +148,8 @@ const mapStateToProps = (state) => ({
 	resMsg: state.resMsg
 })
 
-export default connect(mapStateToProps)(Login);
+const mapDispatchToProps = (dispatch) => ({
+	loginUser: (userDetails) => dispatch(loginUser(userDetails))
+})
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));

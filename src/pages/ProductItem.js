@@ -8,10 +8,8 @@ import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 import TextField from '@material-ui/core/TextField';
-
 import { connect } from 'react-redux'
 import { addItem } from '../actions/cart'
-
 import {
 	FaTwitter,
 	FaFacebookF,

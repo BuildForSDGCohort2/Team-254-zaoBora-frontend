@@ -6,7 +6,7 @@
 export default class CookieStorage {
 
     // create and set cookie values
-    setCookie(cname, cvalue, exdays) {
+    setCookie(cname='user', cvalue, exdays=1) {
         let d = new Date();
 
         d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));

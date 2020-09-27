@@ -4,10 +4,19 @@ import AlertTitle from '@material-ui/lab/AlertTitle';
 import Collapse from '@material-ui/core/Collapse';
 import axios from 'axios';
 
-import { BASE_URL, DEV_BASE_URL } from './Constants';
+import {
+    BASE_URL,
+    DEV_BASE_URL,
+    CHECK_AUTH_STATE
+} from './Constants';
+import configureStore from '../store/configureStore';
+import CookieStorage from '../utils/CookieStorage';
 
 
-export const RenderResMsg = ({ type, msg, title=null }) => {
+const store = configureStore();
+const cookieStorage = new CookieStorage();
+
+export const RenderResMsg = ({ type, msg, title = null }) => {
     return (
         <Fragment>
             {
@@ -17,7 +26,7 @@ export const RenderResMsg = ({ type, msg, title=null }) => {
                             !!title ? <React.Fragment>
                                 <AlertTitle>{title}</AlertTitle>
                                 <small>{msg}</small>
-                            </React.Fragment> : msg
+                            </React.Fragment> : <p>{msg}</p>
                         }
                     </Alert>
                 </Collapse>
@@ -28,20 +37,43 @@ export const RenderResMsg = ({ type, msg, title=null }) => {
 
 export const forceRefreshToken = async (refreshToken, callback) => {
     try {
-        const headers = {
-			'Content-Type': 'application/json',
-			'Authorization': `Bearer ${refreshToken}`
+        const config = {
+            method: 'post',
+            url: `${DEV_BASE_URL}/refresh`,
+            headers: {
+                'Authorization': `Bearer ${refreshToken}`
+            }
         }
-        const res = await axios.get(`${DEV_BASE_URL}/refresh`, { headers })
-        const accessToken = res.access_token;
-        
-        callback({
-            access_token: accessToken,
+        const res = await axios(config)
+        const access_token = res.data.access_token;
+        const payload = {
+            access_token,
             refresh_token: refreshToken
-        });
+        }
+        console.log('==> ',payload)
+
+        store.dispatch(callback(payload));
     } catch (e) {
         const error = e.response.data;
-
-        console.log(error);
+        
+		switch(error.msg) {
+			case 'Token has expired':
+			case 'Token has been revoked':
+			case 'Signature verification failed':
+			case 'User not found!':
+				store.dispatch({
+					type: CHECK_AUTH_STATE,
+					payload: {
+                        user: null,
+                        authenticated: false,
+                        access_token: "",
+                        refresh_token: ""
+                    }
+                })
+                cookieStorage.eraseCookie('user')
+				break;
+			default:
+				return;
+		}
     }
 }

@@ -28,6 +28,7 @@ import { Image } from 'cloudinary-react';
 
 import filterProducts from '../selectors/products';
 import FilterProducts from './FilterProducts';
+import { logoutUser } from '../actions/authentication';
 import {
 	setTextFilter,
 	focusResults,
@@ -232,7 +233,8 @@ const Header = (props) => {
 		filters,
 		focusResults,
 		blurResults,
-		authentication
+		authentication,
+		logoutUser
 	} = props;
 
 	const toggleDrawer = (anchor, open) => (event) => {
@@ -250,6 +252,11 @@ const Header = (props) => {
 	const handleClose = () => {
 		setAnchorEl(null);
 	};
+
+	const logout = () => {
+		logoutUser()
+		setAnchorEl(null);
+	}
 	
 	const renderImg = (port, localImgUrl, hostedUrl, className) => {
 		switch(port) {
@@ -274,7 +281,6 @@ const Header = (props) => {
 				return;
 		}
 	}
-	console.log(authentication)
 
 	return (
 		<HideOnScroll {...props}>
@@ -300,7 +306,7 @@ const Header = (props) => {
 									</NavLink>
 								</div>
 								{
-									authentication?.user?.authenticated && <div className="header-auth-btns">
+									!authentication?.authenticated && <div className="header-auth-btns">
 										<NavLink
 											className="header-login-button no-background-btn header-btn"
 											to="/login"
@@ -453,27 +459,29 @@ const Header = (props) => {
 														</span>
 													</MenuItem>
 												}
-												<MenuItem
-													onClick={handleClose}
-												>
-													<span className="menu-item-group">
-														<AiOutlineLogout
-															style={{
-																fontSize: '1.5rem',
-																color: '#818181',
-																marginRight: '.8rem'
-															}}
-														/>
-														<NavLink
-															to='/'
-												            exact={true}
-												            activeClassName="is-active"
-												            className="navbar-link option-link"
-														>
-															Logout
-														</NavLink>
-													</span>
-												</MenuItem>
+												{
+													authentication?.authenticated && <MenuItem
+														onClick={logout}
+													>
+														<span className="menu-item-group">
+															<AiOutlineLogout
+																style={{
+																	fontSize: '1.5rem',
+																	color: '#818181',
+																	marginRight: '.8rem'
+																}}
+															/>
+															<NavLink
+																to='/'
+																exact={true}
+																activeClassName="is-active"
+																className="navbar-link option-link"
+															>
+																Logout
+															</NavLink>
+														</span>
+													</MenuItem>
+												}
 											</Menu>
 										</div>
 										<NavLink
@@ -551,6 +559,7 @@ const mapStateToProps = ({ products, filters, authentication }) => ({
 const mapDispatchToProps = (dispatch) => ({
 	setTextFilter: (text) => dispatch(setTextFilter(text)),
 	focusResults: () => dispatch(focusResults()),
+	logoutUser: () => dispatch(logoutUser()),
 	blurResults: () => dispatch(blurResults())
 });
 

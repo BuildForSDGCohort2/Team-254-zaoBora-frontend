@@ -24,15 +24,13 @@ import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
 import Pagination from '@material-ui/lab/Pagination';
 import { Image } from 'cloudinary-react';
 import { connect } from 'react-redux';
-import Alert from '@material-ui/lab/Alert';
-import AlertTitle from '@material-ui/lab/AlertTitle';
-import Collapse from '@material-ui/core/Collapse';
 
 import Header from '../components/Header';
 import ItemListStyle from '../components/ItemListStyle';
 import MobileNav from '../components/MobileNav';
 import filterProducts from '../selectors/products';
 import { setTextFilter } from '../actions/filters';
+import { RenderResMsg } from '../utils/Common';
 
 const port = window.location.port;
 const localEnv = (port === "8080");
@@ -182,7 +180,8 @@ const Item = ({
 const Market = ({
 	products,
 	filters,
-	setTextFilter
+	setTextFilter,
+	resMsg
 }) => {
 	const classes = useStyles();
 	const [open, setOpen] = React.useState(true);
@@ -222,11 +221,7 @@ const Market = ({
 	return (
 		<div className="market-container">
 			<Header />
-			<Collapse in={open}>
-				<Alert severity="info" className="flash-msg">
-					<AlertTitle>You've been successfully logged out!</AlertTitle>
-				</Alert>
-			</Collapse>
+			{resMsg.msg && <RenderResMsg type={resMsg.type} msg={resMsg.msg} title="Info" />}
 			<div className="product-list-filters">
 				<div className="product-list-filters-container">
 					<div className="image-slider">
@@ -378,9 +373,10 @@ const Market = ({
 }
 
 
-const mapStateToProps = ({ products, filters }) => ({
+const mapStateToProps = ({ products, filters, resMsg }) => ({
 	filters,
-    products: filterProducts(products, filters)
+	resMsg,
+	products: filterProducts(products, filters)
 })
 
 const mapDispatchToProps = (dispatch) => ({

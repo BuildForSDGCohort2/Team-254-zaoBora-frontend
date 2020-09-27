@@ -77,7 +77,7 @@ const Login = ({
 	        		Zao Bora
     			</h1>
 			</NavLink>
-			{resMsg.msg && <RenderResMsg type={resMsg.type} msg={resMsg.msg} />}
+			{resMsg.msg && <RenderResMsg type={resMsg.type} msg={resMsg.msg} title="Error" />}
 			<span className="mb mb-register">
 				<span className="mb mb-register__wrapper">
 					<NavLink

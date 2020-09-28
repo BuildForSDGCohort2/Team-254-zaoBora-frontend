@@ -11,7 +11,8 @@ import { connect } from 'react-redux';
 
 import RegisterForm from '../components/RegisterForm';
 import { validationSchema } from '../utils/validate';
-import { verifiyEmail } from '../actions/authentication';
+import { registerUser } from '../actions/authentication';
+import { RenderResMsg } from '../utils/Common';
 
 const port = window.location.port;
 const localEnv = (port === "8080");
@@ -30,12 +31,13 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Register = ({
-	verifiyEmail
+	registerUser,
+	resMsg
 }) => {
 	const classes = useStyles();
-	
-	const renderImg = (port, localImgUrl, hostedUrl, className, id="") => {
-		switch(port) {
+
+	const renderImg = (port, localImgUrl, hostedUrl, className, id = "") => {
+		switch (port) {
 			case "":
 				return (
 					<Image
@@ -72,6 +74,7 @@ const Register = ({
 						Zao Bora
 					</h1>
 				</NavLink>
+				{resMsg.msg && <RenderResMsg type='error' msg={resMsg.msg} title="Error" />}
 				<span className="mb mb-register">
 					<span className="mb mb-register__wrapper">
 						<NavLink
@@ -167,8 +170,7 @@ const Register = ({
 											onSubmit={(values, { setSubmitting, resetForm }) => {
 												const is_farmer = (values['accountType'] === 'farmer') || (values['accountType'] === 'both') ? true : false;
 												values['phoneNumber'] = values['phoneNumber'].toString();
-												window.location.replace('/#/email-verification');
-												verifiyEmail({
+												registerUser({
 													first_name: values['firstName'],
 													last_name: values['lastName'],
 													username: values['username'],
@@ -188,18 +190,22 @@ const Register = ({
 										</Formik>
 									</div>
 								</Container>
+							</div>
 						</div>
 					</div>
 				</div>
+				<div className="r-footer-margin"></div>
 			</div>
-			<div className="r-footer-margin"></div>
-			</div>
-    	</Fragment >
-    );
+		</Fragment >
+	);
 }
 
-const mapDispatchToProps = (dispatch) => ({
-	verifiyEmail: (obj) => dispatch(verifiyEmail(obj))
+const mapStateToProps = (state) => ({
+	resMsg: state.resMsg
 })
 
-export default connect(null, mapDispatchToProps)(Register);
+const mapDispatchToProps = (dispatch) => ({
+	registerUser: (obj) => dispatch(registerUser(obj))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Register);

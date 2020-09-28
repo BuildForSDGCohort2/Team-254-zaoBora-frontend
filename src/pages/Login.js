@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
@@ -7,9 +8,12 @@ import { FaArrowLeft } from "react-icons/fa";
 import { makeStyles } from '@material-ui/core/styles';
 import { Formik } from "formik";
 import { Image, Transformation } from 'cloudinary-react';
+import { withRouter } from "react-router";
 
 import LoginForm from '../components/LoginForm';
 import { LoginSchema } from '../utils/validate';
+import { RenderResMsg } from '../utils/Common';
+import { loginUser } from '../actions/authentication';
 
 const port = window.location.port;
 const localEnv = (port === "8080");
@@ -28,7 +32,10 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const Login = () => {
+const Login = ({
+	resMsg,
+	loginUser
+}) => {
     const classes = useStyles();
 	
 	const renderImg = (port, localImgUrl, hostedUrl, className, id="") => {
@@ -70,6 +77,7 @@ const Login = () => {
 	        		Zao Bora
     			</h1>
 			</NavLink>
+			{resMsg.msg && <RenderResMsg type={resMsg.type} msg={resMsg.msg} title="Error" />}
 			<span className="mb mb-register">
 				<span className="mb mb-register__wrapper">
 					<NavLink
@@ -118,7 +126,10 @@ const Login = () => {
 			                        }}
 			                        validationSchema={LoginSchema}
 			                        onSubmit={(values, { setSubmitting, resetForm }) => {
-			                        	console.log(values);
+										loginUser({
+											email: values['email'],
+											password: values['password']
+										});
 			                        }}
 			                    >
 			                    	{props => <LoginForm {...props} />}
@@ -133,4 +144,12 @@ const Login = () => {
     );
 }
 
-export default Login;
+const mapStateToProps = (state) => ({
+	resMsg: state.resMsg
+})
+
+const mapDispatchToProps = (dispatch) => ({
+	loginUser: (userDetails) => dispatch(loginUser(userDetails))
+})
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));

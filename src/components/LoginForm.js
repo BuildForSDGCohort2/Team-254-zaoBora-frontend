@@ -216,7 +216,7 @@ const LoginForm = (props) => {
 				<Grid item>
 					<span className="social-media-icons s-font-size">
 						Login with:
-						<FacebookLogin
+						{/* {<FacebookLogin
 					        appId="354726742586574"
 					        autoLoad
 							callback={responseFacebook}
@@ -243,7 +243,7 @@ const LoginForm = (props) => {
 				            onSuccess={responseGoogle}
 				            onFailure={responseGoogle}
 				            cookiePolicy={ 'single_host_origin' }
-		        		/>
+		        		/>} */}
 					</span>
 				</Grid>
 			</Grid>

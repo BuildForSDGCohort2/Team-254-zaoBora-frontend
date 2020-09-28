@@ -364,7 +364,7 @@ const RegisterForm = (props) => {
 				<Grid item>
 					<span className="social-media-icons" style={{ fontSize: 15 }}>
 						Continue with:
-						<FacebookLogin
+						{/* {<FacebookLogin
 							appId="354726742586574"
 							autoLoad
 							callback={responseFacebook}
@@ -391,7 +391,7 @@ const RegisterForm = (props) => {
 				            onSuccess={responseGoogle}
 				            onFailure={responseGoogle}
 				            cookiePolicy={ 'single_host_origin' }
-				        />
+				        />} */}
 					</span>
 				</Grid>
 			</Grid><br />

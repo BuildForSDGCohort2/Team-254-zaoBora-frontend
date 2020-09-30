@@ -12,6 +12,7 @@ import { connect } from 'react-redux';
 import RegisterForm from '../components/RegisterForm';
 import { validationSchema } from '../utils/validate';
 import { registerUser } from '../actions/authentication';
+import { registerVendor } from '../actions/vendorAuthentication';
 import { RenderResMsg } from '../utils/Common';
 
 const port = window.location.port;
@@ -32,6 +33,7 @@ const useStyles = makeStyles(theme => ({
 
 const Register = ({
 	registerUser,
+	registerVendor,
 	resMsg
 }) => {
 	const classes = useStyles();
@@ -205,7 +207,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-	registerUser: (obj) => dispatch(registerUser(obj))
+	registerUser: (obj) => dispatch(registerUser(obj)),
+	registerVendor: (obj) => dispatch(registerVendor(obj))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Register);

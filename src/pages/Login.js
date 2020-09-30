@@ -14,6 +14,7 @@ import LoginForm from '../components/LoginForm';
 import { LoginSchema } from '../utils/validate';
 import { RenderResMsg } from '../utils/Common';
 import { loginUser } from '../actions/authentication';
+import { loginVendor } from '../actions/vendorAuthentication';
 
 const port = window.location.port;
 const localEnv = (port === "8080");
@@ -34,10 +35,14 @@ const useStyles = makeStyles(theme => ({
 
 const Login = ({
 	resMsg,
-	loginUser
+	loginUser,
+  loginVendor,
+  vendorAuthentication
 }) => {
+    loginVendor()
+    console.log(vendorAuthentication)
     const classes = useStyles();
-	
+
 	const renderImg = (port, localImgUrl, hostedUrl, className, id="") => {
 		switch(port) {
 			case "":
@@ -149,7 +154,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-	loginUser: (userDetails) => dispatch(loginUser(userDetails))
+	loginUser: (userDetails) => dispatch(loginUser(userDetails)),
+  loginVendor: (venderDetails) => dispatch(loginVendor(venderDetails))
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));

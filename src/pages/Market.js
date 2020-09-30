@@ -183,6 +183,7 @@ const Market = ({
 	setTextFilter,
 	resMsg
 }) => {
+	console.log(products);
 	const classes = useStyles();
 	const [open, setOpen] = React.useState(true);
 	const [styleType, setStyleType] = React.useState('grid');

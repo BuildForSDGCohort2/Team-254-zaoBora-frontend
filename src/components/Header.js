@@ -500,8 +500,9 @@ const Header = (props) => {
 								<div className="mb mobile-hamburger-menu">
 									<GiHamburgerMenu
 										onClick={toggleDrawer('right', true)}
+										className="hamburger-menu"
 										style={{
-											fontSize: '2rem',
+											fontSize: '3rem',
 											color: '#666'
 										}}
 									/>

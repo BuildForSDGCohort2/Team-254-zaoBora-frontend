@@ -18,8 +18,8 @@ const store = configureStore();
 const cloudName = process.env.CLOUD_NAME;
 const user = cookieStorage.getCookie('user');
 const parsedUser = !user ? {} : JSON.parse(user);
-const authUser = !!parsedUser.access_token;
-const tokens = !!authUser ? {
+const authUser = !!parsedUser?.access_token;
+const tokens = authUser ? {
     access_token: parsedUser.access_token,
     refresh_token: parsedUser.refresh_token
 } : {
@@ -29,15 +29,9 @@ const tokens = !!authUser ? {
 
 class App extends React.Component {
     render() {
-        if (!authUser) {
+        if (authUser) {
             console.log('db user')
             store.dispatch(fetchActiveUser(tokens))
-        } else {
-            console.log('cookie user')
-            store.dispatch({
-                type: CHECK_AUTH_STATE,
-                payload: parsedUser
-            })
         }
 
         return (

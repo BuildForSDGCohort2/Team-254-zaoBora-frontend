@@ -22,29 +22,29 @@ const farmer = localEnv && require('../assets/farmer-2.png');
 const tree = localEnv && require('../assets/tree.png');
 
 const useStyles = makeStyles(theme => ({
-    paper: {
-        marginTop: theme.spacing(0),
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-    },
-    formTitle: {
-        width: '100%'
-    }
+	paper: {
+		marginTop: theme.spacing(0),
+		display: 'flex',
+		flexDirection: 'column',
+		alignItems: 'center',
+	},
+	formTitle: {
+		width: '100%'
+	}
 }));
 
 const Login = ({
 	resMsg,
 	loginUser,
-  loginVendor,
-  vendorAuthentication
+	loginVendor,
+	vendorAuthentication
 }) => {
-    loginVendor()
-    console.log(vendorAuthentication)
-    const classes = useStyles();
+	loginVendor()
+	console.log(vendorAuthentication)
+	const classes = useStyles();
 
-	const renderImg = (port, localImgUrl, hostedUrl, className, id="") => {
-		switch(port) {
+	const renderImg = (port, localImgUrl, hostedUrl, className, id = "") => {
+		switch (port) {
 			case "":
 				return (
 					<Image
@@ -71,16 +71,15 @@ const Login = ({
 		}
 	}
 
-    return (
-    	<div className="login-page register-page">
+	return (
+		<div className="login-page register-page">
 			<NavLink
 				className="auth-app-logo dsk"
 				to="/"
 			>
-    			<h1 className="register-title">
-					{renderImg(port, tree, "staticAssets/tree_u1brqs", "register-app-logo")}
-	        		Zao Bora
-    			</h1>
+				<h1 className="register-title">
+					{renderImg(port, tree, "staticAssets/tree_ze9kbz", "register-app-logo login-sec-logo")}
+				</h1>
 			</NavLink>
 			{resMsg.msg && <RenderResMsg type={resMsg.type} msg={resMsg.msg} title="Error" />}
 			<span className="mb mb-register">
@@ -104,15 +103,15 @@ const Login = ({
 					</span>
 				</span>
 			</span>
-	        <div className="login-section">
-	        	<div className="zao-bora-illustration dsk">
-	        		<div className="farmer-illustration zao-bora-info">
-					{renderImg(port, farmer, "staticAssets/farmer-2_zyqgic", "register-app-logo", "farmer-illustration")}
-	        		</div>
-	        	</div>
-	        	<div className="login-form">
-		        	<div className="login-form__wrapper registration-form__wrapper">
-				        <Container component="main" maxWidth="xs">
+			<div className="login-section">
+				<div className="zao-bora-illustration dsk">
+					<div className="farmer-illustration zao-bora-info">
+						{renderImg(port, farmer, "staticAssets/farmer-2_zyqgic", "", "farmer-illustration")}
+					</div>
+				</div>
+				<div className="login-form">
+					<div className="login-form__wrapper registration-form__wrapper">
+						<Container component="main" maxWidth="xs">
 							<CssBaseline />
 							<div className={classes.paper}>
 								<span className="dsk-register-title dsk">
@@ -124,29 +123,29 @@ const Login = ({
 									</Typography>
 								</span>
 								<Formik
-			                        initialValues={{
-			                            email: '',
-			                            password: '',
-			                            remember: ''
-			                        }}
-			                        validationSchema={LoginSchema}
-			                        onSubmit={(values, { setSubmitting, resetForm }) => {
+									initialValues={{
+										email: '',
+										password: '',
+										remember: ''
+									}}
+									validationSchema={LoginSchema}
+									onSubmit={(values, { setSubmitting, resetForm }) => {
 										loginUser({
 											email: values['email'],
 											password: values['password']
 										});
-			                        }}
-			                    >
-			                    	{props => <LoginForm {...props} />}
-			                    </Formik>
-		                    </div>
+									}}
+								>
+									{props => <LoginForm {...props} />}
+								</Formik>
+							</div>
 						</Container>
 					</div>
 				</div>
 			</div>
 			<div className="l-footer-margin"></div>
-    	</div>
-    );
+		</div>
+	);
 }
 
 const mapStateToProps = (state) => ({
@@ -155,7 +154,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
 	loginUser: (userDetails) => dispatch(loginUser(userDetails)),
-  loginVendor: (venderDetails) => dispatch(loginVendor(venderDetails))
+	loginVendor: (venderDetails) => dispatch(loginVendor(venderDetails))
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));

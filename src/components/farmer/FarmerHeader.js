@@ -170,7 +170,6 @@ const FarmerHeader = () => {
 			<NavLink to="/" className="dashboard-logo">
 				<div className="dashboard-navbar">
 					{renderImg(port, tree, "staticAssets/tree_u1brqs", "farmer-dashboard-app-logo")}
-					<h4 className="mb-farmer-dashboard-title">Zao Bora</h4>
 				</div>
 			</NavLink>
 			<GiHamburgerMenu

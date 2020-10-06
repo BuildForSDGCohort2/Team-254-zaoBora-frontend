@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import { connect } from 'react-redux';
 import Card from '@material-ui/core/Card';
 import { GoMailRead } from "react-icons/go";
 import Typography from '@material-ui/core/Typography';
@@ -60,7 +61,9 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const EmailVerification = () => {
+const EmailVerification = ({
+	authentication
+}) => {
 	const classes = useStyles();
 	const [open, setOpen] = React.useState(false);
 
@@ -78,8 +81,8 @@ const EmailVerification = () => {
 				<Card className="email-verification-card">
 					<GoMailRead className="sent-email-icon" /><br />
 					<Typography variant="h3" component="h3" className="email-verification-title">Email Verification</Typography>
-					<p className="verification-text-info">We have sent an email to <span className="email-highlight">johndoe@gmail.com</span> to confirm the validity of your email address. Please check your email and follow the link to activate your account.</p>
-					<p className="verification-text-info"><span className="email-highlight">johndoe@gmail.com</span> not your email? <span
+					<p className="verification-text-info">We have sent an email to <span className="email-highlight">{authentication?.email}</span> to confirm the validity of your email address. Please check your email and follow the link to activate your account.</p>
+					<p className="verification-text-info"><span className="email-highlight">{authentication?.email}</span> not your email? <span
 						className="change-email"
 						onClick={handleOpen}
 					>Change</span></p>
@@ -166,4 +169,9 @@ const EmailVerification = () => {
 	);
 }
 
-export default EmailVerification;
+
+const mapStateToProps = (state) => ({
+	authentication: state.authentication
+})
+
+export default connect(mapStateToProps)(EmailVerification);

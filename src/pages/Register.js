@@ -72,8 +72,7 @@ const Register = ({
 					to="/"
 				>
 					<h1 className="register-title">
-						{renderImg(port, tree, "staticAssets/tree_u1brqs", "tree seedling")}
-						Zao Bora
+						{renderImg(port, tree, "staticAssets/tree_u1brqs", "tree seedling login-sec-logo")}
 					</h1>
 				</NavLink>
 				{resMsg.msg && <RenderResMsg type='error' msg={resMsg.msg} title="Error" />}
@@ -105,10 +104,9 @@ const Register = ({
 								<div className="zao-bora-info__wrapper">
 									<h1 className="register-title">
 										{renderImg(port, tree, "staticAssets/tree_u1brqs", "tree seedling")}
-										Zao Bora
 									</h1>
 									<div className="register-text">
-										<br /><p>Zao Bora is an online marketplace developed by innovators for farmers, retailers and consumers.<br /> Zao Bora strives to connect farmers with potential buyers by enabling transparent online purchase of products as well as sharing of products/produce through photosharing on the platform. Zao Bora is led by a team of hardworking and dedicated enterpreneurs who are always available for support and assistance.</p><br />
+										<p>Zao Bora is an online marketplace developed by innovators for farmers, retailers and consumers.<br /> Zao Bora strives to connect farmers with potential buyers by enabling transparent online purchase of products as well as sharing of products/produce through photosharing on the platform. Zao Bora is led by a team of hardworking and dedicated enterpreneurs who are always available for support and assistance.</p>
 										<span className="social-media-links">
 											<p>Check us out on social media: </p>
 											<FaTwitter style={{
@@ -122,7 +120,7 @@ const Register = ({
 												marginLeft: 5,
 												cursor: 'pointer',
 												color: '#4867AA'
-											}} /><br />
+											}} />
 										</span>
 										<p>Or call us at: +2547xxxxxxxx</p>
 									</div>

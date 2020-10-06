@@ -55,6 +55,8 @@ export const forceRefreshToken = async (refreshToken, callback) => {
         store.dispatch(callback(payload));
     } catch (e) {
         const error = e.response.data;
+        console.log('----> ',e)
+        console.log('--> ',e.response)
         
 		switch(error.msg) {
 			case 'Token has expired':

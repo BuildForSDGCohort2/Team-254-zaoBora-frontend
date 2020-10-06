@@ -10,8 +10,8 @@ export default (state = resMsgReducerDefaultState, action) => {
     switch (action.type) {
         case 'SET_MSG':
             return {
-                ...state,
-                ...action.payload
+                msg: action.payload.msg,
+                type: action.payload.type
             }
         case 'CLEAR_MSG':
             return {

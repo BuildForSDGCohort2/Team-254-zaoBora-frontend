@@ -330,12 +330,10 @@ const Header = (props) => {
 										className="app-logo"
 									>
 						    			<h2 className="register-title">
-											{renderImg(port, tree, "staticAssets/tree_u1brqs", "register-app-logo")}
-							        		Zao Bora
+											{renderImg(port, tree, "staticAssets/tree_ze9kbz", "register-app-logo")}
 						    			</h2>
 						    			<h5 className="mb-register-title">
-											{renderImg(port, tree, "staticAssets/tree_u1brqs", "register-app-logo")}
-							        		Zao Bora
+											{renderImg(port, tree, "staticAssets/tree_ze9kbz", "register-app-logo")}
 						    			</h5>
 									</NavLink>
 								</div>
@@ -502,8 +500,9 @@ const Header = (props) => {
 								<div className="mb mobile-hamburger-menu">
 									<GiHamburgerMenu
 										onClick={toggleDrawer('right', true)}
+										className="hamburger-menu"
 										style={{
-											fontSize: '2rem',
+											fontSize: '3rem',
 											color: '#666'
 										}}
 									/>

@@ -97,7 +97,8 @@ export const registerUser = userDetails => async (dispatch) => {
 				account: 'user'
 			}
 		});
-		window.location.replace('/#/email-verification');
+		history.replace('/#/email-verification');
+		// window.location.replace('/#/email-verification');
 	} catch (e) {
 		const errObj = e.response.data;
 
@@ -118,7 +119,8 @@ export const registerUser = userDetails => async (dispatch) => {
 export const loginUser = userDetails => async (dispatch) => {
 	try {
 		const res = await axios.post(`${BASE_URL}/auth/login`, userDetails);
-		window.location.replace('/#/profile');
+		// window.location.replace('/#/profile');
+		history.replace('/#/profile');
 		const authUser = {
 			user: res.data.user,
 			authenticated: res.data.authenticated,
@@ -188,7 +190,8 @@ export const logoutUser = () => async (dispatch) => {
 				refresh_token: ""
 			}
 		})
-		window.location.replace('/#/');
+		// window.location.replace('/#/');
+		history.replace('/#/');
 		dispatch({
 			type: SET_MSG,
 			payload: {

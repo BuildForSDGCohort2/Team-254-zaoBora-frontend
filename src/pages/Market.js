@@ -139,43 +139,50 @@ const Slider = () => {
 			animation="slide"
 		>
 			{
-				items.map((item, i) => <Item key={i} item={item} />)
+				items.map((item, i) => (
+					<Image
+						key={i}
+						publicId={item.image}
+						crop="scale"
+						alt="slider-image-item"
+						className="slider-image-item"
+					/>
+				))
 			}
 		</Carousel>
 	);
 }
 
-const Item = ({
-	item: { image, localImg }
-}) => {
+// const renderImg = (port, className, image, localImg, id = "") => {
+// 	switch (port) {
+// 		case "":
+// 			return (
+// 				<Image
+// 					publicId={image}
+// 					crop="scale"
+// 					alt={className}
+// 					className={className}
+// 				/>
+// 			);
+// 		case "8080":
+// 			return (
+// 				<img
+// 					src={localImg}
+// 					alt={className}
+// 					className={className}
+// 					id={id}
+// 				/>
+// 			)
+// 		default:
+// 			return;
+// 	}
+// }
 
-	const renderImg = (port, className, id = "") => {
-		switch (port) {
-			case "":
-				return (
-					<Image
-						publicId={image}
-						crop="scale"
-						alt={className}
-						className={className}
-					/>
-				);
-			case "8080":
-				return (
-					<img
-						src={localImg}
-						alt={className}
-						className={className}
-						id={id}
-					/>
-				)
-			default:
-				return;
-		}
-	}
-
-	return renderImg(port, "slider-image-item");
-}
+// const Item = ({
+// 	item: { image, localImg }
+// }) => {
+// 	return renderImg(port, "slider-image-item", image, localImg);
+// }
 
 const Market = ({
 	products,

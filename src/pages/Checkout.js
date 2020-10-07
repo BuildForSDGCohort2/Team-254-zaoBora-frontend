@@ -69,11 +69,9 @@ const Checkout = (props) => {
 					>
 		    			<h2 className="register-title">
 							{renderImg(port, tree, "staticAssets/tree_u1brqs", "register-app-logo")}
-			        		Zao Bora
 		    			</h2>
 		    			<h5 className="mb mb-register-title">
 							{renderImg(port, tree, "staticAssets/tree_u1brqs", "register-app-logo")}
-			        		Zao Bora
 		    			</h5>
 					</NavLink>
 				</div>

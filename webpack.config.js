@@ -1,9 +1,9 @@
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
-const Dotenv = require('dotenv-webpack');
 
 module.exports = env => {
     const isProduction = env === 'production';
+    const Dotenv = !isProduction ? require('dotenv-webpack') : null;
 
     return {
         mode: 'development',
@@ -11,7 +11,7 @@ module.exports = env => {
         output: {
             filename: 'main.js',
             path: path.resolve(__dirname, 'public/dist'),
-            publicPath: '/Team-254-zaoBora-frontend/dist/',
+            publicPath: '/',
         },
         module: {
             rules: [{
@@ -41,7 +41,7 @@ module.exports = env => {
                 favicon: 'public/tree.png',
                 filename: 'index.html'
             }),
-            new Dotenv()
+            !isProduction && new Dotenv()
         ],
         devtool: isProduction ? 'source-map' : 'inline-source-map',
         devServer: {

@@ -24,15 +24,13 @@ import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
 import Pagination from '@material-ui/lab/Pagination';
 import { Image } from 'cloudinary-react';
 import { connect } from 'react-redux';
-import Alert from '@material-ui/lab/Alert';
-import AlertTitle from '@material-ui/lab/AlertTitle';
-import Collapse from '@material-ui/core/Collapse';
 
 import Header from '../components/Header';
 import ItemListStyle from '../components/ItemListStyle';
 import MobileNav from '../components/MobileNav';
 import filterProducts from '../selectors/products';
 import { setTextFilter } from '../actions/filters';
+import { RenderResMsg } from '../utils/Common';
 
 const port = window.location.port;
 const localEnv = (port === "8080");
@@ -115,75 +113,32 @@ const StyledBadge = withStyles((theme) => ({
 	},
 }))(Badge);
 
-const Slider = () => {
-	const items = [{
-		image: 'staticAssets/beans_jgdn6y',
-		localImg: beans,
-		name: "Random Name #1",
-		description: "Probably the most random thing you have ever seen!"
-	},
-	{
-		image: 'staticAssets/carrots_k7k2ku',
-		localImg: carrots,
-		name: "Random Name #2",
-		description: "Hello World!"
-	},
-	{
-		image: 'staticAssets/peas_vkpymp',
-		localImg: peas,
-		name: "Random Name #3",
-		description: "Hello World Again!"
-	}];
-
-	return (
-		<Carousel
-			interval="3000"
-			animation="slide"
-		>
-			{
-				items.map((item, i) => <Item key={i} item={item} />)
-			}
-		</Carousel>
-	);
-}
-
-const Item = ({
-	item: { image, localImg }
-}) => {
-
-	const renderImg = (port, className, id = "") => {
-		switch (port) {
-			case "":
-				return (
-					<Image
-						publicId={image}
-						crop="scale"
-						alt={className}
-						className={className}
-					/>
-				);
-			case "8080":
-				return (
-					<img
-						src={localImg}
-						alt={className}
-						className={className}
-						id={id}
-					/>
-				)
-			default:
-				return;
-		}
-	}
-
-	return renderImg(port, "slider-image-item");
-}
+const items = [{
+	image: 'staticAssets/beans_jgdn6y',
+	localImg: beans,
+	name: "Random Name #1",
+	description: "Probably the most random thing you have ever seen!"
+},
+{
+	image: 'staticAssets/carrots_k7k2ku',
+	localImg: carrots,
+	name: "Random Name #2",
+	description: "Hello World!"
+},
+{
+	image: 'staticAssets/peas_vkpymp',
+	localImg: peas,
+	name: "Random Name #3",
+	description: "Hello World Again!"
+}];
 
 const Market = ({
 	products,
 	filters,
-	setTextFilter
+	setTextFilter,
+	resMsg
 }) => {
+	console.log(products);
 	const classes = useStyles();
 	const [open, setOpen] = React.useState(true);
 	const [styleType, setStyleType] = React.useState('grid');
@@ -222,15 +177,26 @@ const Market = ({
 	return (
 		<div className="market-container">
 			<Header />
-			<Collapse in={open}>
-				<Alert severity="info" className="flash-msg">
-					<AlertTitle>You've been successfully logged out!</AlertTitle>
-				</Alert>
-			</Collapse>
+			{resMsg.msg && <RenderResMsg type={resMsg.type} msg={resMsg.msg} title="Info" />}
 			<div className="product-list-filters">
 				<div className="product-list-filters-container">
 					<div className="image-slider">
-						<Slider />
+						<Carousel
+							interval="3000"
+							animation="slide"
+						>
+							{
+								items.map(item => (
+									<Image
+										key={item.image}
+										publicId={item.image}
+										crop="scale"
+										alt="slider-image-item"
+										className="slider-image-item"
+									/>
+								))
+							}
+						</Carousel>
 					</div>
 					<div className="product-filters">
 						<div className="product-filters-results">
@@ -334,14 +300,14 @@ const Market = ({
 																style={{
 																	fontSize: '2rem'
 																}}
-																/>
+															/>
 														</IconButton>
 														<IconButton aria-label="share">
 															<ShareIcon
 																style={{
 																	fontSize: '2rem'
 																}}
-																/>
+															/>
 														</IconButton>
 														<IconButton>
 															<StyledBadge badgeContent={4} color="secondary">
@@ -349,7 +315,7 @@ const Market = ({
 																	style={{
 																		fontSize: '2rem'
 																	}}
-																	/>
+																/>
 															</StyledBadge>
 														</IconButton>
 													</CardActions>
@@ -378,9 +344,10 @@ const Market = ({
 }
 
 
-const mapStateToProps = ({ products, filters }) => ({
+const mapStateToProps = ({ products, filters, resMsg }) => ({
 	filters,
-    products: filterProducts(products, filters)
+	resMsg,
+	products: filterProducts(products, filters)
 })
 
 const mapDispatchToProps = (dispatch) => ({

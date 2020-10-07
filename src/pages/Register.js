@@ -7,9 +7,13 @@ import { FaTwitter, FaFacebook, FaArrowLeft } from "react-icons/fa";
 import { makeStyles } from '@material-ui/core/styles';
 import { Formik } from "formik";
 import { Image } from 'cloudinary-react';
+import { connect } from 'react-redux';
 
 import RegisterForm from '../components/RegisterForm';
 import { validationSchema } from '../utils/validate';
+import { registerUser } from '../actions/authentication';
+import { registerVendor } from '../actions/vendorAuthentication';
+import { RenderResMsg } from '../utils/Common';
 
 const port = window.location.port;
 const localEnv = (port === "8080");
@@ -27,11 +31,15 @@ const useStyles = makeStyles(theme => ({
 	},
 }));
 
-const Register = () => {
+const Register = ({
+	registerUser,
+	registerVendor,
+	resMsg
+}) => {
 	const classes = useStyles();
-	
-	const renderImg = (port, localImgUrl, hostedUrl, className, id="") => {
-		switch(port) {
+
+	const renderImg = (port, localImgUrl, hostedUrl, className, id = "") => {
+		switch (port) {
 			case "":
 				return (
 					<Image
@@ -64,10 +72,10 @@ const Register = () => {
 					to="/"
 				>
 					<h1 className="register-title">
-						{renderImg(port, tree, "staticAssets/tree_u1brqs", "tree seedling")}
-						Zao Bora
+						{renderImg(port, tree, "staticAssets/tree_u1brqs", "tree seedling login-sec-logo")}
 					</h1>
 				</NavLink>
+				{resMsg.msg && <RenderResMsg type='error' msg={resMsg.msg} title="Error" />}
 				<span className="mb mb-register">
 					<span className="mb mb-register__wrapper">
 						<NavLink
@@ -96,10 +104,9 @@ const Register = () => {
 								<div className="zao-bora-info__wrapper">
 									<h1 className="register-title">
 										{renderImg(port, tree, "staticAssets/tree_u1brqs", "tree seedling")}
-										Zao Bora
 									</h1>
 									<div className="register-text">
-										<br /><p>Zao Bora is an online marketplace developed by innovators for farmers, retailers and consumers.<br /> Zao Bora strives to connect farmers with potential buyers by enabling transparent online purchase of products as well as sharing of products/produce through photosharing on the platform. Zao Bora is led by a team of hardworking and dedicated enterpreneurs who are always available for support and assistance.</p><br />
+										<p>Zao Bora is an online marketplace developed by innovators for farmers, retailers and consumers.<br /> Zao Bora strives to connect farmers with potential buyers by enabling transparent online purchase of products as well as sharing of products/produce through photosharing on the platform. Zao Bora is led by a team of hardworking and dedicated enterpreneurs who are always available for support and assistance.</p>
 										<span className="social-media-links">
 											<p>Check us out on social media: </p>
 											<FaTwitter style={{
@@ -113,7 +120,7 @@ const Register = () => {
 												marginLeft: 5,
 												cursor: 'pointer',
 												color: '#4867AA'
-											}} /><br />
+											}} />
 										</span>
 										<p>Or call us at: +2547xxxxxxxx</p>
 									</div>
@@ -156,26 +163,50 @@ const Register = () => {
 												accountType: '',
 												password: '',
 												confirmPassword: '',
+												username: '',
 												agreement: false
 											}}
 											validationSchema={validationSchema}
 											onSubmit={(values, { setSubmitting, resetForm }) => {
+												const is_farmer = (values['accountType'] === 'farmer') || (values['accountType'] === 'both') ? true : false;
 												values['phoneNumber'] = values['phoneNumber'].toString();
-												window.location.replace('/#/profile');
+												registerUser({
+													first_name: values['firstName'],
+													last_name: values['lastName'],
+													username: values['username'],
+													phone_number: values['phoneNumber'],
+													email: values['email'],
+													city: "",
+													region: "",
+													address: "",
+													street_address: "",
+													is_farmer,
+													password: values['password'],
+													confirm_password: values['confirmPassword']
+												})
 											}}
 										>
 											{props => <RegisterForm {...props} />}
 										</Formik>
 									</div>
 								</Container>
+							</div>
 						</div>
 					</div>
 				</div>
+				<div className="r-footer-margin"></div>
 			</div>
-			<div className="r-footer-margin"></div>
-			</div>
-    	</Fragment >
-    );
+		</Fragment >
+	);
 }
 
-export default Register;
+const mapStateToProps = (state) => ({
+	resMsg: state.resMsg
+})
+
+const mapDispatchToProps = (dispatch) => ({
+	registerUser: (obj) => dispatch(registerUser(obj)),
+	registerVendor: (obj) => dispatch(registerVendor(obj))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Register);

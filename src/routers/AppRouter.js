@@ -7,9 +7,9 @@ import React from 'react';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 
-// import PrivateRoute from './PrivateRoute';
 // import MobileRoutes from './MobileRoutes';
 // import ErrorBoundary from '../components/ErrorBoundary';
+import PrivateRoute from './PrivateRoute';
 import Footer from '../components/Footer';
 import ProductItemReviews from '../components/ProductItemReviews';
 import AccountOrders from '../pages/AccountOrders';
@@ -20,6 +20,7 @@ import Market from '../pages/Market';
 import ProductItem from '../pages/ProductItem';
 import About from '../pages/About';
 import Checkout from '../pages/Checkout';
+import EmailVerification from '../pages/EmailVerification';
 import Cart from '../pages/Cart';
 import NotFound from '../pages/NotFound';
 import FarmersDashboard from '../pages/farmer/FarmersDashboard';
@@ -27,6 +28,7 @@ import FarmersPosts from '../pages/farmer/FarmersPosts';
 import FarmersOrders from '../pages/farmer/FarmersOrders';
 import FarmerResetPassword from '../pages/farmer/FarmerResetPassword';
 import FAQ from '../pages/FAQ';
+import { EmailVerified } from '../pages/EmailVerified';
 
 
 export const history = createBrowserHistory();
@@ -42,15 +44,17 @@ const AppRouter = () => (
 	                <Route path="/login" component={Login} />
 	                <Route path="/register" component={Register} />
 	                <Route path="/about" component={About} />
-	                <Route path="/checkout" component={Checkout} />
-	                <Route path="/orders" component={AccountOrders} />
-	                <Route path="/profile" component={Account} />
-	                <Route path="/cart" component={Cart} />
+	                <Route path="/email-verification" component={EmailVerification} />
+	                <Route path="/email-verified" component={EmailVerified} />
 	                <Route path="/faq" component={FAQ} />
-	                <Route path="/farmer/profile" component={FarmersDashboard} />
-	                <Route path="/farmer/posts" component={FarmersPosts} />
-	                <Route path="/farmer/orders" component={FarmersOrders} />
-	                <Route path="/farmer/reset-password" component={FarmerResetPassword} />
+	                <PrivateRoute path="/farmer/profile" component={FarmersDashboard} />
+	                <PrivateRoute path="/farmer/posts" component={FarmersPosts} />
+	                <PrivateRoute path="/farmer/orders" component={FarmersOrders} />
+	                <PrivateRoute path="/farmer/reset-password" component={FarmerResetPassword} />
+	                <PrivateRoute path="/orders" component={AccountOrders} />
+	                <PrivateRoute path="/profile" component={Account} />
+	                <PrivateRoute path="/checkout" component={Checkout} />
+	                <PrivateRoute path="/cart" component={Cart} />
 	                <Route component={NotFound} />
 	            </Switch>
 	        </div>

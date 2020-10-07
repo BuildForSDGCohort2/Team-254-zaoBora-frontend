@@ -28,6 +28,7 @@ import { Image } from 'cloudinary-react';
 
 import filterProducts from '../selectors/products';
 import FilterProducts from './FilterProducts';
+import { logoutUser } from '../actions/authentication';
 import {
 	setTextFilter,
 	focusResults,
@@ -231,7 +232,9 @@ const Header = (props) => {
 		setTextFilter,
 		filters,
 		focusResults,
-		blurResults
+		blurResults,
+		authentication,
+		logoutUser
 	} = props;
 
 	const toggleDrawer = (anchor, open) => (event) => {
@@ -249,6 +252,11 @@ const Header = (props) => {
 	const handleClose = () => {
 		setAnchorEl(null);
 	};
+
+	const logout = () => {
+		logoutUser()
+		setAnchorEl(null);
+	}
 	
 	const renderImg = (port, localImgUrl, hostedUrl, className) => {
 		switch(port) {
@@ -297,17 +305,19 @@ const Header = (props) => {
 										FAQ
 									</NavLink>
 								</div>
-								<div className="header-auth-btns">
-									<NavLink
-										className="header-login-button no-background-btn header-btn"
-										to="/login"
-									>Sign in</NavLink>
-									<p>|</p>
-									<NavLink
-										className="header-register-button primary-btn header-btn"
-										to="/register"
-									>Register</NavLink>
-								</div>
+								{
+									!authentication?.authenticated && <div className="header-auth-btns">
+										<NavLink
+											className="header-login-button no-background-btn header-btn"
+											to="/login"
+										>Sign in</NavLink>
+										<p>|</p>
+										<NavLink
+											className="header-register-button primary-btn header-btn"
+											to="/register"
+										>Register</NavLink>
+									</div>
+								}
 							</div>
 						</div>
 					</div>
@@ -319,14 +329,12 @@ const Header = (props) => {
 										to="/"
 										className="app-logo"
 									>
-						    			<h2 className="register-title">
-											{renderImg(port, tree, "staticAssets/tree_u1brqs", "register-app-logo")}
-							        		Zao Bora
-						    			</h2>
-						    			<h5 className="mb-register-title">
-											{renderImg(port, tree, "staticAssets/tree_u1brqs", "register-app-logo")}
-							        		Zao Bora
-						    			</h5>
+										<Image
+											publicId="staticAssets/tree_ze9kbz"
+											crop="scale"
+											alt="app-logo"
+											className="register-app-logo app-logo-mkt"
+										/>
 									</NavLink>
 								</div>
 								<div className="search-filters-section dsk">
@@ -426,48 +434,52 @@ const Header = (props) => {
 														</NavLink>
 													</span>
 												</MenuItem>
-												<MenuItem
-													onClick={handleClose}
-												>
-													<span className="menu-item-group">
-														<AiFillShop
-															style={{
-																fontSize: '1.5rem',
-																color: '#818181',
-																marginRight: '.8rem'
-															}}
-														/>
-														<NavLink
-															to='/farmer/profile'
-												            exact={true}
-												            activeClassName="is-active"
-												            className="navbar-link option-link"
-														>
-															My Shop
-														</NavLink>
-													</span>
-												</MenuItem>
-												<MenuItem
-													onClick={handleClose}
-												>
-													<span className="menu-item-group">
-														<AiOutlineLogout
-															style={{
-																fontSize: '1.5rem',
-																color: '#818181',
-																marginRight: '.8rem'
-															}}
-														/>
-														<NavLink
-															to='/'
-												            exact={true}
-												            activeClassName="is-active"
-												            className="navbar-link option-link"
-														>
-															Logout
-														</NavLink>
-													</span>
-												</MenuItem>
+												{
+													authentication?.user?.is_farmer && <MenuItem
+														onClick={handleClose}
+													>
+														<span className="menu-item-group">
+															<AiFillShop
+																style={{
+																	fontSize: '1.5rem',
+																	color: '#818181',
+																	marginRight: '.8rem'
+																}}
+															/>
+															<NavLink
+																to='/farmer/profile'
+																exact={true}
+																activeClassName="is-active"
+																className="navbar-link option-link"
+															>
+																My Shop
+															</NavLink>
+														</span>
+													</MenuItem>
+												}
+												{
+													authentication?.authenticated && <MenuItem
+														onClick={logout}
+													>
+														<span className="menu-item-group">
+															<AiOutlineLogout
+																style={{
+																	fontSize: '1.5rem',
+																	color: '#818181',
+																	marginRight: '.8rem'
+																}}
+															/>
+															<NavLink
+																to='/'
+																exact={true}
+																activeClassName="is-active"
+																className="navbar-link option-link"
+															>
+																Logout
+															</NavLink>
+														</span>
+													</MenuItem>
+												}
 											</Menu>
 										</div>
 										<NavLink
@@ -488,8 +500,9 @@ const Header = (props) => {
 								<div className="mb mobile-hamburger-menu">
 									<GiHamburgerMenu
 										onClick={toggleDrawer('right', true)}
+										className="hamburger-menu"
 										style={{
-											fontSize: '2rem',
+											fontSize: '3rem',
 											color: '#666'
 										}}
 									/>
@@ -536,14 +549,16 @@ const Header = (props) => {
 	);
 }
 
-const mapStateToProps = ({ products, filters }) => ({
+const mapStateToProps = ({ products, filters, authentication }) => ({
 	filters,
-    products: filterProducts(products, filters)
+	products: filterProducts(products, filters),
+	authentication
 })
 
 const mapDispatchToProps = (dispatch) => ({
 	setTextFilter: (text) => dispatch(setTextFilter(text)),
 	focusResults: () => dispatch(focusResults()),
+	logoutUser: () => dispatch(logoutUser()),
 	blurResults: () => dispatch(blurResults())
 });
 

@@ -69,7 +69,7 @@
 	padding: .7rem;
 	width: 85%;
 	height: 8rem;
-	margin: 0 auto 3rem auto;
+	margin: 1rem auto 3rem auto;
 	display: flex;
 	justify-content: space-between;
 }
@@ -157,6 +157,7 @@
 
 .register-app-logo {
 	margin-right: $s-size;
+	max-width: 90%;
 }
 
 .pipe-divider {
@@ -223,11 +224,19 @@
 	.navigation-bar {
 		font-size: $s-size;
 	}
+
+	.register-app-logo {
+		max-width: 60%;
+	}
 }
 
 @media screen and (min-width: $mobile-width) and (max-width: $tablet-width) {
 	.header-container {
 		position: relative;
+	}
+
+	.register-app-logo {
+		max-width: 40%;
 	}
 
 	.header-auth-btns-container p,

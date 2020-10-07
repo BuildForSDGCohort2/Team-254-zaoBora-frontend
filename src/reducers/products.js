@@ -1,7 +1,7 @@
-/** 
+/**
  * Products Reducer
  */
- 
+
 const productsReducerDefaultState = [{
 	id: 'abc123',
 	avatar: 'J',
@@ -66,7 +66,17 @@ const productsReducerDefaultState = [{
 
 export default (state = productsReducerDefaultState, action) => {
     switch (action.type) {
+      case 'FETCH_ALL_PRODUCTS':
+          return {
+            ...state,
+            products: action.payload
+          }
+      case 'FETCH_PRODUCT':
+          return {
+            ...state,
+            products: action.payload
+          }
         default:
-            return state;
+          return state;
     }
 };

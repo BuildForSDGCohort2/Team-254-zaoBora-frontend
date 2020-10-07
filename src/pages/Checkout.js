@@ -9,6 +9,9 @@ import { ListMenu, displayIcon } from '../components/Header';
 import { CheckoutForm } from '../components/CheckoutForm';
 import MobileNav from '../components/MobileNav';
 
+import { connect } from 'react-redux';
+import { fetchProduct } from '../actions/products'
+
 const port = window.location.port;
 const localEnv = (port === "8080");
 const tree = localEnv && require('../assets/tree.png');
@@ -16,7 +19,8 @@ const tomatoes = localEnv && require('../assets/tomatoes.jpg');
 const carrots = localEnv && require('../assets/carrots.jpg');
 const peas = localEnv && require('../assets/peas.jpg');
 
-const Checkout = () => {
+const Checkout = (props) => {
+	const { fetchProduct, products } = props;
 	const [state, setState] = React.useState({
 		right: false
 	});
@@ -28,7 +32,7 @@ const Checkout = () => {
 
 		setState({ ...state, right: open });
 	};
-	
+
 	const renderImg = (port, localImgUrl, hostedUrl, className) => {
 		switch(port) {
 			case "":
@@ -154,4 +158,12 @@ const Checkout = () => {
 	);
 }
 
-export default Checkout;
+const mapDispatchToProps = dispatch => ({
+	fetchProduct: pid => dispatch(fetchProduct(pid))
+})
+
+const mapStateToProps = state => ({
+	products: state.products
+})
+
+export default connect(mapStateToProps,mapDispatchToProps)(Checkout);

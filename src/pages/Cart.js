@@ -21,6 +21,9 @@ import { Image, Transformation } from 'cloudinary-react';
 import Header from '../components/Header';
 import MobileNav from '../components/MobileNav';
 
+import { connect } from 'react-redux';
+import { fetchProduct } from '../actions/products'
+
 const port = window.location.port;
 const localEnv = (port === "8080");
 const tomatoes = localEnv && require('../assets/tomatoes.jpg');
@@ -45,8 +48,12 @@ const useStyles = makeStyles({
 let theme = createMuiTheme();
 theme = responsiveFontSizes(theme);
 
-const Cart = () => {
+const Cart = (props) => {
 	const classes = useStyles();
+	const { fetchProduct, products } = props;
+
+	fetchProduct('products');
+	console.log(fetchProduct);
 
 	const createData = (item, localImg, img, quantity, price, total) => {
 		return { item, img, localImg, quantity, price, total };
@@ -57,7 +64,7 @@ const Cart = () => {
 		createData('Beans', beans, 'staticAssets/beans_jgdn6y', 20, 250, 5000),
 		createData('Peas', peas, 'staticAssets/peas_vkpymp', 10, 400, 4000),
 	];
-	
+
 	const renderImg = (port, localImgUrl, hostedUrl, className) => {
 		switch(port) {
 			case "":
@@ -225,4 +232,12 @@ const Cart = () => {
 	);
 }
 
-export default Cart;
+const mapDispatchToProps = dispatch => ({
+	fetchProduct: pid => dispatch(fetchProduct(pid))
+})
+
+const mapStateToProps = state => ({
+	products: state.products
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);

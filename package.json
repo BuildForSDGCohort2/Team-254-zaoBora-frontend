@@ -41,8 +41,8 @@
   "scripts": {
     "start": "node server/server.js",
     "dev-server": "webpack-dev-server --mode=development --env=development",
-    "build": "webpack",
-    "build:prod": "NODE_ENV=production webpack -p --env production",
+    "build": "NODE_ENV=production webpack -p --env production",
+    "build:dev": "webpack",
     "predeploy": "yarn build:prod",
     "deploy": "gh-pages -d public",
     "prod:build-server": "NODE_ENV=production webpack -p --env production --config webpack.server.js --mode=production",

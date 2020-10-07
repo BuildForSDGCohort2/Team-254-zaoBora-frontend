@@ -1,12 +1,12 @@
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = env => {
     const isProduction = env === 'production';
-    const Dotenv = !isProduction ? require('dotenv-webpack') : null;
 
     return {
-        mode: 'development',
+        mode: env,
         entry: './src/index.js',
         output: {
             filename: 'main.js',
@@ -15,11 +15,9 @@ module.exports = env => {
         },
         module: {
             rules: [{
+                loader: "babel-loader",
                 test: /\.js$/,
-                exclude: /node_modules/,
-                use: {
-                    loader: "babel-loader"
-                }
+                exclude: /node_modules/
             },
             {
                 test: /\.s?css$/,
@@ -36,12 +34,12 @@ module.exports = env => {
             }]
         },
         plugins: [
+            new Dotenv(),
             new HtmlWebPackPlugin({
                 template: path.resolve(__dirname, 'public/index.html'),
                 favicon: 'public/tree.png',
                 filename: 'index.html'
-            }),
-            !isProduction && new Dotenv()
+            })
         ],
         devtool: isProduction ? 'source-map' : 'inline-source-map',
         devServer: {

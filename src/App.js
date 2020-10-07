@@ -21,11 +21,11 @@ const authUser = !!parsedUser?.access_token;
 const tokens = authUser ? {
     access_token: parsedUser.access_token,
     refresh_token: parsedUser.refresh_token,
-    account: 'users'
+    account: 'user'
 } : {
     access_token: '',
     refresh_token: '',
-    account: 'users'
+    account: 'user'
 }
 
 delete window.__PRELOADED_STATE__

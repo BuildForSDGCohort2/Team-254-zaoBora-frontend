@@ -224,6 +224,10 @@
 	.navigation-bar {
 		font-size: $s-size;
 	}
+
+	.register-app-logo {
+		max-width: 60%;
+	}
 }
 
 @media screen and (min-width: $mobile-width) and (max-width: $tablet-width) {

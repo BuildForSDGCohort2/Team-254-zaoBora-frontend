@@ -113,76 +113,24 @@ const StyledBadge = withStyles((theme) => ({
 	},
 }))(Badge);
 
-const Slider = () => {
-	const items = [{
-		image: 'staticAssets/beans_jgdn6y',
-		localImg: beans,
-		name: "Random Name #1",
-		description: "Probably the most random thing you have ever seen!"
-	},
-	{
-		image: 'staticAssets/carrots_k7k2ku',
-		localImg: carrots,
-		name: "Random Name #2",
-		description: "Hello World!"
-	},
-	{
-		image: 'staticAssets/peas_vkpymp',
-		localImg: peas,
-		name: "Random Name #3",
-		description: "Hello World Again!"
-	}];
-
-	return (
-		<Carousel
-			interval="3000"
-			animation="slide"
-		>
-			{
-				items.map((item, i) => (
-					<Image
-						key={i}
-						publicId={item.image}
-						crop="scale"
-						alt="slider-image-item"
-						className="slider-image-item"
-					/>
-				))
-			}
-		</Carousel>
-	);
-}
-
-// const renderImg = (port, className, image, localImg, id = "") => {
-// 	switch (port) {
-// 		case "":
-// 			return (
-// 				<Image
-// 					publicId={image}
-// 					crop="scale"
-// 					alt={className}
-// 					className={className}
-// 				/>
-// 			);
-// 		case "8080":
-// 			return (
-// 				<img
-// 					src={localImg}
-// 					alt={className}
-// 					className={className}
-// 					id={id}
-// 				/>
-// 			)
-// 		default:
-// 			return;
-// 	}
-// }
-
-// const Item = ({
-// 	item: { image, localImg }
-// }) => {
-// 	return renderImg(port, "slider-image-item", image, localImg);
-// }
+const items = [{
+	image: 'staticAssets/beans_jgdn6y',
+	localImg: beans,
+	name: "Random Name #1",
+	description: "Probably the most random thing you have ever seen!"
+},
+{
+	image: 'staticAssets/carrots_k7k2ku',
+	localImg: carrots,
+	name: "Random Name #2",
+	description: "Hello World!"
+},
+{
+	image: 'staticAssets/peas_vkpymp',
+	localImg: peas,
+	name: "Random Name #3",
+	description: "Hello World Again!"
+}];
 
 const Market = ({
 	products,
@@ -233,7 +181,22 @@ const Market = ({
 			<div className="product-list-filters">
 				<div className="product-list-filters-container">
 					<div className="image-slider">
-						<Slider />
+						<Carousel
+							interval="3000"
+							animation="slide"
+						>
+							{
+								items.map(item => (
+									<Image
+										key={item.image}
+										publicId={item.image}
+										crop="scale"
+										alt="slider-image-item"
+										className="slider-image-item"
+									/>
+								))
+							}
+						</Carousel>
 					</div>
 					<div className="product-filters">
 						<div className="product-filters-results">
@@ -337,14 +300,14 @@ const Market = ({
 																style={{
 																	fontSize: '2rem'
 																}}
-																/>
+															/>
 														</IconButton>
 														<IconButton aria-label="share">
 															<ShareIcon
 																style={{
 																	fontSize: '2rem'
 																}}
-																/>
+															/>
 														</IconButton>
 														<IconButton>
 															<StyledBadge badgeContent={4} color="secondary">
@@ -352,7 +315,7 @@ const Market = ({
 																	style={{
 																		fontSize: '2rem'
 																	}}
-																	/>
+																/>
 															</StyledBadge>
 														</IconButton>
 													</CardActions>

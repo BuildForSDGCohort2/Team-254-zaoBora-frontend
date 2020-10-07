@@ -329,12 +329,12 @@ const Header = (props) => {
 										to="/"
 										className="app-logo"
 									>
-						    			<h2 className="register-title">
-											{renderImg(port, tree, "staticAssets/tree_ze9kbz", "register-app-logo")}
-						    			</h2>
-						    			<h5 className="mb-register-title">
-											{renderImg(port, tree, "staticAssets/tree_ze9kbz", "register-app-logo")}
-						    			</h5>
+										<Image
+											publicId="staticAssets/tree_ze9kbz"
+											crop="scale"
+											alt="app-logo"
+											className="register-app-logo app-logo-mkt"
+										/>
 									</NavLink>
 								</div>
 								<div className="search-filters-section dsk">

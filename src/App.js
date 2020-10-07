@@ -29,6 +29,7 @@ const tokens = authUser ? {
 }
 
 delete window.__PRELOADED_STATE__
+console.log('==> ', cloudName)
 
 class App extends React.Component {
     render() {

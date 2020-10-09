@@ -29,7 +29,6 @@ const tokens = authUser ? {
 }
 
 delete window.__PRELOADED_STATE__
-console.log('==> ', cloudName)
 
 class App extends React.Component {
     render() {
@@ -40,7 +39,7 @@ class App extends React.Component {
 
         return (
             <Provider store={store}>
-                <CloudinaryContext cloudName={cloudName}>
+                <CloudinaryContext cloudName={cloudName ? cloudName : 'zaobora'}>
                     <ErrorBoundary>
                         <AppRouter />
                     </ErrorBoundary>

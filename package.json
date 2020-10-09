@@ -43,7 +43,6 @@
     "dev-server": "webpack-dev-server --mode=development --env=development",
     "build": "NODE_ENV=production webpack -p --env production",
     "build:dev": "webpack",
-    "predeploy": "yarn build:prod",
     "deploy": "gh-pages -d public",
     "prod:build-server": "NODE_ENV=production webpack -p --env production --config webpack.server.js --mode=production",
     "prod:start": "node ./functions/index.js",

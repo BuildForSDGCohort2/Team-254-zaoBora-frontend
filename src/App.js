@@ -39,7 +39,7 @@ class App extends React.Component {
 
         return (
             <Provider store={store}>
-                <CloudinaryContext cloudName={cloudName ? cloudName : 'zaobora'}>
+                <CloudinaryContext cloudName='zaobora'>
                     <ErrorBoundary>
                         <AppRouter />
                     </ErrorBoundary>

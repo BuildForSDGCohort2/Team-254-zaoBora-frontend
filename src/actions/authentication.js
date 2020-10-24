@@ -119,8 +119,7 @@ export const registerUser = userDetails => async (dispatch) => {
 export const loginUser = userDetails => async (dispatch) => {
 	try {
 		const res = await axios.post(`${BASE_URL}/auth/login`, userDetails);
-		// window.location.replace('/#/profile');
-		history.replace('/#/profile');
+		window.location.replace('/#/profile');
 		const authUser = {
 			user: res.data.user,
 			authenticated: res.data.authenticated,

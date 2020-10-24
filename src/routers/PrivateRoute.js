@@ -22,6 +22,8 @@ const PrivateRoute = ({
         })
     })
 
+    console.log('----------> ',isAuthenticated)
+
     return (
         <Route {...rest} component={(props) => (
             isAuthenticated ? (
@@ -35,7 +37,7 @@ const PrivateRoute = ({
     );
 }
 const mapStateToProps = state => ({
-    isAuthenticated: state.authentication.isAuthenticated
+    isAuthenticated: state.authentication.authenticated
 });
 
 const mapDispatchToProps = (dispatch) => ({

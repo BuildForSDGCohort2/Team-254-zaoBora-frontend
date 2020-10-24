@@ -1,0 +1,199 @@
+.checkout-container {
+	background: $off-white;
+}
+
+.checkout-header {
+	display: flex;
+	align-items: center;
+	height: 10vh;
+	padding: $l-size;
+	background: $white;
+}
+
+.checkout-section {
+	width: 70%;
+	margin: 0 auto;
+	display: flex;
+	gap: 5%;
+	// padding: $l-size 0;
+}
+
+.shipping-address-title {
+	color: $dark-grey;
+}
+
+.shipping-address-form,
+.mode-of-payment,
+.cart-items-section,
+.shipping-method {
+	margin: $l-size 0;
+}
+
+.mode-of-payment-card,
+.shipping-method-card {
+	padding: $m-size;
+}
+
+.shipping-info-section {
+	flex: 57.5%;
+}
+
+.shipping-address-form-card {
+	padding: $m-size;
+}
+
+.cart-items-section {
+	flex: 37.5%;
+}
+
+.payment-logo-btn,
+.shipping-method-btn {
+	width: 40%;
+	height: 10rem;
+	display: flex;
+	justify-content: flex-start;
+	width: 100%;
+}
+
+.checkout-radio-btn-container {
+	display: flex;
+	// width: 70%;
+	align-items: flex-start;
+	justify-content: space-between;
+}
+
+.checkout-radio-btn {
+	background: red;
+}
+
+.lipa-na-mpesa,
+.royparcel-logo {
+	max-width: 50%;
+	max-height: 70%;
+	width: 50%;
+}
+
+.checkout-options {
+	margin-bottom: $l-size;
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.checkout-option-btns {
+	text-decoration: none;
+}
+
+.checkout-link-btn {
+	font-size: $s-size !important;
+	padding: $s-size !important;
+}
+
+.back-to-cart .MuiButton-textPrimary {
+    color: dodgerblue !important;
+}
+
+.back-to-cart {
+	flex: 50%;
+}
+
+.confirm-purchase {
+	flex: 50%;
+}
+
+.cart-section-container {
+	display: flex;
+	flex-direction: column;
+}
+
+.checkout-cart-item-title {
+	margin: $m-size;
+	margin-bottom: 0;
+	color: $dark-grey;
+}
+
+.checkout-cart-item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 5%;
+	padding: $m-size;
+}
+
+.checkout-cart-item-img {
+	flex: 15%;
+	// height: 5rem;
+}
+
+.checkout-cart-item-info {
+	flex: 55%;
+}
+
+.checkout-cart-item-price {
+	flex: 25%;
+}
+
+.checkout-cart-img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+.checkout-total-cost {
+	margin: $m-size 0;
+	display: flex;
+	flex-direction: column;
+}
+
+.checkout-subtotal-total, 
+.checkout-shipping-total, 
+.checkout-cumulative-total {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-bottom: .1rem solid $white;
+}
+
+.checkout-total-price {
+	color: $grey;
+}
+
+
+@media screen and (min-width: 64rem) and (max-width: 84em) {
+	.checkout-header {
+		height: 7vh;
+		padding: $m-size;
+	}
+
+	.checkout-section {
+		width: 95%;
+	}
+
+	.checkout-container {
+		padding-bottom: 30rem;
+	}
+
+}
+
+@media screen and (min-width: $tablet-width) and (max-width: $laptop-width) {
+	.checkout-section {
+		width: 90%;
+	}
+}
+
+@media screen and (min-width: $mobile-width) and (max-width: $tablet-width) {
+	.checkout-header {
+		height: 7vh;
+		padding: $m-size;
+	}
+
+	.checkout-section {
+		width: 95%;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.checkout-link-btn {
+		font-size: 1.2rem !important;
+		padding: .5rem !important;
+	}
+}

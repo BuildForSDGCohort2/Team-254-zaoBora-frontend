@@ -1,0 +1,11 @@
+footer {
+	background: #222222;
+	padding: 2rem;
+}
+
+
+@media screen and (min-width: $mobile-width) and (max-width: $tablet-width) {
+	footer {
+		padding-bottom: 6rem;
+	}
+}

@@ -42,7 +42,6 @@ const Login = ({
 }) => {
 	loginVendor()
 	console.log(vendorAuthentication)
-	console.log('------------------>')
 	const classes = useStyles();
 
 	const renderImg = (port, localImgUrl, hostedUrl, className, id = "") => {

@@ -141,36 +141,17 @@ const FarmerHeader = () => {
 		</div>
 	);
 
-	const renderImg = (port, localImgUrl, hostedUrl, className) => {
-		switch(port) {
-			case "":
-				return (
-					<Image
-						publicId={hostedUrl}
-						crop="scale"
-						alt={hostedUrl}
-						className={className}
-						secure="true"
-					/>
-				);
-			case "8080":
-				return (
-					<img
-						src={localImgUrl}
-						alt={localImgUrl}
-						className={className}
-					/>
-				)
-			default:
-				return;
-		}
-	}
-
 	return (
 		<div className="dashboard-navbar-container">
 			<NavLink to="/" className="dashboard-logo">
 				<div className="dashboard-navbar">
-					{renderImg(port, tree, "staticAssets/tree_u1brqs", "farmer-dashboard-app-logo")}
+					<Image
+						publicId="staticAssets/tree_u1brqs"
+						crop="scale"
+						alt="App logo"
+						className="farmer-dashboard-app-logo"
+						secure="true"
+					/>
 				</div>
 			</NavLink>
 			<GiHamburgerMenu

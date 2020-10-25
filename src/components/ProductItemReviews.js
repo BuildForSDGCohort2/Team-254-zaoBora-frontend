@@ -35,11 +35,11 @@ const useStyles = makeStyles((theme) => ({
 	avatar: {
 		backgroundColor: '#4caf50',
 	},
-    submit: {
-        margin: theme.spacing(3, 0, 2),
-        backgroundColor: theme.palette.success.main,
-        padding: theme.spacing(1.5)
-    },
+	submit: {
+		margin: theme.spacing(3, 0, 2),
+		backgroundColor: theme.palette.success.main,
+		padding: theme.spacing(1.5)
+	},
 	paper: {
 		backgroundColor: theme.palette.background.paper,
 		padding: theme.spacing(2, 4, 3),
@@ -75,33 +75,6 @@ const ProductItemReviews = () => {
 	const handleNewReview = () => {
 		handleOpen()
 	}
-	
-	const renderImg = (port, localImgUrl, hostedUrl, className) => {
-		switch(port) {
-			case "":
-				return (
-					<Image
-						key={hostedUrl}
-						publicId={hostedUrl}
-						crop="scale"
-						alt={className}
-						className={className}
-						secure="true"
-					/>
-				);
-			case "8080":
-				return (
-					<img
-						key={localImgUrl}
-						src={localImgUrl}
-						alt={className}
-						className={className}
-					/>
-				)
-			default:
-				return;
-		}
-	}
 
 	return (
 		<div className="product-item-review-container">
@@ -110,11 +83,27 @@ const ProductItemReviews = () => {
 				<div className="product-img-details">
 					<div className="product-item-img">
 						<div className="product-item-main-img">
-							{renderImg(port, beans, "staticAssets/beans_jgdn6y", "product-main-img")}
+							<Image
+								key="staticAssets/beans_jgdn6y"
+								publicId="staticAssets/beans_jgdn6y"
+								crop="scale"
+								alt="product-main-img"
+								className="product-main-img"
+								secure="true"
+							/>
 						</div>
 						<div className="product-item-sub-img">
 							{
-								imgs.map(img => renderImg(port, img[0], img[1], "product-sub-img"))
+								imgs.map(img => (
+									<Image
+										key={img[1]}
+										publicId={img[1]}
+										crop="scale"
+										alt="product-sub-img"
+										className="product-sub-img"
+										secure="true"
+									/>
+								))
 							}
 						</div>
 					</div>
@@ -208,16 +197,16 @@ const ProductItemReviews = () => {
 												<GrClose className="close-btn" onClick={handleClose} />
 											</div><br />
 											<Formik
-									            initialValues={{
-									            	rating: 0,
-									            	review: ''
-									            }}
-									            // validationSchema={updateAccountSchema}
-									            onSubmit={(values, { setSubmitting, resetForm }) => {
-									            	console.log(values)
-									            }}
-									        >
-									        	{({ values, handleChange, errors }) => (
+												initialValues={{
+													rating: 0,
+													review: ''
+												}}
+												// validationSchema={updateAccountSchema}
+												onSubmit={(values, { setSubmitting, resetForm }) => {
+													console.log(values)
+												}}
+											>
+												{({ values, handleChange, errors }) => (
 													<Fragment>
 														<div className="rate-product-container">
 															<small className="rate-product-text">Rate this product</small>
@@ -253,8 +242,8 @@ const ProductItemReviews = () => {
 															Post
 														</Button>
 													</Fragment>
-							        			)}
-									        </Formik>
+												)}
+											</Formik>
 										</div>
 									</Fade>
 								</Modal>
@@ -262,8 +251,8 @@ const ProductItemReviews = () => {
 									<Button
 										variant="contained"
 										color="primary"
-								        startIcon={<BorderColorIcon />}
-								        onClick={handleNewReview}
+										startIcon={<BorderColorIcon />}
+										onClick={handleNewReview}
 									>
 										Add a review
 									</Button>

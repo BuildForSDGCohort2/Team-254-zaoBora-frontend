@@ -44,35 +44,6 @@ const Login = ({
 	console.log(vendorAuthentication)
 	const classes = useStyles();
 
-	const renderImg = (port, localImgUrl, hostedUrl, className, id = "") => {
-		switch (port) {
-			case "":
-				return (
-					<Image
-						publicId={hostedUrl}
-						crop="scale"
-						alt={className}
-						className={className}
-						id={id}
-						secure="true"
-					>
-						<Transformation quality="auto" fetchFormat="auto" />
-					</Image>
-				);
-			case "8080":
-				return (
-					<img
-						src={localImgUrl}
-						alt={className}
-						className={className}
-						id={id}
-					/>
-				)
-			default:
-				return;
-		}
-	}
-
 	return (
 		<div className="login-page register-page">
 			<NavLink
@@ -80,7 +51,15 @@ const Login = ({
 				to="/"
 			>
 				<h1 className="register-title">
-					{renderImg(port, tree, "staticAssets/tree_ze9kbz", "register-app-logo login-sec-logo")}
+					<Image
+						publicId="staticAssets/tree_ze9kbz"
+						crop="scale"
+						alt="App Logo"
+						className="register-app-logo login-sec-logo"
+						secure="true"
+					>
+						<Transformation quality="auto" fetchFormat="auto" />
+					</Image>
 				</h1>
 			</NavLink>
 			{resMsg.msg && <RenderResMsg type={resMsg.type} msg={resMsg.msg} title="Error" />}
@@ -108,7 +87,16 @@ const Login = ({
 			<div className="login-section">
 				<div className="zao-bora-illustration dsk">
 					<div className="farmer-illustration zao-bora-info">
-						{renderImg(port, farmer, "staticAssets/farmer-2_zyqgic", "", "farmer-illustration")}
+						<Image
+							publicId="staticAssets/farmer-2_zyqgic"
+							crop="scale"
+							alt="Farmer picture illustration"
+							className="farmer-illustration"
+							id="farmer-illustration"
+							secure="true"
+						>
+							<Transformation quality="auto" fetchFormat="auto" />
+						</Image>
 					</div>
 				</div>
 				<div className="login-form">

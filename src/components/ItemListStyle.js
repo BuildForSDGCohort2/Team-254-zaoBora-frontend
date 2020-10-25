@@ -66,7 +66,7 @@ const ItemListStyle = ({ products }) => {
 	const [mainImg3, setMain3Img] = React.useState('staticAssets/peas_vkpymp');
 
 	const handleChangeMainImg = (img, imgName) => {
-		switch(img) {
+		switch (img) {
 			case 'mainImg1':
 				setMain1Img(imgName)
 				break;
@@ -81,120 +81,136 @@ const ItemListStyle = ({ products }) => {
 		}
 
 	}
-	
-	const renderImg = (port, localImgUrl, hostedUrl, className) => {
-		switch(port) {
-			case "":
-				return (
-					<Image
-						publicId={hostedUrl}
-						crop="scale"
-						alt={className}
-						className={className}
-						onClick={() => handleChangeMainImg('mainImg1', hostedUrl)}
-						secure="true"
-					>
-						<Transformation quality="auto" fetchFormat="auto" />
-					</Image>
-				);
-			case "8080":
-				return (
-					<img
-						src={localImgUrl}
-						alt={className}
-						className={className}
-						onClick={() => handleChangeMainImg('mainImg1', localImgUrl)}
-					/>
-				)
-			default:
-				return;
-		}
-	}
 
 	return (
 		<div className="product-list-style">
 			{
 				products.map(product => (
 					<div className="product-list-item list-style-item" key={product.id}>
-							<Card className={classes.card}>
-								<div className="product-item">
-									<div className="product-img">
-										<div className="main-img">
-											{renderImg(port, product.localImg, product.image, "product-img-item")}
-										</div>
-										<div className="sub-img">
-											{renderImg(port, carrots, "staticAssets/carrots_k7k2ku", "sub-product-img-item")}
-											{renderImg(port, tomatoes, "staticAssets/tomatoes_arzns2", "sub-product-img-item")}
-											{renderImg(port, peas, "staticAssets/peas_vkpymp", "sub-product-img-item")}
-											{renderImg(port, mangoes, "staticAssets/mangoes_ksuvfs", "sub-product-img-item")}
-										</div>
+						<Card className={classes.card}>
+							<div className="product-item">
+								<div className="product-img">
+									<div className="main-img">
+										<Image
+											publicId={product.image}
+											crop="scale"
+											alt="product-img-item"
+											className="product-img-item"
+											onClick={() => handleChangeMainImg('mainImg1', "staticAssets/tomatoes_arzns2")}
+											secure="true"
+										>
+											<Transformation quality="auto" fetchFormat="auto" />
+										</Image>
 									</div>
-									<div className="product-item-content">
-										<CardHeader
-											className={classes.smallFontSize}
-											avatar={
-												<Avatar aria-label="recipe" className={classes.avatar}>
+									<div className="sub-img">
+										<Image
+											publicId="staticAssets/carrots_k7k2ku"
+											crop="scale"
+											alt="sub-product-img-item"
+											className="sub-product-img-item"
+											onClick={() => handleChangeMainImg('mainImg1', "staticAssets/carrots_k7k2ku")}
+											secure="true"
+										>
+											<Transformation quality="auto" fetchFormat="auto" />
+										</Image>
+										<Image
+											publicId="staticAssets/tomatoes_arzns2"
+											crop="scale"
+											alt="sub-product-img-item"
+											className="sub-product-img-item"
+											onClick={() => handleChangeMainImg('mainImg1', "staticAssets/tomatoes_arzns2")}
+											secure="true"
+										>
+											<Transformation quality="auto" fetchFormat="auto" />
+										</Image>
+										<Image
+											publicId="staticAssets/peas_vkpymp"
+											crop="scale"
+											alt="sub-product-img-item"
+											className="sub-product-img-item"
+											onClick={() => handleChangeMainImg('mainImg1', "staticAssets/peas_vkpymp")}
+											secure="true"
+										>
+											<Transformation quality="auto" fetchFormat="auto" />
+										</Image>
+										<Image
+											publicId="staticAssets/mangoes_ksuvfs"
+											crop="scale"
+											alt="sub-product-img-item"
+											className="sub-product-img-item"
+											onClick={() => handleChangeMainImg('mainImg1', "staticAssets/mangoes_ksuvfs")}
+											secure="true"
+										>
+											<Transformation quality="auto" fetchFormat="auto" />
+										</Image>
+									</div>
+								</div>
+								<div className="product-item-content">
+									<CardHeader
+										className={classes.smallFontSize}
+										avatar={
+											<Avatar aria-label="recipe" className={classes.avatar}>
 												{product.avatar}
-												</Avatar>
-											}
-											action={
-												<IconButton aria-label="settings">
-													<MoreVertIcon />
-												</IconButton>
-											}
-											title={product.seller}
-											subheader={product.date}
-										/>
-										<NavLink to={`/product/${product.id}/description`} className="product-nav-link">
-											<CardContent className={classes.fixedHeight}>
-												<div
-													style={{
-														overflow: "hidden",
-														textOverflow: "ellipsis",
-														height: "100%"
-													}}
-												>
-													<Typography variant="h5" gutterBottom>
-														{product.title}
-													</Typography>
-													<Typography className={classes.fontSize} variant="body2" color="textSecondary" component="p">
-														{product.description}
-													</Typography>
-												</div>
-											</CardContent>
-											<CardActions disableSpacing>
-												<div className="action-section">
-													<div className="chat-share">
-														<IconButton aria-label="share">
-															<ShareIcon
-																style={{
-																	fontSize: '2rem'
-																}}
-															/>
-														</IconButton>
-														<IconButton>
-															<StyledBadge badgeContent={4} color="secondary">
-																<ChatBubbleIcon
-																	style={{
-																		fontSize: '2rem'
-																	}}
-																/>
-															</StyledBadge>
-														</IconButton>
-													</div>
-													<IconButton aria-label="cart">
-														<FaCartPlus
+											</Avatar>
+										}
+										action={
+											<IconButton aria-label="settings">
+												<MoreVertIcon />
+											</IconButton>
+										}
+										title={product.seller}
+										subheader={product.date}
+									/>
+									<NavLink to={`/product/${product.id}/description`} className="product-nav-link">
+										<CardContent className={classes.fixedHeight}>
+											<div
+												style={{
+													overflow: "hidden",
+													textOverflow: "ellipsis",
+													height: "100%"
+												}}
+											>
+												<Typography variant="h5" gutterBottom>
+													{product.title}
+												</Typography>
+												<Typography className={classes.fontSize} variant="body2" color="textSecondary" component="p">
+													{product.description}
+												</Typography>
+											</div>
+										</CardContent>
+										<CardActions disableSpacing>
+											<div className="action-section">
+												<div className="chat-share">
+													<IconButton aria-label="share">
+														<ShareIcon
 															style={{
 																fontSize: '2rem'
 															}}
 														/>
 													</IconButton>
+													<IconButton>
+														<StyledBadge badgeContent={4} color="secondary">
+															<ChatBubbleIcon
+																style={{
+																	fontSize: '2rem'
+																}}
+															/>
+														</StyledBadge>
+													</IconButton>
 												</div>
-											</CardActions>
-										</NavLink>
-									</div>
+												<IconButton aria-label="cart">
+													<FaCartPlus
+														style={{
+															fontSize: '2rem'
+														}}
+													/>
+												</IconButton>
+											</div>
+										</CardActions>
+									</NavLink>
 								</div>
-							</Card>
+							</div>
+						</Card>
 					</div>
 				))
 			}
@@ -204,7 +220,7 @@ const ItemListStyle = ({ products }) => {
 
 
 const mapStateToProps = ({ products, filters }) => ({
-    products: filterProducts(products, filters)
+	products: filterProducts(products, filters)
 })
 
 export default connect(mapStateToProps)(ItemListStyle);

@@ -38,33 +38,6 @@ const Register = ({
 }) => {
 	const classes = useStyles();
 
-	const renderImg = (port, localImgUrl, hostedUrl, className, id = "") => {
-		switch (port) {
-			case "":
-				return (
-					<Image
-						key={hostedUrl}
-						publicId={hostedUrl}
-						crop="scale"
-						alt={className}
-						className={className}
-						secure="true"
-					/>
-				);
-			case "8080":
-				return (
-					<img
-						key={localImgUrl}
-						src={localImgUrl}
-						alt={className}
-						className={className}
-					/>
-				)
-			default:
-				return;
-		}
-	}
-
 	return (
 		<Fragment>
 			<div className="register-page">
@@ -73,7 +46,13 @@ const Register = ({
 					to="/"
 				>
 					<h1 className="register-title">
-						{renderImg(port, tree, "staticAssets/tree_u1brqs", "tree seedling login-sec-logo")}
+						<Image
+							publicId="staticAssets/tree_u1brqs"
+							crop="scale"
+							alt="App logo"
+							className="tree seedling login-sec-logo"
+							secure="true"
+						/>
 					</h1>
 				</NavLink>
 				{resMsg.msg && <RenderResMsg type='error' msg={resMsg.msg} title="Error" />}
@@ -104,7 +83,13 @@ const Register = ({
 							<div className="zao-bora-info">
 								<div className="zao-bora-info__wrapper">
 									<h1 className="register-title">
-										{renderImg(port, tree, "staticAssets/tree_u1brqs", "tree seedling")}
+										<Image
+											publicId="staticAssets/tree_u1brqs"
+											crop="scale"
+											alt="App logo"
+											className="tree seedling"
+											secure="true"
+										/>
 									</h1>
 									<div className="register-text">
 										<p>Zao Bora is an online marketplace developed by innovators for farmers, retailers and consumers.<br /> Zao Bora strives to connect farmers with potential buyers by enabling transparent online purchase of products as well as sharing of products/produce through photosharing on the platform. Zao Bora is led by a team of hardworking and dedicated enterpreneurs who are always available for support and assistance.</p>

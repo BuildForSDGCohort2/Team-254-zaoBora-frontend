@@ -37,35 +37,8 @@ const imgs = [
 	[vegetables, 'staticAssets/vegetables_bqz9sy']
 ];
 
-const ProductItem = ({addItem,cart}) => {
+const ProductItem = ({ addItem, cart }) => {
 	const [value, setValue] = React.useState(2);
-	
-	const renderImg = (port, localImgUrl, hostedUrl, className, id="") => {
-		switch(port) {
-			case "":
-				return (
-					<Image
-						key={hostedUrl}
-						publicId={hostedUrl}
-						crop="scale"
-						alt={className}
-						className={className}
-						secure="true"
-					/>
-				);
-			case "8080":
-				return (
-					<img
-						key={localImgUrl}
-						src={localImgUrl}
-						alt={className}
-						className={className}
-					/>
-				)
-			default:
-				return;
-		}
-	}
 
 	return (
 		<div className="product-item-container">
@@ -74,11 +47,26 @@ const ProductItem = ({addItem,cart}) => {
 				<div className="product-img-details">
 					<div className="product-item-img">
 						<div className="product-item-main-img">
-							{renderImg(port, beans, "staticAssets/beans_jgdn6y", "product-main-img")}
+							<Image
+								publicId="staticAssets/beans_jgdn6y"
+								crop="scale"
+								alt="main product image"
+								className="product-main-img"
+								secure="true"
+							/>
 						</div>
 						<div className="product-item-sub-img">
 							{
-								imgs.map(img => renderImg(port, img[0], img[1], "product-sub-img"))
+								imgs.map(img => (
+									<Image
+										key={img[1]}
+										publicId={img[1]}
+										crop="scale"
+										alt="sub product image"
+										className="product-sub-img"
+										secure="true"
+									/>
+								))
 							}
 						</div>
 					</div>
@@ -157,11 +145,11 @@ const ProductItem = ({addItem,cart}) => {
 }
 
 const mapStateToProps = state => ({
-	cart : state.cart
+	cart: state.cart
 })
 
 const mapDispatchToProps = dispatch => ({
-    addItem: item => dispatch(addItem(item))
+	addItem: item => dispatch(addItem(item))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductItem);

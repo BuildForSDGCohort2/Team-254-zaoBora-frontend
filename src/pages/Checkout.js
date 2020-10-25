@@ -33,33 +33,6 @@ const Checkout = (props) => {
 		setState({ ...state, right: open });
 	};
 
-	const renderImg = (port, localImgUrl, hostedUrl, className) => {
-		switch(port) {
-			case "":
-				return (
-					<Image
-						publicId={hostedUrl}
-						crop="scale"
-						alt={className}
-						className={className}
-						secure="true"
-					>
-						<Transformation quality="auto" fetchFormat="auto" />
-					</Image>
-				);
-			case "8080":
-				return (
-					<img
-						src={localImgUrl}
-						alt={className}
-						className={className}
-					/>
-				)
-			default:
-				return;
-		}
-	}
-
 	return (
 		<div className="checkout-container">
 			<div className="checkout-header">
@@ -68,12 +41,28 @@ const Checkout = (props) => {
 						to="/"
 						className="app-logo"
 					>
-		    			<h2 className="register-title">
-							{renderImg(port, tree, "staticAssets/tree_u1brqs", "register-app-logo")}
-		    			</h2>
-		    			<h5 className="mb mb-register-title">
-							{renderImg(port, tree, "staticAssets/tree_u1brqs", "register-app-logo")}
-		    			</h5>
+						<h2 className="register-title">
+							<Image
+								publicId="staticAssets/tree_u1brqs"
+								crop="scale"
+								alt="App logo"
+								className="register-app-logo"
+								secure="true"
+							>
+								<Transformation quality="auto" fetchFormat="auto" />
+							</Image>
+						</h2>
+						<h5 className="mb mb-register-title">
+							<Image
+								publicId="staticAssets/tree_u1brqs"
+								crop="scale"
+								alt="App logo"
+								className="register-app-logo"
+								secure="true"
+							>
+								<Transformation quality="auto" fetchFormat="auto" />
+							</Image>
+						</h5>
 					</NavLink>
 				</div>
 				<div className="mb mobile-hamburger-menu">
@@ -84,13 +73,13 @@ const Checkout = (props) => {
 							color: '#666'
 						}}
 					/>
-			        <Drawer
-			        	anchor={'right'}
-			        	open={state['right']}
-			        	onClose={toggleDrawer('right', false)}
-		        	>
-			            {ListMenu('right', toggleDrawer, displayIcon)}
-			        </Drawer>
+					<Drawer
+						anchor={'right'}
+						open={state['right']}
+						onClose={toggleDrawer('right', false)}
+					>
+						{ListMenu('right', toggleDrawer, displayIcon)}
+					</Drawer>
 				</div>
 			</div>
 			<div className="checkout-section">
@@ -104,7 +93,15 @@ const Checkout = (props) => {
 						<h4 className="checkout-cart-item-title">Cart Items</h4>
 						<div className="checkout-cart-item">
 							<div className="checkout-cart-item-img">
-								{renderImg(port, tomatoes, "staticAssets/tomatoes_arzns2", "checkout-cart-img")}
+								<Image
+									publicId="staticAssets/tomatoes_arzns2"
+									crop="scale"
+									alt="Tomatoes"
+									className="checkout-cart-img"
+									secure="true"
+								>
+									<Transformation quality="auto" fetchFormat="auto" />
+								</Image>
 							</div>
 							<div className="checkout-cart-item-info">
 								<small>This impressive paella is a perfect party dish and a</small>
@@ -115,7 +112,15 @@ const Checkout = (props) => {
 						</div>
 						<div className="checkout-cart-item">
 							<div className="checkout-cart-item-img">
-								{renderImg(port, peas, "staticAssets/peas_vkpymp", "checkout-cart-img")}
+								<Image
+									publicId="staticAssets/peas_vkpymp"
+									crop="scale"
+									alt="Tomatoes"
+									className="checkout-cart-img"
+									secure="true"
+								>
+									<Transformation quality="auto" fetchFormat="auto" />
+								</Image>
 							</div>
 							<div className="checkout-cart-item-info">
 								<small>This impressive paella is a perfect party dish and a</small>
@@ -126,7 +131,15 @@ const Checkout = (props) => {
 						</div>
 						<div className="checkout-cart-item">
 							<div className="checkout-cart-item-img">
-								{renderImg(port, carrots, "staticAssets/carrots_k7k2ku", "checkout-cart-img")}
+								<Image
+									publicId="staticAssets/carrots_k7k2ku"
+									crop="scale"
+									alt="Tomatoes"
+									className="checkout-cart-img"
+									secure="true"
+								>
+									<Transformation quality="auto" fetchFormat="auto" />
+								</Image>
 							</div>
 							<div className="checkout-cart-item-info">
 								<small>This impressive paella is a perfect party dish and a</small>
@@ -165,4 +178,4 @@ const mapStateToProps = state => ({
 	products: state.products
 })
 
-export default connect(mapStateToProps,mapDispatchToProps)(Checkout);
+export default connect(mapStateToProps, mapDispatchToProps)(Checkout);

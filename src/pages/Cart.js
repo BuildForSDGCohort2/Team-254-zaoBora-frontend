@@ -65,33 +65,6 @@ const Cart = (props) => {
 		createData('Peas', peas, 'staticAssets/peas_vkpymp', 10, 400, 4000),
 	];
 
-	const renderImg = (port, localImgUrl, hostedUrl, className) => {
-		switch(port) {
-			case "":
-				return (
-					<Image
-						publicId={hostedUrl}
-						crop="scale"
-						alt={className}
-						className={className}
-						secure="true"
-					>
-						<Transformation quality="auto" fetchFormat="auto" />
-					</Image>
-				);
-			case "8080":
-				return (
-					<img
-						src={localImgUrl}
-						alt={className}
-						className={className}
-					/>
-				)
-			default:
-				return;
-		}
-	}
-
 	return (
 		<Fragment>
 			<Header />
@@ -107,7 +80,15 @@ const Cart = (props) => {
 									<Card>
 										<div className="item-content">
 											<div className="cart-img-container">
-												{renderImg(port, row.localImg, row.img, "cart-img")}
+												<Image
+													publicId={row.img}
+													crop="scale"
+													alt="cart-img"
+													className="cart-img"
+													secure="true"
+												>
+													<Transformation quality="auto" fetchFormat="auto" />
+												</Image>
 											</div>
 											<div className="item-details">
 												<b>Seller: John Doe</b>
@@ -137,13 +118,13 @@ const Cart = (props) => {
 														>
 															<RemoveIcon fontSize="small" />
 														</Button>
-															<TextField
-																variant="outlined"
-																name="quantity"
-																type="number"
-																value={row.quantity}
-																onChange={() => {}}
-															/>
+														<TextField
+															variant="outlined"
+															name="quantity"
+															type="number"
+															value={row.quantity}
+															onChange={() => { }}
+														/>
 														<Button
 															aria-label="increase"
 															onClick={() => {
@@ -178,7 +159,15 @@ const Cart = (props) => {
 											<TableRow key={row.item}>
 												<TableCell component="th" scope="row" className={classes.tableBody}>
 													<div className="item-content">
-														{renderImg(port, row.localImg, row.img, "cart-img")}
+														<Image
+															publicId={row.img}
+															crop="scale"
+															alt="cart-img"
+															className="cart-img"
+															secure="true"
+														>
+															<Transformation quality="auto" fetchFormat="auto" />
+														</Image>
 														<div className="item-details">
 															<b>Seller: John Doe</b>
 															<p>{row.item}</p>

@@ -257,31 +257,6 @@ const Header = (props) => {
 		logoutUser()
 		setAnchorEl(null);
 	}
-	
-	const renderImg = (port, localImgUrl, hostedUrl, className) => {
-		switch(port) {
-			case "":
-				return (
-					<Image
-						publicId={hostedUrl}
-						crop="scale"
-						alt={className}
-						className={className}
-						secure="true"
-					/>
-				);
-			case "8080":
-				return (
-					<img
-						src={localImgUrl}
-						alt={className}
-						className={className}
-					/>
-				)
-			default:
-				return;
-		}
-	}
 
 	return (
 		<HideOnScroll {...props}>

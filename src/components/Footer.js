@@ -9,9 +9,7 @@ const Copyright = (props) => (
     <Typography variant="h5" align="center">
 		<span style={{color:'#868686'}}>
 			{'Copyright © '}
-			<Link color="primary" href="https://material-ui.com/">
-				Zao Bora
-			</Link>{' '}
+			Zao Bora{' '}
 			{new Date().getFullYear()}
 			{'.'}
 		</span>

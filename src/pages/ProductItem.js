@@ -50,6 +50,7 @@ const ProductItem = ({addItem,cart}) => {
 						crop="scale"
 						alt={className}
 						className={className}
+						secure="true"
 					/>
 				);
 			case "8080":

@@ -92,6 +92,7 @@ const ItemListStyle = ({ products }) => {
 						alt={className}
 						className={className}
 						onClick={() => handleChangeMainImg('mainImg1', hostedUrl)}
+						secure="true"
 					>
 						<Transformation quality="auto" fetchFormat="auto" />
 					</Image>

@@ -42,6 +42,7 @@ const Checkout = (props) => {
 						crop="scale"
 						alt={className}
 						className={className}
+						secure="true"
 					>
 						<Transformation quality="auto" fetchFormat="auto" />
 					</Image>

@@ -22,6 +22,7 @@ const renderImg = (port, localImg, hostedImg, className, id = "") => {
                     crop="scale"
                     alt={className}
                     className={className}
+                    secure="true"
                 />
             );
         case "8080":

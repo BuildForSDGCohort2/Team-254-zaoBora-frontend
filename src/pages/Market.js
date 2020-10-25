@@ -193,6 +193,7 @@ const Market = ({
 										crop="scale"
 										alt="slider-image-item"
 										className="slider-image-item"
+										secure="true"
 									/>
 								))
 							}

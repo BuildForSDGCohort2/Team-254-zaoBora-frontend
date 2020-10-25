@@ -267,6 +267,7 @@ const Header = (props) => {
 						crop="scale"
 						alt={className}
 						className={className}
+						secure="true"
 					/>
 				);
 			case "8080":
@@ -334,6 +335,7 @@ const Header = (props) => {
 											crop="scale"
 											alt="app-logo"
 											className="register-app-logo app-logo-mkt"
+											secure="true"
 										/>
 									</NavLink>
 								</div>

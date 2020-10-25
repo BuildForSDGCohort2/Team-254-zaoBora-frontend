@@ -54,6 +54,7 @@ const Login = ({
 						alt={className}
 						className={className}
 						id={id}
+						secure="true"
 					>
 						<Transformation quality="auto" fetchFormat="auto" />
 					</Image>

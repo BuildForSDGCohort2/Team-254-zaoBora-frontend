@@ -86,6 +86,7 @@ const ProductItemReviews = () => {
 						crop="scale"
 						alt={className}
 						className={className}
+						secure="true"
 					/>
 				);
 			case "8080":

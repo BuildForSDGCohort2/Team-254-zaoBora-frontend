@@ -150,6 +150,7 @@ const FarmerHeader = () => {
 						crop="scale"
 						alt={hostedUrl}
 						className={className}
+						secure="true"
 					/>
 				);
 			case "8080":

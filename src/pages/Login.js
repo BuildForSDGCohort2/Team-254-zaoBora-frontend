@@ -37,7 +37,8 @@ const Login = ({
 	resMsg,
 	loginUser,
 	loginVendor,
-	vendorAuthentication
+	vendorAuthentication,
+	history
 }) => {
 	loginVendor()
 	console.log(vendorAuthentication)

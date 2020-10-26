@@ -59,7 +59,7 @@ const Account = ({
 	return (
 		<div className="account-page">
 			<Header />
-			{resMsg.msg && <RenderResMsg type='success' msg={resMsg.msg} title={`Welcome ${authentication.user.username},`} />}
+			{resMsg.loginSuccessMsg && <RenderResMsg type='success' msg={resMsg.loginSuccessMsg} title={`Welcome ${authentication.user.username},`} />}
 			<div className="account-container">
 				<div className="account-search-bar">
 					<div className={`${classes.search} search-bar-item`}>

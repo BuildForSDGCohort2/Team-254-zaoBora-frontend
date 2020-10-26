@@ -177,7 +177,7 @@ const Market = ({
 	return (
 		<div className="market-container">
 			<Header />
-			{resMsg.msg && <RenderResMsg type={resMsg.type} msg={resMsg.msg} title="Info" />}
+			{resMsg.logoutSuccessMsg && <RenderResMsg type="info" msg={resMsg.logoutSuccessMsg} title="Info" />}
 			<div className="product-list-filters">
 				<div className="product-list-filters-container">
 					<div className="image-slider">

@@ -2,24 +2,21 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Route } from 'react-router-dom';
 
-import { setMsg } from '../actions/resMsg';
-import { SET_MSG } from '../utils/Constants'
+import { alertLoginFail, clearMsg } from '../actions/resMsg';
 
 
 const PrivateRoute = ({
     isAuthenticated,
-    setMsg,
+    alertLoginFail,
+    clearMsg,
     component: Component,
     ...rest
 }) => {
     useEffect(() => {
-        setMsg({
-            type: SET_MSG,
-            payload: {
-                msg: "Please login to continue",
-                type: 'error'
-            }
-        })
+        alertLoginFail('Please login to continue')
+		setTimeout(() => {
+			clearMsg()
+		}, 5000)
     })
 
     return (
@@ -39,7 +36,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    setMsg: (msg) => dispatch(setMsg(msg))
+    alertLoginFail: (msg) => dispatch(alertLoginFail(msg)),
+    clearMsg: (msg) => dispatch(clearMsg())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PrivateRoute);

@@ -81,7 +81,7 @@ const useStyles = makeStyles((theme) => ({
 	}
 }));
 
-export const ListMenu = (anchor, toggleDrawer, displayIcon) => {
+export const ListMenu = (anchor, toggleDrawer, displayIcon, logout) => {
 	const classes = useStyles();
 
 	return (
@@ -126,13 +126,13 @@ export const ListMenu = (anchor, toggleDrawer, displayIcon) => {
 			<Divider />
 			<List>
 				{[{
-					name:'About Us',
+					name: 'About Us',
 					url: '/about'
 				},
 				{
 					name: 'FAQ',
 					url: '/faq'
-				}].map((item, index) => (
+				}].map(item => (
 					<ListItem button key={item.name}>
 						<NavLink
 							to={item.url}
@@ -146,48 +146,71 @@ export const ListMenu = (anchor, toggleDrawer, displayIcon) => {
 					</ListItem>
 				))}
 			</List>
+			<Divider />
+			<List>
+				<ListItem button>
+					<div
+						style={{
+							width: '100%',
+							textAlign: 'center'
+						}}
+						onClick={logout}
+					>
+						<NavLink
+							to="/"
+							className="mb-menu-links"
+							exact={true}
+							style={{
+								color: '#FFB400'
+							}}
+						>
+							<ListItemText primary="LOGOUT" />
+						</NavLink>
+					</div>
+				</ListItem>
+			</List>
 		</div>
 	);
 }
 
 export const displayIcon = (name) => {
-	switch(name) {
+	switch (name) {
 
 		case 'Market':
 			return (
 				<AiFillShop style={{
 					fontSize: '2rem'
-				}}/>
+				}} />
 			);
 		case 'Profile':
 			return (
 				<CgProfile style={{
 					fontSize: '2rem'
-				}}/>
+				}} />
 			);
 		case 'Orders':
 			return (
 				<GoListOrdered style={{
 					fontSize: '2rem'
-				}}/>
+				}} />
 			);
 		case 'My Shop':
 			return (
 				<AiFillShop style={{
 					fontSize: '2rem'
-				}}/>
+				}} />
 			);
 		case 'About Us':
 			return (
 				<BsInfoCircleFill style={{
 					fontSize: '2rem'
-				}}/>
+				}} />
 			);
 		case 'FAQ':
 			return (
 				<FaQuestionCircle style={{
 					fontSize: '2rem'
-				}}/>
+				}} />
 			);
 		default:
 			return;
@@ -270,14 +293,14 @@ const Header = (props) => {
 										to='/about'
 										activeClassName="is-active"
 										className="navbar-link"
-										>
+									>
 										About us
 									</NavLink>
 									<NavLink
 										to='/faq'
 										activeClassName="is-active"
 										className="navbar-link"
-										>
+									>
 										FAQ
 									</NavLink>
 								</div>
@@ -342,9 +365,9 @@ const Header = (props) => {
 									<div className="navigation-bar">
 										<NavLink
 											to='/'
-								            activeClassName="is-active"
-								            exact={true}
-								            className="navbar-link"
+											activeClassName="is-active"
+											exact={true}
+											className="navbar-link"
 										>
 											Market
 										</NavLink>
@@ -382,9 +405,9 @@ const Header = (props) => {
 														/>
 														<NavLink
 															to='/profile'
-												            activeClassName="is-active"
-												            exact={true}
-												            className="navbar-link option-link"
+															activeClassName="is-active"
+															exact={true}
+															className="navbar-link option-link"
 														>
 															Profile
 														</NavLink>
@@ -403,9 +426,9 @@ const Header = (props) => {
 														/>
 														<NavLink
 															to='/orders'
-												            exact={true}
-												            activeClassName="is-active"
-												            className="navbar-link option-link"
+															exact={true}
+															activeClassName="is-active"
+															className="navbar-link option-link"
 														>
 															Orders
 														</NavLink>
@@ -461,8 +484,8 @@ const Header = (props) => {
 										</div>
 										<NavLink
 											to='/cart'
-								            activeClassName="is-active"
-								            className=""
+											activeClassName="is-active"
+											className=""
 										>
 											<StyledBadge badgeContent={3} color="secondary">
 												<FaShoppingCart style={{
@@ -483,13 +506,13 @@ const Header = (props) => {
 											color: '#666'
 										}}
 									/>
-							        <Drawer
-							        	anchor={'right'}
-							        	open={state['right']}
-							        	onClose={toggleDrawer('right', false)}
-						        	>
-							            {ListMenu('right', toggleDrawer, displayIcon)}
-							        </Drawer>
+									<Drawer
+										anchor={'right'}
+										open={state['right']}
+										onClose={toggleDrawer('right', false)}
+									>
+										{ListMenu('right', toggleDrawer, displayIcon, logout)}
+									</Drawer>
 								</div>
 							</div>
 							<div className="mb-search-filters-section mb">

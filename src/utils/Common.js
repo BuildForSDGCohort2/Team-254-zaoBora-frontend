@@ -39,7 +39,7 @@ export const forceRefreshToken = async (refreshToken, callback) => {
     try {
         const config = {
             method: 'post',
-            url: `${DEV_BASE_URL}/refresh`,
+            url: `${BASE_URL}/refresh`,
             headers: {
                 'Authorization': `Bearer ${refreshToken}`
             }

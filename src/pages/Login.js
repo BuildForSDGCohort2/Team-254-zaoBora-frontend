@@ -16,10 +16,6 @@ import { RenderResMsg } from '../utils/Common';
 import { loginUser } from '../actions/authentication';
 import { loginVendor } from '../actions/vendorAuthentication';
 
-const port = window.location.port;
-const localEnv = (port === "8080");
-const farmer = localEnv && require('../assets/farmer-2.png');
-const tree = localEnv && require('../assets/tree.png');
 
 const useStyles = makeStyles(theme => ({
 	paper: {
@@ -37,8 +33,7 @@ const Login = ({
 	resMsg,
 	loginUser,
 	loginVendor,
-	vendorAuthentication,
-	history
+	vendorAuthentication
 }) => {
 	loginVendor()
 	console.log(vendorAuthentication)
@@ -62,7 +57,7 @@ const Login = ({
 					</Image>
 				</h1>
 			</NavLink>
-			{resMsg.msg && <RenderResMsg type={resMsg.type} msg={resMsg.msg} title="Error" />}
+			{resMsg.loginFailMsg && <RenderResMsg type="error" msg={resMsg.loginFailMsg} title="Error" />}
 			<span className="mb mb-register">
 				<span className="mb mb-register__wrapper">
 					<NavLink

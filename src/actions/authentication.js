@@ -10,12 +10,19 @@ import {
 	REGISTER_SUCCESS,
 	BASE_URL,
 	DEV_BASE_URL,
-	SET_MSG,
-	CLEAR_MSG,
 	CHECK_AUTH_STATE
 } from '../utils/Constants'
 import CookieStorage from '../utils/CookieStorage';
 import { forceRefreshToken } from '../utils/Common';
+import {
+	alertRegisterFail,
+	alertRegisterSuccess,
+	alertLoginFail,
+	alertLoginSuccess,
+	alertLogoutFail,
+	alertLogoutSuccess,
+	clearMsg
+} from '../actions/resMsg';
 
 
 const cookieStorage = new CookieStorage();
@@ -50,8 +57,8 @@ export const fetchActiveUser = ({ access_token, refresh_token, account }) => asy
 		})
 	} catch (e) {
 		const error = e.response.data;
-        console.log('----> ',e)
-        console.log('--> ',e.response)
+		console.log('----> ', e)
+		console.log('--> ', e.response)
 		console.log(error)
 
 		switch (error.msg) {
@@ -102,16 +109,10 @@ export const registerUser = userDetails => async (dispatch) => {
 	} catch (e) {
 		const errObj = e.response.data;
 
-		dispatch({
-			type: SET_MSG,
-			payload: {
-				msg: errObj.error,
-				type: 'error'
-			}
-		})
+		dispatch(alertRegisterFail(errObj.error))
 
 		setTimeout(() => {
-			dispatch({ type: CLEAR_MSG })
+			dispatch(clearMsg())
 		}, 5000)
 	}
 }
@@ -129,37 +130,25 @@ export const loginUser = userDetails => async (dispatch) => {
 		}
 		console.log(authUser)
 		const storeUser = JSON.stringify(authUser);
-		
+
 		cookieStorage.setCookie('user', storeUser, 30);
+		history.replace('/#/profile');
 		dispatch({
 			type: LOGIN_SUCCESS,
 			payload: authUser
 		});
-		dispatch({
-			type: SET_MSG,
-			payload: {
-				msg: res.data.message,
-				type: 'success'
-			}
-		});
+		dispatch(alertLoginSuccess(res.data.message))
 		setTimeout(() => {
-			dispatch({ type: CLEAR_MSG })
+			dispatch(clearMsg())
 		}, 5000)
 	} catch (e) {
 		console.log(e)
-		const errObj = e.response.data;
-		console.log('error: ',errObj);
-
-		dispatch({
-			type: SET_MSG,
-			payload: {
-				msg: errObj.error,
-				type: 'error'
-			}
-		})
-
+		const res = e.response.data;
+		console.log('error: ', res);
+		
+		dispatch(alertLoginFail(res.error))
 		setTimeout(() => {
-			dispatch({ type: CLEAR_MSG })
+			dispatch(clearMsg())
 		}, 5000)
 	}
 }
@@ -189,54 +178,17 @@ export const logoutUser = () => async (dispatch) => {
 				refresh_token: ""
 			}
 		})
-		// window.location.replace('/#/');
 		history.replace('/#/');
-		dispatch({
-			type: SET_MSG,
-			payload: {
-				msg: res.data.msg,
-				type: 'info',
-				title: 'Info'
-			}
-		})
+		dispatch(alertLogoutSuccess(res.data.msg))
 		setTimeout(() => {
-			dispatch({ type: CLEAR_MSG })
+			dispatch(clearMsg())
 		}, 5000)
 	} catch (e) {
-		const error = e.response.data;
-		console.log('error: ',error);
-        
-		switch(error.msg) {
-			case 'Token has expired':
-			case 'Token has been revoked':
-			case 'Signature verification failed':
-			case 'User not found!':
-				dispatch({
-					type: CHECK_AUTH_STATE,
-					payload: {
-                        user: null,
-                        authenticated: false,
-                        access_token: "",
-                        refresh_token: ""
-                    }
-                })
-                cookieStorage.eraseCookie('user')
-				break;
-			default:
-				return;
-		}
+		const res = e.response.data;
+		console.log('error: ', res);
+		
+		/*
+		Force auth token here
+		*/
 	}
 }
-
-
-		// dispatch({
-		// 	type: SET_MSG,
-		// 	payload: {
-		// 		msg: 'Registration was successful, login to continue.',
-		// 		type: 'success'
-		// 	}
-		// });
-
-		// setTimeout(() => {
-		// 	dispatch({ type: CLEAR_MSG })
-		// }, 5000)
